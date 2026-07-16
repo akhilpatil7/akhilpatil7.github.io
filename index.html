@@ -452,6 +452,7 @@
     display: flex; flex-direction: column;
     position: relative; overflow: hidden;
     transition: border-color .3s, transform .35s var(--ease);
+    cursor: pointer;
   }
   .pcard::before {
     content: '';
@@ -503,6 +504,14 @@
     transition: color .2s, border-color .2s;
   }
   .pcard:hover .mtag { color: var(--txt2); border-color: var(--border2); }
+
+  .pcard-cta {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-top: 20px;
+    opacity: 0; transition: opacity .25s;
+  }
+  .pcard:hover .pcard-cta { opacity: 1; }
 
   /* ─────────────────────────────────────────────────────────── */
   /* EXPERIENCE                                                  */
@@ -672,6 +681,134 @@
     font-family: var(--f-mono);
     font-size: 10px; letter-spacing: .12em; color: var(--txt3);
   }
+
+  /* ─────────────────────────────────────────────────────────── */
+  /* PROJECT DETAIL PANEL                                        */
+  /* ─────────────────────────────────────────────────────────── */
+  #proj-panel {
+    position: fixed; inset: 0; z-index: 500;
+    background: var(--bg);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform .45s var(--ease);
+    will-change: transform;
+  }
+  #proj-panel.open { transform: translateX(0); }
+
+  .panel-nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center;
+    padding: 0 clamp(20px,6vw,80px);
+    height: 54px;
+    background: rgba(247,248,252,.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-label); font-size: 10.5px;
+    font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--txt2); background: none; border: none;
+    cursor: pointer; transition: color .2s;
+  }
+  .panel-back:hover { color: var(--accent); }
+
+  .panel-hero {
+    width: 100%; height: clamp(220px,28vw,360px);
+    position: relative; overflow: hidden;
+  }
+  .panel-hero img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+  }
+  .panel-hero-grad { width: 100%; height: 100%; }
+  .panel-hero-fade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+  }
+
+  .panel-body {
+    max-width: 820px; margin: 0 auto;
+    padding: 0 clamp(20px,7vw,100px) clamp(60px,8vw,100px);
+  }
+  .panel-meta-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .panel-year {
+    font-family: var(--f-mono); font-size: 10.5px;
+    letter-spacing: .14em; color: var(--txt3);
+  }
+  .panel-title {
+    font-family: var(--f-disp);
+    font-size: clamp(30px,5vw,58px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--txt); margin-bottom: 20px;
+  }
+  .panel-methods { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 52px; }
+
+  .psec { margin-bottom: 52px; }
+  .psec-label {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .psec-label::before { content: ''; width: 16px; height: 1px; background: var(--accent); }
+  .psec-heading {
+    font-family: var(--f-disp);
+    font-size: clamp(22px,3vw,32px); font-weight: 300;
+    color: var(--txt); margin-bottom: 18px;
+  }
+  .psec p {
+    font-size: 15px; font-weight: 300;
+    color: var(--txt2); line-height: 1.85; margin-bottom: 14px;
+  }
+  .psec p strong { color: var(--txt); font-weight: 500; }
+
+  .proc-steps { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+  .proc-step {
+    display: grid; grid-template-columns: 44px 1fr;
+    gap: 0; padding: 20px 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    transition: border-color .2s;
+  }
+  .proc-step:hover { border-color: var(--border2); }
+  .proc-num {
+    font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+    color: var(--accent); padding-top: 1px;
+  }
+  .proc-text {
+    font-size: 14px; font-weight: 300;
+    color: var(--txt2); line-height: 1.8;
+  }
+  .proc-text strong { color: var(--txt); font-weight: 500; }
+
+  .res-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+    gap: 2px; margin-bottom: 28px;
+  }
+  .res-card {
+    padding: 26px 22px;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .res-num {
+    font-family: var(--f-disp); font-size: 42px; font-weight: 200;
+    color: var(--txt); line-height: 1; margin-bottom: 6px;
+  }
+  .res-num sup { font-size: .5em; color: var(--accent); vertical-align: super; }
+  .res-lbl {
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: .15em; text-transform: uppercase; color: var(--txt2);
+  }
+  .res-findings { display: flex; flex-direction: column; gap: 12px; }
+  .res-finding {
+    font-size: 14px; font-weight: 300;
+    color: var(--txt2); line-height: 1.75;
+    padding-left: 20px; position: relative;
+  }
+  .res-finding::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
 
   /* ─────────────────────────────────────────────────────────── */
   /* KEYFRAMES                                                   */
@@ -848,6 +985,20 @@
 
 <!-- ── Content rendered by JS ──────────────────────────────── -->
 <div id="root"></div>
+
+<!-- ── Project Detail Panel ────────────────────────────────── -->
+<div id="proj-panel" aria-modal="true" role="dialog" aria-hidden="true">
+  <nav class="panel-nav">
+    <button class="panel-back" id="panel-back-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Projects
+    </button>
+  </nav>
+  <div id="panel-hero" class="panel-hero"></div>
+  <div class="panel-body" id="panel-content"></div>
+</div>
 
 <!-- ── Footer ──────────────────────────────────────────────── -->
 <footer>
@@ -1121,8 +1272,8 @@ function render() {
         <button class="filter-btn" data-filter="c">Customer Experience</button>
       </div>
       <div class="projects-grid" id="pgrid">
-        ${DATA.projects.map(p => `
-          <div class="pcard reveal" data-cat="${p.cat}">
+        ${DATA.projects.map((p,i) => `
+          <div class="pcard reveal" data-cat="${p.cat}" onclick="openProject(${i})">
             <div class="pcard-meta">
               <span class="pcard-year">${p.year}</span>
               <span class="pcard-cat ${catClass[p.cat]}">${p.catLabel}</span>
@@ -1132,6 +1283,7 @@ function render() {
             <div class="pcard-methods">
               ${p.methods.map(m => `<span class="mtag">${m}</span>`).join("")}
             </div>
+            <div class="pcard-cta">View Case Study →</div>
           </div>
         `).join("")}
       </div>
@@ -1263,6 +1415,340 @@ window.addEventListener("scroll", () => {
 
 // ── Init ──
 render();
+
+// ─────────────────────────────────────────────────────────────────
+// PROJECT DETAIL DATA
+// ─────────────────────────────────────────────────────────────────
+const PROJECT_DETAILS = {
+
+  "DSP Incrementality Test": {
+    image: "images/newark-wards.png",
+    background: `<p>As Plymouth Rock expanded its programmatic strategy across multiple DSP partners, the core question was: <strong>which platform was genuinely driving net-new demand</strong> — and which was simply claiming credit for conversions that would have happened organically? Standard attribution models could not answer this. A causal measurement framework was required.</p><p>The added complexity: running both DSPs in overlapping geographies would contaminate results through cross-DSP household exposure. The experiment design had to eliminate this risk structurally, not statistically.</p>`,
+    process: [
+      { n: "01", text: "<strong>Market isolation by state.</strong> StackAdapt was assigned to New Jersey and Amazon DSP to Massachusetts. State lines acted as natural exposure barriers, eliminating any risk of a single household seeing ads from both platforms." },
+      { n: "02", text: "<strong>Balanced geo construction via clustering.</strong> K-Means on U.S. Census demographics (income, age, household composition) and internal KPI baselines (quote rate, bind rate) identified matched treatment and control zip code pairs within each state." },
+      { n: "03", text: "<strong>Power analysis and MDE sizing.</strong> Minimum Detectable Effect calculations determined the geographic unit count and flight duration needed to achieve statistical power ≥ 0.80, ensuring the test could surface a real effect if one existed." },
+      { n: "04", text: "<strong>Difference-in-Differences as primary measure.</strong> DiD estimated causal lift by comparing the pre/post change in the treatment group against the parallel trend in the control group." },
+      { n: "05", text: "<strong>Synthetic Control as validation layer.</strong> A synthetic counterfactual — built from a weighted blend of control zip codes — provided a second independent lift estimate to cross-check the DiD result." }
+    ],
+    metrics: [
+      { num: "2", sup: "", label: "DSPs Evaluated" },
+      { num: "2", sup: "", label: "Measurement Methods" },
+      { num: "5", sup: "", label: "Geo Clusters Built" }
+    ],
+    findings: [
+      "Isolated true incremental lift per DSP, separating programmatic-driven demand from organic and cross-channel influence",
+      "DiD and Synthetic Control estimates converged, confirming result validity at high confidence",
+      "Findings directly informed multi-million dollar DSP budget allocation for the following quarter",
+      "Experiment design became the reusable blueprint for all subsequent incrementality tests at Plymouth Rock"
+    ]
+  },
+
+  "Meta Paid Social Incrementality Test": {
+    image: "images/staticmap.png",
+    background: `<p>Paid social represented a significant and growing media budget line. Leadership needed <strong>causal evidence — not correlation</strong> — that Meta ads were generating demand that would not have existed otherwise. The risk of cutting spend if it were truly incremental, or continuing to invest if it were not, both carried material business consequences.</p><p>The additional challenge: some geographies lacked a clean, naturally unexposed holdout area. A purely structural holdout design would sacrifice test power or risk a contaminated control. The solution required going beyond standard holdout methodology.</p>`,
+    process: [
+      { n: "01", text: "<strong>Geo-based holdout design.</strong> Counties were stratified by pre-period KPI performance and demographic profile, then assigned to treatment (Meta ads running) or holdout (ads fully suppressed)." },
+      { n: "02", text: "<strong>Synthetic Control for imperfect holdouts.</strong> Where a clean control county wasn't available, a synthetic counterfactual was derived as a weighted combination of multiple control units — creating a virtual holdout that matched pre-period trends." },
+      { n: "03", text: "<strong>MDE analysis pre-launch.</strong> Power analysis confirmed the minimum spend level and test duration needed to detect the expected effect size with sufficient statistical confidence." },
+      { n: "04", text: "<strong>Live monitoring dashboard.</strong> A Tableau dashboard with UCL/LCL health thresholds tracked test integrity throughout the flight — alerting the team to unexpected KPI divergences before they could invalidate the experiment." },
+      { n: "05", text: "<strong>Post-test triangulation.</strong> DiD and Synthetic Control estimates were applied independently and compared. Result convergence provided the validation needed to report findings with confidence." }
+    ],
+    metrics: [
+      { num: "2", sup: "", label: "Measurement Methods" },
+      { num: "1", sup: "", label: "Live Monitoring Dashboard" },
+      { num: "3", sup: "σ", label: "Control Bands Applied" }
+    ],
+    findings: [
+      "Confirmed statistically significant incremental lift attributable to Meta paid social investment",
+      "Synthetic Control resolved the imperfect holdout problem without sacrificing result credibility",
+      "Live dashboard caught a mid-flight KPI anomaly that would have compromised test integrity if undetected",
+      "Results secured continued and expanded paid social investment for the next planning cycle"
+    ]
+  },
+
+  "Paid Search Incrementality Test": {
+    image: "images/nyc_collisions.png",
+    background: `<p>Paid search — particularly branded keywords — is one of the most debated budget line items in any marketing mix. The concern: <strong>are we paying to intercept users who would have found us organically anyway?</strong> The organic cannibalization question had never been formally quantified at Plymouth Rock. Budget decisions were happening without causal data.</p><p>The test needed to answer two questions simultaneously: does All Search drive incremental demand above organic? And within that, how much is Branded Search cannibalizing traffic that was already coming on its own?</p>`,
+    process: [
+      { n: "01", text: "<strong>Dual treatment arm design.</strong> Counties were assigned to three arms: All Search active (treatment), Branded Search only (secondary treatment), and fully suppressed (control) — isolating the contribution of each independently." },
+      { n: "02", text: "<strong>Geo selection via demographic matching.</strong> Clustering on Census attributes and pre-period performance ensured treatment and control counties were statistically comparable at baseline, removing geographic confounds." },
+      { n: "03", text: "<strong>Cannibalization measurement.</strong> Organic traffic and direct conversion rates were tracked separately in the suppressed arm to quantify how much revenue was generated with zero paid search present." },
+      { n: "04", text: "<strong>DiD estimation per arm.</strong> Post-period lifts were modeled for each treatment arm independently, producing separate incremental lift estimates with confidence intervals for All Search and Branded Search." }
+    ],
+    metrics: [
+      { num: "3", sup: "", label: "Treatment Arms" },
+      { num: "2", sup: "", label: "Search Types Isolated" },
+      { num: "1", sup: "", label: "Cannibalization Estimate" }
+    ],
+    findings: [
+      "Quantified net incremental lift from paid search above and beyond organic demand capture",
+      "Branded search cannibalization effect was formally measured for the first time, enabling a data-backed budget conversation",
+      "Results informed a restructured paid search strategy prioritizing spend where true incrementality was highest",
+      "Geo matching methodology from this test was refined and carried forward into all subsequent experiments"
+    ]
+  },
+
+  "DSP Vendor Evaluation: StackAdapt vs. Basis": {
+    image: "images/newark-wards.png",
+    background: `<p>Plymouth Rock had been running programmatic campaigns across both StackAdapt and Basis DSP, but <strong>vendor budget allocation was driven by relationships and historical inertia</strong> rather than measured performance. The question: which DSP was the better vehicle for reaching the New Jersey insurance audience and driving policy quotes?</p><p>A head-to-head measurement approach was needed — one that held both platforms to the same geographic conditions and the same success metrics simultaneously.</p>`,
+    process: [
+      { n: "01", text: "<strong>Zip-code-level geo-split within New Jersey.</strong> Rather than splitting by time period, treatment geos were defined geographically — each DSP assigned a distinct set of NJ zip codes to serve simultaneously." },
+      { n: "02", text: "<strong>Clustering for balanced geo assignment.</strong> K-Means on Census demographics and prior campaign performance ensured StackAdapt and Basis received statistically comparable market segments, removing geographic confounds from the comparison." },
+      { n: "03", text: "<strong>Cost efficiency and volume analysis.</strong> In-flight and post-test analysis tracked cost-per-quote, cost-per-bind, impression delivery, and audience quality across both platforms against identical KPI benchmarks." },
+      { n: "04", text: "<strong>Vendor scorecard and recommendation.</strong> Results were synthesized across efficiency, reach, targeting precision, and audience quality into a structured recommendation to guide contract and budget decisions." }
+    ],
+    metrics: [
+      { num: "2", sup: "", label: "DSPs Head-to-Head" },
+      { num: "4", sup: "", label: "KPI Dimensions Scored" },
+      { num: "1", sup: "", label: "Clear Vendor Winner" }
+    ],
+    findings: [
+      "StackAdapt emerged as the primary volume driver with superior cost-per-quote and targeting fidelity in the NJ market",
+      "Basis DSP showed relative strength in brand awareness placements but lagged on direct-response KPIs",
+      "Vendor recommendation directly informed contract negotiations and media plan allocation decisions",
+      "The geo-split framework became the standard evaluation approach for all future DSP assessments"
+    ]
+  },
+
+  "Zip Code Targeting Intelligence": {
+    image: "images/staticmap.png",
+    background: `<p>Media targeting at Plymouth Rock had historically relied on broad DMA-level thinking or intuitive zip code selection. <strong>There was no systematic, data-driven methodology for identifying which specific NJ zip codes represented the highest-value opportunity</strong> for programmatic and direct mail campaigns.</p><p>The goal: build a reusable scoring framework that could be refreshed each cycle — combining external market signals with internal performance intelligence into a single prioritization output.</p>`,
+    process: [
+      { n: "01", text: "<strong>U.S. Census data integration.</strong> Key demographic variables — income distribution, homeownership rate, age cohorts, household size — were sourced at the zip code level as proxies for insurance purchase propensity." },
+      { n: "02", text: "<strong>Internal campaign performance overlay.</strong> Historical KPI data by zip code (quote rates, bind rates, cost-per-acquisition) was merged to capture realized performance signals that go beyond demographics alone." },
+      { n: "03", text: "<strong>Weighted composite scoring.</strong> Each zip code received a composite score built from weighted demographic and performance components, with weights calibrated to Plymouth Rock's target customer profile." },
+      { n: "04", text: "<strong>Priority tiering for activation.</strong> Zip codes were sorted into tiered targeting buckets (high, medium, lower priority) to guide channel-level media activation decisions across programmatic, paid social, and direct mail." }
+    ],
+    metrics: [
+      { num: "2", sup: "", label: "Data Sources Merged" },
+      { num: "3", sup: "", label: "Priority Tiers" },
+      { num: "1", sup: "", label: "Reusable Scoring Model" }
+    ],
+    findings: [
+      "Identified a concentrated set of high-priority zip codes significantly outperforming DMA-level averages on bind rate",
+      "Composite score correlated strongly with historical campaign efficiency, validating the weighting methodology",
+      "Framework adopted as the standard targeting input for all NJ programmatic and direct mail activations",
+      "Playbook refreshes monthly with updated campaign data without needing to rebuild the methodology"
+    ]
+  },
+
+  "Programmatic Performance Framework": {
+    image: "images/SQL_Project.png",
+    background: `<p>Basis DSP campaign performance analysis was handled manually — pulling raw exports, reformatting data, and building ad hoc summaries. <strong>The process consumed analyst hours and introduced latency into optimization decisions.</strong> By the time insights reached stakeholders, the campaign flight had already moved past the window where adjustments would have the most impact.</p><p>A second problem surfaced in the data: tablet inventory was consuming a material share of budget while consistently underperforming on every key metric across the full campaign history.</p>`,
+    process: [
+      { n: "01", text: "<strong>Automated reporting pipeline.</strong> Built an end-to-end data pipeline ingesting Basis DSP performance exports, standardizing metrics, and populating a Tableau dashboard on a set refresh cadence — eliminating manual report assembly." },
+      { n: "02", text: "<strong>Inventory breakdown by device and format.</strong> All delivery and conversion metrics were cut by device type (desktop, mobile, tablet) and inventory format, surfacing performance differences hidden in aggregate reporting." },
+      { n: "03", text: "<strong>Cost-efficiency analysis by segment.</strong> Cost-per-quote and cost-per-bind were calculated per inventory type across the full campaign history, revealing the tablet segment's consistently elevated CPL and suppressed conversion rate." },
+      { n: "04", text: "<strong>Optimization recommendation.</strong> Analysis was packaged into a clear recommendation comparing tablet removal scenarios against projected budget reallocation impact — making the business case quantifiable." }
+    ],
+    metrics: [
+      { num: "1", sup: "", label: "Automated Dashboard" },
+      { num: "3", sup: "", label: "Device Types Analyzed" },
+      { num: "1", sup: "", label: "Inventory Type Eliminated" }
+    ],
+    findings: [
+      "Tablet inventory confirmed as a high-cost, low-return segment consuming spend without proportional conversion",
+      "Suppressing tablet delivery redirected budget to desktop and mobile, improving overall campaign efficiency",
+      "Automated dashboard reduced reporting turnaround from multi-day manual builds to same-day reads",
+      "Framework extended as the standard performance monitoring infrastructure for all Basis DSP campaigns"
+    ]
+  },
+
+  "Household Persona Clustering": {
+    image: "images/NYC_Kmeans.png",
+    background: `<p>Plymouth Rock's media strategy had been targeting New Jersey prospects as a relatively undifferentiated mass. With 3.2 million prospect households in scope, <strong>a one-size-fits-all approach was leaving significant audience precision on the table.</strong> The opportunity was to build audience intelligence that could inform both media targeting and creative messaging.</p><p>The central question: within the NJ prospect universe, what distinct segments exist — and which ones show the highest propensity to convert to policyholders?</p>`,
+    process: [
+      { n: "01", text: "<strong>AIQ data feature assembly.</strong> Demographic, financial, and behavioral attributes from the Acxiom Intelligence data set were assembled into a feature matrix across 3.2M household records." },
+      { n: "02", text: "<strong>Principal Component Analysis (PCA).</strong> PCA reduced dimensionality and addressed feature correlation, improving cluster separation and reducing noise in the downstream clustering solution." },
+      { n: "03", text: "<strong>K-Means with elbow method selection.</strong> K-Means was run across a range of k values; elbow method and silhouette scores identified 5 clusters as the optimal balance between within-cluster cohesion and between-cluster separation." },
+      { n: "04", text: "<strong>Persona profiling and naming.</strong> Each cluster was profiled on its distinguishing attributes and translated into a descriptive persona archetype, making the segments actionable for media and creative teams." },
+      { n: "05", text: "<strong>LiveRamp activation.</strong> Preferred segments (2, 3, and 4) were exported through LiveRamp for addressable media targeting across programmatic, paid social, and direct mail channels." }
+    ],
+    metrics: [
+      { num: "3.2", sup: "M", label: "Households Modeled" },
+      { num: "5", sup: "", label: "Persona Clusters" },
+      { num: "3", sup: "", label: "Segments Activated" }
+    ],
+    findings: [
+      "5 distinct, interpretable audience personas identified within the 3.2M NJ prospect universe",
+      "PCA significantly improved cluster separation compared to clustering on raw features directly",
+      "Activated segments showed meaningfully higher conversion propensity in post-activation performance reads",
+      "Persona framework became the foundation for Plymouth Rock's audience strategy across all direct channels"
+    ]
+  },
+
+  "90-Day Retention Model": {
+    image: "images/Creditcard_fault.png",
+    background: `<p>Early policy cancellation — particularly within the first 90 days — was a significant drag on customer lifetime value. The standard intervention was a generic retention email sequence. <strong>It wasn't moving the needle.</strong> The missing ingredient: knowing <em>why</em> a specific customer was likely to cancel, so the outreach could be matched to their actual cancellation driver.</p><p>The signal existed — inside thousands of unstructured call center interaction notes spanning years of policy history. The challenge was extracting it at scale.</p>`,
+    process: [
+      { n: "01", text: "<strong>LDA topic modeling on call center notes.</strong> Latent Dirichlet Allocation was applied to 4+ years of call center interaction text, surfacing 4 dominant cancellation topic categories: Underwriting disputes, YUBI Discount issues, eSignature friction, and Payment failures." },
+      { n: "02", text: "<strong>Topic validation with call center team.</strong> LDA-derived topic distributions were reviewed with operations leadership to confirm the algorithmic categories mapped to real, recognizable cancellation patterns experienced daily." },
+      { n: "03", text: "<strong>DataRobot ML churn pipeline.</strong> A supervised churn prediction model was trained on 2019–2022 policy data, incorporating both structured policy attributes and the LDA-derived topic scores as predictive features." },
+      { n: "04", text: "<strong>Dual-output scoring.</strong> Each at-risk policyholder received a churn probability score and a predicted primary cancellation reason — the combination routing them into the appropriate intervention stream." },
+      { n: "05", text: "<strong>Personalized email variant deployment.</strong> Four email variants were developed — each directly addressing a specific predicted cancellation driver — and deployed to the corresponding scored segments." }
+    ],
+    metrics: [
+      { num: "4", sup: "", label: "Churn Categories Found" },
+      { num: "4", sup: "+", label: "Years of Training Data" },
+      { num: "4", sup: "", label: "Email Variants Deployed" }
+    ],
+    findings: [
+      "LDA successfully extracted 4 distinct, actionable cancellation topics from unstructured call center text at scale",
+      "Model-driven personalized emails outperformed the prior generic retention sequence in early pilot results",
+      "The churn reason taxonomy is now embedded in CRM tagging and informs call center escalation protocols",
+      "LDA topic model is refreshed quarterly to detect emerging cancellation patterns as they appear"
+    ]
+  },
+
+  "eSales A/B Test — Funnel Analysis": {
+    image: "images/BEproj.png",
+    background: `<p>Plymouth Rock's eSales platform — the self-service quoting and purchase flow — underwent a significant design refresh. <strong>The business needed to know whether the new experience was genuinely improving conversion rates</strong>, and whether any improvements were consistent across user segments or concentrated in specific device types or traffic sources.</p><p>Without rigorous analysis, observed lifts could reflect sampling bias in how users were routed rather than actual experience improvement. The credibility of the result depended on ruling that out first.</p>`,
+    process: [
+      { n: "01", text: "<strong>Selection bias audit before outcome analysis.</strong> Prospect-level traffic assignment was reviewed to confirm that test and control groups were equivalent on pre-assignment characteristics — ruling out any systematic routing bias in who saw the new experience." },
+      { n: "02", text: "<strong>Stage-by-stage funnel analysis.</strong> Conversion rates at each funnel step (quote start → quote complete → application → bind) were calculated separately for test and control, identifying which stages improved and which regressed." },
+      { n: "03", text: "<strong>Device and segment decomposition.</strong> Overall results were broken out by device type (desktop, mobile, tablet) and user segment (new vs. returning, channel source) to identify where the redesign's impact was concentrated." },
+      { n: "04", text: "<strong>Statistical significance testing.</strong> Chi-square tests were applied at each funnel stage and subgroup to confirm that observed differences exceeded the threshold for random variation." }
+    ],
+    metrics: [
+      { num: "4", sup: "", label: "Funnel Stages Measured" },
+      { num: "3", sup: "", label: "Device Types Segmented" },
+      { num: "1", sup: "", label: "Bias Audit Pre-Analysis" }
+    ],
+    findings: [
+      "Selection bias audit confirmed test/control groups were statistically equivalent — validating the experiment design before any outcome analysis",
+      "Mobile users showed the strongest positive lift from the redesign; desktop performance was statistically flat",
+      "One funnel stage showed a significant regression in a specific segment, surfacing a fix the team had not anticipated",
+      "Results gave the eSales team a granular roadmap for phase-two optimization priorities by device and segment"
+    ]
+  },
+
+  "Lead Consumption Analytics Platform": {
+    image: "images/SQL_Project.png",
+    background: `<p>Plymouth Rock acquired prospects through a mix of online self-service quoting and offline call center interactions — but <strong>no unified view existed to track a single prospect across both touchpoints.</strong> The marketing team couldn't see how many leads converted in each channel, where the biggest drop-off points were, or what the revenue opportunity cost of those drop-offs represented.</p><p>Answering these questions required solving a data engineering problem first: stitching together systems that had never been designed to talk to each other.</p>`,
+    process: [
+      { n: "01", text: "<strong>Cross-channel data integration.</strong> Online quote data, call center records, and policy bind data were merged at the prospect level using custom PII rollup logic — resolving identity across systems that used different ID schemas and naming conventions." },
+      { n: "02", text: "<strong>Journey stage taxonomy.</strong> Each prospect was classified into one of four journey stages based on their furthest funnel progression: Sold (bound policy), Suppression (disqualified), Call Center (handed off), or Opportunity (stalled in funnel)." },
+      { n: "03", text: "<strong>Drop-off quantification.</strong> Volume and conversion rate at each stage transition were calculated, enabling the team to size — in dollar terms — the opportunity value sitting at each identified drop-off point." },
+      { n: "04", text: "<strong>Attribution by marketing source.</strong> Online vs. offline channel contribution was attributed across the funnel, revealing differences in prospect quality by marketing source beyond raw volume metrics." }
+    ],
+    metrics: [
+      { num: "4", sup: "", label: "Journey Stages Defined" },
+      { num: "2", sup: "", label: "Channel Types Merged" },
+      { num: "1", sup: "", label: "Unified Prospect Dataset" }
+    ],
+    findings: [
+      "Built the first unified prospect-level dataset spanning online and offline touchpoints at Plymouth Rock",
+      "Largest volume drop-off stage identified and sized in revenue terms, focusing intervention priorities",
+      "Attribution analysis revealed meaningful differences in prospect quality by source, reshaping lead buying strategy",
+      "Dataset became the source of truth for all lead performance reporting across marketing and sales teams"
+    ]
+  },
+
+  "Early Warning Detection System": {
+    image: "images/boston_crime_rate_white_sample.png",
+    background: `<p>KPI misses at Plymouth Rock were often discovered after the fact — in weekly or monthly reviews — by which point the window for corrective action had already passed. <strong>The team needed a system that surfaced anomalies as they were developing, not after they had compounded into reportable misses.</strong></p><p>The challenge: KPI baselines varied significantly by day of week, by state, and by seasonal patterns. A single flat alert threshold would either miss real signals or bury the team in false alarms.</p>`,
+    process: [
+      { n: "01", text: "<strong>Statistical control limit framework.</strong> Upper Control Limits (UCL) and Lower Control Limits (LCL) were derived from historical KPI distributions using 3-sigma methodology, calculated separately per state to account for market-level variation." },
+      { n: "02", text: "<strong>Weekday normalization.</strong> Performance expectations were segmented by day of week — Monday quote volumes differ structurally from Friday volumes. Day-specific control bands eliminated false anomaly signals caused by known weekday patterns." },
+      { n: "03", text: "<strong>Tableau automation and alert logic.</strong> The statistical framework was embedded in Tableau with automated conditional alerts — any metric breaching its UCL or LCL triggers a stakeholder notification without manual intervention." },
+      { n: "04", text: "<strong>Monthly threshold refresh cycle.</strong> Control limits are recalibrated monthly using the trailing 90-day performance window, ensuring thresholds adapt to genuine trend shifts without requiring manual reconfiguration." }
+    ],
+    metrics: [
+      { num: "3", sup: "σ", label: "Control Band Width" },
+      { num: "5", sup: "+", label: "States Monitored" },
+      { num: "7", sup: "", label: "Weekday Segments" }
+    ],
+    findings: [
+      "System flagged a multi-state KPI decline in real time, enabling corrective action 5 days earlier than the prior review cadence would have allowed",
+      "False positive rate dropped significantly after weekday normalization was added to the control bands",
+      "Automated Tableau alerts eliminated daily manual KPI pulls across the analytics team",
+      "Framework extended to 3 additional KPI families after proving its value in the initial rollout"
+    ]
+  }
+
+};
+
+// ─────────────────────────────────────────────────────────────────
+// PROJECT PANEL — OPEN / CLOSE
+// ─────────────────────────────────────────────────────────────────
+const catGrads = {
+  i: "linear-gradient(135deg,rgba(12,122,88,.12) 0%,rgba(12,122,88,.03) 100%)",
+  p: "linear-gradient(135deg,rgba(26,112,224,.12) 0%,rgba(26,112,224,.03) 100%)",
+  m: "linear-gradient(135deg,rgba(217,69,35,.10) 0%,rgba(217,69,35,.03) 100%)",
+  c: "linear-gradient(135deg,rgba(124,58,237,.10) 0%,rgba(124,58,237,.03) 100%)"
+};
+
+function openProject(idx) {
+  const p = DATA.projects[idx];
+  const d = PROJECT_DETAILS[p.title];
+  if (!d) return;
+
+  const heroEl = document.getElementById("panel-hero");
+  if (d.image) {
+    heroEl.innerHTML = `<img src="${d.image}" alt="${p.title}" loading="lazy"><div class="panel-hero-fade"></div>`;
+  } else {
+    heroEl.innerHTML = `<div class="panel-hero-grad" style="background:${catGrads[p.cat]}"></div>`;
+  }
+
+  const metricsHtml = d.metrics.map(m =>
+    `<div class="res-card"><div class="res-num">${m.num}<sup>${m.sup}</sup></div><div class="res-lbl">${m.label}</div></div>`
+  ).join("");
+
+  const processHtml = d.process.map(s =>
+    `<div class="proc-step"><div class="proc-num">${s.n}</div><div class="proc-text">${s.text}</div></div>`
+  ).join("");
+
+  const findingsHtml = d.findings.map(f =>
+    `<div class="res-finding">${f}</div>`
+  ).join("");
+
+  document.getElementById("panel-content").innerHTML = `
+    <div class="panel-meta-row">
+      <span class="panel-year">${p.year}</span>
+      <span class="pcard-cat ${catClass[p.cat]}">${p.catLabel}</span>
+    </div>
+    <div class="panel-title">${p.title}</div>
+    <div class="panel-methods">
+      ${p.methods.map(m => `<span class="mtag">${m}</span>`).join("")}
+    </div>
+
+    <div class="psec">
+      <div class="psec-label">Background</div>
+      <div class="psec-heading">The Challenge</div>
+      ${d.background}
+    </div>
+
+    <div class="psec">
+      <div class="psec-label">Process</div>
+      <div class="psec-heading">How We Approached It</div>
+      <div class="proc-steps">${processHtml}</div>
+    </div>
+
+    <div class="psec">
+      <div class="psec-label">Results</div>
+      <div class="psec-heading">What We Found</div>
+      <div class="res-metrics">${metricsHtml}</div>
+      <div class="res-findings">${findingsHtml}</div>
+    </div>
+  `;
+
+  const panel = document.getElementById("proj-panel");
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden", "false");
+  panel.scrollTop = 0;
+  document.body.style.overflow = "hidden";
+}
+
+function closeProject() {
+  const panel = document.getElementById("proj-panel");
+  panel.classList.remove("open");
+  panel.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("panel-back-btn").addEventListener("click", closeProject);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeProject(); });
 </script>
 </body>
 </html>
