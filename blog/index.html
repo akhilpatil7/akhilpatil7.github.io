@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Notes — Marketing Measurement Essays · Akhil Patil</title>
+  <meta name="description" content="Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.">
+  <meta name="keywords" content="incrementality testing, marketing analytics blog, geo holdout test, causal inference marketing, media measurement, synthetic control, difference-in-differences, marketing data science">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/">
+  <meta property="og:title" content="Field Notes — Essays on Causal Marketing Measurement">
+  <meta property="og:description" content="Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/blog.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Field Notes — Essays on Causal Marketing Measurement">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Field Notes — Essays on Causal Marketing Measurement">
+  <meta name="twitter:description" content="Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/blog.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"CollectionPage","@id":"https://akhilpatil7.github.io/blog/#page","url":"https://akhilpatil7.github.io/blog/","name":"Field Notes — Essays on Marketing Measurement","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntity":{"@type":"ItemList","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/","name":"Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads"},{"@type":"ListItem","position":2,"url":"https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/","name":"Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit"},{"@type":"ListItem","position":3,"url":"https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/","name":"Where Should We Spend Next? Building a Market-Opportunity Index"},{"@type":"ListItem","position":4,"url":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/","name":"How Much of Paid Search Is Just Buying Clicks You'd Get for Free?"},{"@type":"ListItem","position":5,"url":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/","name":"Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads"},{"@type":"ListItem","position":6,"url":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/","name":"Finding the Cross-Sell Hiding in Your Own Book"},{"@type":"ListItem","position":7,"url":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/","name":"One Customer, Many Footprints: Building a Unified Lead Dataset"},{"@type":"ListItem","position":8,"url":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/","name":"Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout"},{"@type":"ListItem","position":9,"url":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/","name":"An Early-Warning System for Marketing KPIs (Without Crying Wolf)"},{"@type":"ListItem","position":10,"url":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/","name":"Predicting Customer Value When You Barely Have Any Labels"},{"@type":"ListItem","position":11,"url":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/","name":"From Seven Million Households to Five Personas"},{"@type":"ListItem","position":12,"url":"https://akhilpatil7.github.io/blog/churn-prediction-lda-topic-modeling/","name":"Predicting Churn, Then Reading the Reasons in the Call Notes"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <header class="blog-hero">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Writing</span>
+  </nav>
+    <div class="section-label">Field Notes</div>
+    <h1>Field Notes</h1>
+    <div class="hero-rule"></div>
+    <p class="lede">Essays on causal measurement, media analytics, and building the data machinery behind marketing decisions.</p>
+    <div class="blog-meta-row">
+      <span><b>12</b> essays</span>
+      <span><b>4</b> topics</span>
+      <span>Updated <b>June 20, 2026</b></span>
+      <span><a href="/feed.xml">RSS</a></span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)" aria-labelledby="topics-h">
+    <div class="section-label">Browse by topic</div>
+    <h2 id="topics-h" class="sr-only">Topics</h2>
+    <div class="topics-grid">
+      <a class="topic-card reveal delay-1" href="/blog/topics/incrementality-testing/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Incrementality Testing &amp; Causal Measurement</h3>
+        <p class="tc-desc">Attribution tells you what got clicked…</p>
+      </a>
+      <a class="topic-card reveal delay-2" href="/blog/topics/media-strategy/">
+        <div class="tc-count">02 essays</div>
+        <h3 class="tc-title">Media Strategy &amp; Geo Targeting</h3>
+        <p class="tc-desc">Deciding where to spend is a harder analytical problem than deciding how much…</p>
+      </a>
+      <a class="topic-card reveal delay-3" href="/blog/topics/data-machinery/">
+        <div class="tc-count">04 essays</div>
+        <h3 class="tc-title">Data Machinery &amp; Operational Analytics</h3>
+        <p class="tc-desc">Most analytics failures are not modelling failures…</p>
+      </a>
+      <a class="topic-card reveal delay-4" href="/blog/topics/applied-ml/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Applied Machine Learning</h3>
+        <p class="tc-desc">A model that scores well and changes nothing is a failed project…</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" id="content" style="padding-top:clamp(56px,7vw,80px)" aria-labelledby="all-h">
+    <div class="section-label">Latest</div>
+    <h2 id="all-h" class="sr-only">All essays</h2>
+
+    <a class="feature-card reveal" href="/blog/geo-holdout-incrementality-test-paid-social/">
+      <div class="feature-flag">Featured · Incrementality Testing</div>
+      <h2>Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h2>
+      <p>Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo holdout experiment to measure the true, causal contribution of a social advertising channel — and why the answer surprised everyone.</p>
+      <div class="blog-meta-row" style="margin-top:0">
+        <time datetime="2026-04-20">April 20, 2026</time>
+        <span>6 min read</span>
+        <span style="color:var(--accent)">Read essay →</span>
+      </div>
+    </a>
+
+    <div class="filter-bar" style="margin-top:44px" role="group" aria-label="Filter essays by topic">
+      <button class="filter-btn active" type="button" data-filter="all">All <span id="post-count">12</span></button>
+      <button class="filter-btn" type="button" data-filter="incrementality-testing">Incrementality Testing</button>
+      <button class="filter-btn" type="button" data-filter="media-strategy">Media Strategy</button>
+      <button class="filter-btn" type="button" data-filter="data-machinery">Data Machinery</button>
+      <button class="filter-btn" type="button" data-filter="applied-ml">Applied ML</button>
+    </div>
+
+    <div class="post-list">
+      <a class="post-row reveal" href="/blog/programmatic-dsp-incrementality-control-groups/" data-cat="incrementality-testing">
+      <div class="pr-side">
+        <span class="chip cat-i">Incrementality Testing</span>
+        <time class="pr-date" datetime="2026-06-20">JUN 20 · 2026</time>
+        <span class="pr-read">6 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h2>
+        <p class="pr-excerpt">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of your treatment? I ran two tests where the data situations were completely different — and each demanded a completely different way of building that twin.</p>
+        <div class="pr-tags"><span class="mtag">incrementality</span><span class="mtag">programmatic</span><span class="mtag">mahalanobis-matching</span><span class="mtag">clustering</span><span class="mtag">synthetic-control</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/media-targeting-toolkit-zip-code-ranking/" data-cat="media-strategy">
+      <div class="pr-side">
+        <span class="chip cat-p">Media Strategy</span>
+        <time class="pr-date" datetime="2026-05-22">MAY 22 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h2>
+        <p class="pr-excerpt">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the first — a weighted zip-ranking index — and used device-level significance testing to settle the second.</p>
+        <div class="pr-tags"><span class="mtag">marketing-analytics</span><span class="mtag">geo-targeting</span><span class="mtag">hypothesis-testing</span><span class="mtag">feature-weighting</span><span class="mtag">vendor-evaluation</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/market-opportunity-index-media-budget-allocation/" data-cat="media-strategy">
+      <div class="pr-side">
+        <span class="chip cat-p">Media Strategy</span>
+        <time class="pr-date" datetime="2026-05-15">MAY 15 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Where Should We Spend Next? Building a Market-Opportunity Index</h2>
+        <p class="pr-excerpt">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one number per market — that blends demand headroom, conversion efficiency, and customer loyalty into a live map of where the next advertising dollar works hardest.</p>
+        <div class="pr-tags"><span class="mtag">marketing-analytics</span><span class="mtag">geo-analytics</span><span class="mtag">index-design</span><span class="mtag">tableau</span><span class="mtag">sql</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/paid-search-incrementality-organic-cannibalization/" data-cat="incrementality-testing">
+      <div class="pr-side">
+        <span class="chip cat-i">Incrementality Testing</span>
+        <time class="pr-date" datetime="2026-04-27">APR 27 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</h2>
+        <p class="pr-excerpt">Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid search, how much of that traffic just comes back through organic for free? The answer reshaped how the budget was allocated.</p>
+        <div class="pr-tags"><span class="mtag">incrementality</span><span class="mtag">paid-search</span><span class="mtag">cannibalization</span><span class="mtag">difference-in-differences</span><span class="mtag">causal-impact</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/auto-home-bundle-cross-sell-analytics/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-03-24">MAR 24 · 2026</time>
+        <span class="pr-read">3 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Finding the Cross-Sell Hiding in Your Own Book</h2>
+        <p class="pr-excerpt">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and where the untapped growth sits. I built the dataset that made that visible — and automated it so it stayed that way.</p>
+        <div class="pr-tags"><span class="mtag">analytics</span><span class="mtag">cross-sell</span><span class="mtag">data-integration</span><span class="mtag">power-query</span><span class="mtag">customer-analytics</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/unified-lead-dataset-entity-resolution/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h2>
+        <p class="pr-excerpt">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in three systems. I built the foundational dataset that stitched those footprints into one customer, then used it to quantify exactly how much opportunity was leaking out of the funnel.</p>
+        <div class="pr-tags"><span class="mtag">data-engineering</span><span class="mtag">entity-resolution</span><span class="mtag">analytics</span><span class="mtag">funnel-analysis</span><span class="mtag">opportunity-sizing</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/call-routing-insourcing-cost-reduction/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-02-20">FEB 20 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</h2>
+        <p class="pr-excerpt">A vendor was quietly earning a seven-figure annual fee to route inbound calls to the right agents. The company decided to bring it in-house. I supported the migration analytics — and when the internal call volumes came back looking alarmingly low, I found out why before anyone panicked.</p>
+        <div class="pr-tags"><span class="mtag">analytics</span><span class="mtag">cost-reduction</span><span class="mtag">telephony</span><span class="mtag">root-cause-analysis</span><span class="mtag">dashboards</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/early-warning-system-marketing-kpis-spc/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-01-30">JAN 30 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</h2>
+        <p class="pr-excerpt">The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here's how I built control limits for daily marketing KPIs that respected how the data actually behaves.</p>
+        <div class="pr-tags"><span class="mtag">statistics</span><span class="mtag">statistical-process-control</span><span class="mtag">control-limits</span><span class="mtag">anomaly-detection</span><span class="mtag">dashboards</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/predicting-customer-value-without-labels/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-11-05">NOV 5 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Predicting Customer Value When You Barely Have Any Labels</h2>
+        <p class="pr-excerpt">Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anyway. This is the story of predicting a value metric for seven million people when fewer than two percent of them had a usable label.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">regression</span><span class="mtag">survival-analysis</span><span class="mtag">feature-engineering</span><span class="mtag">genetic-algorithms</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/customer-personas-kmeans-clustering-pca/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-07-15">JUL 15 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">From Seven Million Households to Five Personas</h2>
+        <p class="pr-excerpt">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happened when the clustering didn't work — and how principal component analysis rescued it.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">clustering</span><span class="mtag">kmeans</span><span class="mtag">pca</span><span class="mtag">unsupervised-learning</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/churn-prediction-lda-topic-modeling/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-05-20">MAY 20 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Predicting Churn, Then Reading the Reasons in the Call Notes</h2>
+        <p class="pr-excerpt">Predicting which new customers will cancel is useful. Knowing *why* each one is at risk — mined from unstructured call-center notes — is what makes the prediction actionable. This project did both, and taught me a lot about the difference between a good model and a useful one.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">churn-prediction</span><span class="mtag">nlp</span><span class="mtag">topic-modeling</span><span class="mtag">lda</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

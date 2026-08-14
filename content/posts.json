@@ -1,0 +1,169 @@
+{
+  "_comment": "Per-post publishing + SEO metadata. Keyed by source markdown filename in content/posts/. Editing this file and re-running `node build.js` regenerates the whole blog. Markdown files are kept byte-identical to the originals so they can be re-copied at any time.",
+
+  "site": {
+    "url": "https://akhilpatil7.github.io",
+    "name": "Akhil Patil",
+    "title": "Akhil Patil — Marketing Analytics & Causal Measurement",
+    "authorRole": "Senior Marketing Analyst, Plymouth Rock Assurance",
+    "authorImage": "/images/avatar.jpg",
+    "authorLinkedIn": "https://www.linkedin.com/in/akhilpatil7/",
+    "authorEmail": "akhil.patil7@gmail.com",
+    "blogTitle": "Field Notes",
+    "blogTagline": "Essays on causal measurement, media analytics, and building the data machinery behind marketing decisions.",
+    "blogDescription": "Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst."
+  },
+
+  "categories": {
+    "incrementality-testing": {
+      "label": "Incrementality Testing",
+      "cls": "cat-i",
+      "title": "Incrementality Testing & Causal Measurement",
+      "seoTitle": "Incrementality Testing & Causal Measurement",
+      "seoDescription": "Field notes on incrementality testing for marketing — geo holdout design, synthetic control groups, difference-in-differences readouts, and power analysis.",
+      "intro": "Attribution tells you what got clicked. Incrementality tells you what actually changed behaviour. These essays cover the full experimental stack I use to answer the only media question that matters — <em>if we turned this channel off, what would we actually lose?</em> — including geo holdout design, synthetic control construction, Mahalanobis matching, power analysis and minimum detectable effect sizing, difference-in-differences measurement, and the discipline of being honest about what a test can and cannot prove.",
+      "keywords": ["incrementality testing", "geo holdout test", "synthetic control", "difference-in-differences", "causal inference marketing", "media incrementality", "geo experiments"]
+    },
+    "media-strategy": {
+      "label": "Media Strategy",
+      "cls": "cat-p",
+      "title": "Media Strategy & Geo Targeting",
+      "seoTitle": "Media Strategy & Geo Targeting Analytics",
+      "seoDescription": "How to decide where marketing budget works hardest — market opportunity indices, weighted zip-code targeting frameworks, and evidence-based vendor selection.",
+      "intro": "Deciding <em>where</em> to spend is a harder analytical problem than deciding <em>how much</em>. A market can look efficient simply because it's saturated, or look expensive simply because it's under-penetrated. These essays cover the decision-support machinery I build for media teams: normalized opportunity indices that make hundreds of markets comparable on one axis, weighted ranking frameworks for sub-market geo targeting, and significance testing to settle vendor and device questions with evidence instead of habit.",
+      "keywords": ["media strategy analytics", "geo targeting", "market opportunity index", "media budget allocation", "zip code targeting", "programmatic vendor evaluation"]
+    },
+    "data-machinery": {
+      "label": "Data Machinery",
+      "cls": "cat-c",
+      "title": "Data Machinery & Operational Analytics",
+      "seoTitle": "Marketing Data Engineering & KPI Alerting",
+      "seoDescription": "The foundations of marketing analytics — entity resolution across fragmented systems, funnel opportunity sizing, and KPI alerting people actually trust.",
+      "intro": "Most analytics failures are not modelling failures. They are foundation failures: the same customer counted three times across three systems, a funnel nobody can measure end to end, an alert nobody trusts because it cried wolf. These essays are about the unglamorous machinery underneath the insight — entity resolution across systems with no shared key, prospect-level datasets that make a real funnel measurable, automated cross-sell views, and statistical process control that fires when something is genuinely wrong.",
+      "keywords": ["entity resolution", "marketing data engineering", "funnel analysis", "opportunity sizing", "statistical process control", "KPI alerting", "anomaly detection"]
+    },
+    "applied-ml": {
+      "label": "Applied ML",
+      "cls": "cat-m",
+      "title": "Applied Machine Learning",
+      "seoTitle": "Applied Machine Learning for Marketing",
+      "seoDescription": "Applied machine learning for customer analytics — K-means and PCA segmentation, churn prediction with LDA topic modeling, and modeling value without labels.",
+      "intro": "A model that scores well and changes nothing is a failed project. These essays are about applied machine learning where the constraint is rarely the algorithm — it is sparse labels, unstructured text, selection bias, and the gap between a prediction and an action someone can actually take. Topics include K-means segmentation rescued by principal component analysis, churn prediction paired with LDA topic modeling of call-center notes, and the honest engineering required when under two percent of your population has a usable label.",
+      "keywords": ["applied machine learning", "customer segmentation", "k-means clustering", "PCA", "churn prediction", "LDA topic modeling", "survival analysis", "customer lifetime value"]
+    }
+  },
+
+  "posts": {
+    "01-meta-incrementality-geo-holdout.md": {
+      "slug": "geo-holdout-incrementality-test-paid-social",
+      "category": "incrementality-testing",
+      "featured": 1,
+      "seoTitle": "Geo Holdout Testing for Paid Social",
+      "seoDescription": "How to design a geo holdout incrementality test with synthetic control and difference-in-differences to measure the true causal lift of a paid social channel.",
+      "keywords": ["geo holdout test", "incrementality testing", "synthetic control", "difference-in-differences", "paid social incrementality", "causal inference marketing", "power analysis", "marketing measurement"],
+      "project": "Meta Paid Social Incrementality Test",
+      "related": ["02-paid-search-incrementality-cannibalization.md", "03-programmatic-dsp-incrementality.md", "04-market-opportunity-index.md"]
+    },
+    "02-paid-search-incrementality-cannibalization.md": {
+      "slug": "paid-search-incrementality-organic-cannibalization",
+      "category": "incrementality-testing",
+      "featured": 2,
+      "seoTitle": "Paid Search Incrementality & Cannibalization",
+      "seoDescription": "A paid search holdout test using difference-in-differences to quantify organic cannibalization — how much branded search traffic you would have won for free.",
+      "keywords": ["paid search incrementality", "organic cannibalization", "branded search", "holdout test", "difference-in-differences", "causal impact", "SEM measurement", "marketing analytics"],
+      "project": "Paid Search Incrementality Test",
+      "related": ["01-meta-incrementality-geo-holdout.md", "03-programmatic-dsp-incrementality.md", "05-media-targeting-toolkit.md"]
+    },
+    "03-programmatic-dsp-incrementality.md": {
+      "slug": "programmatic-dsp-incrementality-control-groups",
+      "category": "incrementality-testing",
+      "featured": 3,
+      "seoTitle": "Control Groups for DSP Incrementality Tests",
+      "seoDescription": "Two methods for constructing valid control groups in zip-code-level programmatic incrementality tests: Mahalanobis distance matching and K-means geo clustering.",
+      "keywords": ["programmatic incrementality", "control group construction", "Mahalanobis matching", "geo clustering", "DSP measurement", "synthetic control", "zip code geo experiment", "causal inference"],
+      "project": "DSP Incrementality Test",
+      "related": ["01-meta-incrementality-geo-holdout.md", "02-paid-search-incrementality-cannibalization.md", "05-media-targeting-toolkit.md"]
+    },
+    "04-market-opportunity-index.md": {
+      "slug": "market-opportunity-index-media-budget-allocation",
+      "category": "media-strategy",
+      "featured": 4,
+      "seoTitle": "Building a Market Opportunity Index",
+      "seoDescription": "Building a normalized market opportunity index that blends demand headroom, conversion efficiency, and customer loyalty into one comparable score per market.",
+      "keywords": ["market opportunity index", "media budget allocation", "geo analytics", "market penetration", "index design", "Tableau", "SQL", "marketing decision support"],
+      "project": "Zip Code Targeting Intelligence",
+      "related": ["05-media-targeting-toolkit.md", "01-meta-incrementality-geo-holdout.md", "06-lead-consumption-entity-resolution.md"]
+    },
+    "05-media-targeting-toolkit.md": {
+      "slug": "media-targeting-toolkit-zip-code-ranking",
+      "category": "media-strategy",
+      "seoTitle": "Zip-Code Targeting & Media Vendor Testing",
+      "seoDescription": "A weighted zip-code ranking index for programmatic geo-targeting, plus device-level significance testing to settle which media vendor actually deserves budget.",
+      "keywords": ["geo targeting", "zip code ranking", "weighted index", "programmatic targeting", "vendor evaluation", "hypothesis testing", "feature weighting", "media planning analytics"],
+      "project": "DSP Vendor Evaluation: StackAdapt vs. Basis",
+      "related": ["04-market-opportunity-index.md", "03-programmatic-dsp-incrementality.md", "10-customer-personas-clustering-pca.md"]
+    },
+    "06-lead-consumption-entity-resolution.md": {
+      "slug": "unified-lead-dataset-entity-resolution",
+      "category": "data-machinery",
+      "featured": 5,
+      "seoTitle": "Entity Resolution for a Unified Lead Dataset",
+      "seoDescription": "How to stitch fragmented online, call-center, and lead-broker records into one prospect-level dataset — then size the opportunity leaking out of the funnel.",
+      "keywords": ["entity resolution", "identity resolution", "unified customer dataset", "funnel analysis", "opportunity sizing", "data engineering", "SQL", "lead analytics"],
+      "project": "Lead Consumption Analytics Platform",
+      "related": ["07-auto-home-bundle-cross-sell.md", "09-early-warning-detection-spc.md", "04-market-opportunity-index.md"]
+    },
+    "07-auto-home-bundle-cross-sell.md": {
+      "slug": "auto-home-bundle-cross-sell-analytics",
+      "category": "data-machinery",
+      "seoTitle": "Auto & Home Bundle Cross-Sell Analytics",
+      "seoDescription": "Building an automated, customer-level view of insurance bundling — who is bundled, who is eligible, and where untapped auto and home cross-sell growth sits.",
+      "keywords": ["cross-sell analytics", "insurance bundling", "auto home bundle", "data integration", "Power Query", "customer analytics", "household matching"],
+      "related": ["06-lead-consumption-entity-resolution.md", "10-customer-personas-clustering-pca.md", "12-predicting-customer-value-no-labels.md"]
+    },
+    "08-call-routing-insourcing.md": {
+      "slug": "call-routing-insourcing-cost-reduction",
+      "category": "data-machinery",
+      "seoTitle": "Insourcing Call Routing to Cut Vendor Cost",
+      "seoDescription": "Migrating inbound call routing in-house to cut a seven-figure vendor fee — and the data-quality root-cause analysis that explained the missing call volume.",
+      "keywords": ["call routing", "vendor cost reduction", "telephony analytics", "root cause analysis", "data quality", "call center dashboards", "migration analytics"],
+      "related": ["09-early-warning-detection-spc.md", "06-lead-consumption-entity-resolution.md", "07-auto-home-bundle-cross-sell.md"]
+    },
+    "09-early-warning-detection-spc.md": {
+      "slug": "early-warning-system-marketing-kpis-spc",
+      "category": "data-machinery",
+      "featured": 6,
+      "seoTitle": "Statistical Process Control for KPI Alerts",
+      "seoDescription": "Building an early-warning system for daily marketing KPIs using statistical process control limits that catch real anomalies without endless false alarms.",
+      "keywords": ["statistical process control", "control limits", "UCL LCL", "anomaly detection", "KPI alerting", "early warning system", "marketing dashboards", "false positive rate"],
+      "project": "Early Warning Detection System",
+      "related": ["06-lead-consumption-entity-resolution.md", "08-call-routing-insourcing.md", "04-market-opportunity-index.md"]
+    },
+    "10-customer-personas-clustering-pca.md": {
+      "slug": "customer-personas-kmeans-clustering-pca",
+      "category": "applied-ml",
+      "seoTitle": "K-Means & PCA Customer Segmentation",
+      "seoDescription": "How principal component analysis rescued a failing K-means segmentation and turned seven million demographic records into five usable marketing personas.",
+      "keywords": ["k-means clustering", "PCA", "principal component analysis", "customer segmentation", "marketing personas", "unsupervised learning", "audience segmentation", "silhouette score"],
+      "project": "Household Persona Clustering",
+      "related": ["12-predicting-customer-value-no-labels.md", "11-churn-prediction-topic-modeling.md", "05-media-targeting-toolkit.md"]
+    },
+    "11-churn-prediction-topic-modeling.md": {
+      "slug": "churn-prediction-lda-topic-modeling",
+      "category": "applied-ml",
+      "seoTitle": "Churn Prediction with LDA Topic Modeling",
+      "seoDescription": "Pairing gradient-boosted churn prediction with LDA topic modeling of call-center notes to predict which customers cancel — and why each one is at risk.",
+      "keywords": ["churn prediction", "topic modeling", "LDA", "NLP", "gradient boosting", "AutoML", "customer retention", "call center analytics"],
+      "project": "90-Day Retention Model",
+      "related": ["12-predicting-customer-value-no-labels.md", "10-customer-personas-clustering-pca.md", "09-early-warning-detection-spc.md"]
+    },
+    "12-predicting-customer-value-no-labels.md": {
+      "slug": "predicting-customer-value-without-labels",
+      "category": "applied-ml",
+      "seoTitle": "Predicting Customer Value Without Labels",
+      "seoDescription": "Modeling customer value for seven million people when under two percent have a usable label — feature engineering, survival analysis, honest limitations.",
+      "keywords": ["customer lifetime value", "sparse labels", "selection bias", "survival analysis", "feature engineering", "genetic algorithms", "regression", "honest modeling"],
+      "related": ["10-customer-personas-clustering-pca.md", "11-churn-prediction-topic-modeling.md", "07-auto-home-bundle-cross-sell.md"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Local source material — not for publication (contains the LinkedIn export
+# and personal documents). Keep out of the repo and off the live site.
+data/
+.claude/

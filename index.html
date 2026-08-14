@@ -3,24 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Akhil Patil · Sr. Marketing Analyst</title>
-  <meta name="description" content="Senior Marketing Analyst specializing in media analytics, incrementality testing, and programmatic DSPs at Plymouth Rock Assurance.">
+  <title>Akhil Patil — Incrementality Testing &amp; Marketing Analytics</title>
+  <meta name="description" content="Senior Marketing Analyst at Plymouth Rock Assurance. Geo holdout experiments, synthetic control, and the data machinery behind media decisions — plus essays.">
+  <meta name="keywords" content="Akhil Patil, marketing analyst, incrementality testing, geo holdout test, synthetic control, difference-in-differences, media analytics, programmatic DSP, causal inference marketing, marketing data science, New Jersey">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
 
   <!-- Open Graph / LinkedIn preview -->
-  <meta property="og:type"        content="website">
+  <meta property="og:type"        content="profile">
   <meta property="og:url"         content="https://akhilpatil7.github.io/">
-  <meta property="og:title"       content="Akhil Patil · Sr. Marketing Analyst">
-  <meta property="og:description" content="Senior Marketing Analyst specializing in media analytics, incrementality testing, and programmatic DSPs at Plymouth Rock Assurance.">
-  <meta property="og:image"       content="https://akhilpatil7.github.io/images/akhil.jpg">
+  <meta property="og:title"       content="Akhil Patil — Incrementality Testing &amp; Marketing Analytics">
+  <meta property="og:description" content="Senior Marketing Analyst at Plymouth Rock Assurance. Geo holdout experiments, synthetic control, and the data machinery behind media decisions.">
+  <meta property="og:image"       content="https://akhilpatil7.github.io/images/og/home.png">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:site_name"   content="Akhil Patil Portfolio">
+  <meta property="og:image:alt"   content="Akhil Patil — proving what marketing actually works">
+  <meta property="og:site_name"   content="Akhil Patil">
+  <meta property="og:locale"      content="en_US">
+  <meta property="profile:first_name" content="Akhil">
+  <meta property="profile:last_name"  content="Patil">
 
   <!-- Twitter / X card -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Akhil Patil · Sr. Marketing Analyst">
-  <meta name="twitter:description" content="Senior Marketing Analyst specializing in media analytics, incrementality testing, and programmatic DSPs at Plymouth Rock Assurance.">
-  <meta name="twitter:image"       content="https://akhilpatil7.github.io/images/akhil.jpg">
+  <meta name="twitter:title"       content="Akhil Patil — Incrementality Testing &amp; Marketing Analytics">
+  <meta name="twitter:description" content="Senior Marketing Analyst at Plymouth Rock Assurance. Geo holdout experiments, synthetic control, and the data machinery behind media decisions.">
+  <meta name="twitter:image"       content="https://akhilpatil7.github.io/images/og/home.png">
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
 
@@ -60,7 +69,7 @@
 
   /* ── Reset ─────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; -webkit-text-size-adjust: 100%; }
   body {
     background: var(--bg);
     color: var(--txt);
@@ -287,9 +296,19 @@
     opacity: 0; animation: fadeUp .7s .66s var(--ease) forwards;
   }
   .hero-ctas {
-    display: flex; gap: 14px; flex-wrap: wrap;
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
     opacity: 0; animation: fadeUp .7s .82s var(--ease) forwards;
   }
+  .hero-link {
+    font-family: var(--f-label);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase;
+    color: var(--txt2);
+    padding: 12px 6px;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .hero-link:hover { color: var(--accent); border-bottom-color: var(--accent-g); }
 
   /* Hero signal viz */
   .hero-right {
@@ -663,16 +682,130 @@
   .fg textarea { min-height: 110px; }
 
   /* ─────────────────────────────────────────────────────────── */
+  /* WRITING                                                     */
+  /* ─────────────────────────────────────────────────────────── */
+  .writing-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap; margin-bottom: 22px;
+  }
+  .writing-all {
+    font-family: var(--f-label);
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--accent-g);
+    transition: border-color .2s, transform .2s;
+    white-space: nowrap;
+  }
+  .writing-all:hover { border-bottom-color: var(--accent); transform: translateX(3px); }
+  .writing-lede {
+    font-size: 15.5px; font-weight: 300; color: var(--txt2);
+    line-height: 1.85; max-width: 62ch; margin-bottom: 44px;
+  }
+
+  .writing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .wcard {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 30px 28px 26px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: border-color .3s, transform .35s var(--ease);
+  }
+  .wcard::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 2px; height: 0; background: var(--accent);
+    transition: height .35s var(--ease);
+  }
+  .wcard:hover { border-color: var(--border2); transform: translateY(-5px); }
+  .wcard:hover::before { height: 100%; }
+  .wcard-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-bottom: 18px;
+  }
+  .wcard-read {
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: .1em; color: var(--txt3);
+  }
+  .wcard-title {
+    font-family: var(--f-disp);
+    font-size: 22px; font-weight: 500; line-height: 1.22;
+    color: var(--txt); margin-bottom: 12px;
+    transition: color .25s;
+  }
+  .wcard:hover .wcard-title { color: var(--accent); }
+  .wcard-desc {
+    font-size: 12.5px; font-weight: 300;
+    color: var(--txt2); line-height: 1.75;
+    flex: 1; margin-bottom: 22px;
+  }
+  .wcard-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; padding-top: 16px; border-top: 1px solid var(--border);
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: .1em; color: var(--txt3);
+  }
+  .wcard-cta { color: var(--accent); opacity: 0; transition: opacity .25s; }
+  .wcard:hover .wcard-cta { opacity: 1; }
+
+  .topic-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-top: 2px;
+  }
+  .topic-strip a {
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 18px 22px;
+    font-family: var(--f-label);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--txt2);
+    display: flex; align-items: center; gap: 12px;
+    transition: color .2s, border-color .2s, background .2s;
+  }
+  .topic-strip a em {
+    font-family: var(--f-mono); font-style: normal;
+    font-size: 10px; color: var(--accent); letter-spacing: 0;
+  }
+  .topic-strip a:hover { color: var(--txt); border-color: var(--border2); background: var(--surface); }
+
+  /* Essay link inside the project detail panel */
+  .panel-essay {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px; flex-wrap: wrap;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 24px 28px; margin-bottom: 52px;
+    transition: border-color .3s, transform .3s var(--ease);
+  }
+  .panel-essay:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .panel-essay .pe-label {
+    font-family: var(--f-mono); font-size: 9.5px;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .panel-essay .pe-title {
+    font-family: var(--f-disp); font-size: 20px;
+    font-weight: 500; line-height: 1.25; color: var(--txt);
+  }
+  .panel-essay .pe-arrow {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ─────────────────────────────────────────────────────────── */
   /* FOOTER                                                      */
   /* ─────────────────────────────────────────────────────────── */
   footer {
     position: relative; z-index: 1;
     max-width: 1280px; margin: 0 auto;
-    padding: 36px clamp(20px,7vw,100px);
+    padding: 40px clamp(20px,7vw,100px);
     display: flex; justify-content: space-between; align-items: center;
     border-top: 1px solid var(--border);
-    flex-wrap: wrap; gap: 12px;
+    flex-wrap: wrap; gap: 18px;
   }
+  .foot-left { display: flex; flex-direction: column; gap: 6px; }
   .footer-name {
     font-family: var(--f-disp);
     font-size: 20px; font-weight: 300; color: var(--txt2);
@@ -681,6 +814,34 @@
     font-family: var(--f-mono);
     font-size: 10px; letter-spacing: .12em; color: var(--txt3);
   }
+  .foot-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .foot-links a {
+    font-family: var(--f-label); font-size: 10px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--txt2);
+    transition: color .2s;
+  }
+  .foot-links a:hover { color: var(--accent); }
+
+  /* ─────────────────────────────────────────────────────────── */
+  /* MOBILE NAV TOGGLE                                           */
+  /* ─────────────────────────────────────────────────────────── */
+  .nav-toggle {
+    display: none;
+    width: 34px; height: 34px;
+    align-items: center; justify-content: center;
+    border: 1px solid var(--border2);
+    color: var(--txt2);
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after {
+    display: block; width: 15px; height: 1.5px; background: currentColor;
+    transition: transform .25s var(--ease), opacity .2s;
+  }
+  .nav-toggle span { position: relative; }
+  .nav-toggle span::before { content: ''; position: absolute; top: -5px; }
+  .nav-toggle span::after  { content: ''; position: absolute; top:  5px; }
+  #nav.menu-open .nav-toggle span { background: transparent; }
+  #nav.menu-open .nav-toggle span::before { transform: translateY(5px) rotate(45deg); }
+  #nav.menu-open .nav-toggle span::after  { transform: translateY(-5px) rotate(-45deg); }
 
   /* ─────────────────────────────────────────────────────────── */
   /* PROJECT DETAIL PANEL                                        */
@@ -834,6 +995,8 @@
   /* ─────────────────────────────────────────────────────────── */
   @media (max-width: 1100px) {
     .projects-grid { grid-template-columns: repeat(2,1fr); }
+    .writing-grid  { grid-template-columns: repeat(2,1fr); }
+    .topic-strip   { grid-template-columns: repeat(2,1fr); }
   }
   @media (max-width: 900px) {
     #hero { grid-template-columns: 1fr; min-height: auto; padding-top: 110px; padding-bottom: 60px; }
@@ -844,23 +1007,113 @@
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     .edu-grid { grid-template-columns: 1fr; }
   }
+  @media (max-width: 820px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: none;
+      position: absolute; top: 54px; left: 0; right: 0;
+      flex-direction: column; align-items: flex-start; gap: 0;
+      background: rgba(247,248,252,.98);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px clamp(20px,6vw,80px) 20px;
+    }
+    #nav.menu-open .nav-links { display: flex; }
+    .nav-links a { padding: 13px 0; width: 100%; font-size: 12px; }
+  }
   @media (max-width: 640px) {
     .projects-grid { grid-template-columns: 1fr; }
+    .writing-grid  { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
     .cform-row { grid-template-columns: 1fr; }
+    .writing-head { align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .hero-avatar, .hero-eyebrow, .hero-name, .hero-rule, .hero-role,
+    .hero-spec, .hero-co, .hero-ctas, .hero-right { opacity: 1 !important; }
   }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://akhilpatil7.github.io/#akhil",
+        "name": "Akhil Patil",
+        "url": "https://akhilpatil7.github.io/",
+        "image": "https://akhilpatil7.github.io/images/Linkedin.PNG",
+        "jobTitle": "Senior Marketing Analyst",
+        "description": "Senior Marketing Analyst specialising in incrementality testing, causal measurement, and media analytics.",
+        "email": "mailto:akhil.patil7@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "Plymouth Rock Assurance" },
+        "address": { "@type": "PostalAddress", "addressRegion": "NJ", "addressCountry": "US" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Rutgers Business School" },
+          { "@type": "CollegeOrUniversity", "name": "University of Mumbai" }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/akhilpatil7/",
+          "https://github.com/akhilpatil7"
+        ],
+        "knowsAbout": [
+          "Incrementality testing", "Geo holdout experiments", "Synthetic control",
+          "Difference-in-differences", "Causal inference", "Marketing analytics",
+          "Programmatic advertising", "Media measurement", "Customer segmentation",
+          "Churn prediction", "Statistical process control", "Machine learning"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://akhilpatil7.github.io/#website",
+        "url": "https://akhilpatil7.github.io/",
+        "name": "Akhil Patil",
+        "description": "Portfolio and writing on incrementality testing, media analytics, and applied machine learning.",
+        "publisher": { "@id": "https://akhilpatil7.github.io/#akhil" },
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://akhilpatil7.github.io/#page",
+        "url": "https://akhilpatil7.github.io/",
+        "name": "Akhil Patil — Incrementality Testing & Marketing Analytics",
+        "isPartOf": { "@id": "https://akhilpatil7.github.io/#website" },
+        "about": { "@id": "https://akhilpatil7.github.io/#akhil" },
+        "hasPart": { "@id": "https://akhilpatil7.github.io/blog/#blog" }
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://akhilpatil7.github.io/blog/#blog",
+        "url": "https://akhilpatil7.github.io/blog/",
+        "name": "Field Notes — Akhil Patil",
+        "description": "Long-form essays on incrementality testing, geo holdout experiments, marketing analytics, and applied machine learning.",
+        "author": { "@id": "https://akhilpatil7.github.io/#akhil" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
 <!-- ── Navigation ──────────────────────────────────────────── -->
 <nav id="nav">
-  <div class="nav-brand">A<em>·</em>P</div>
-  <ul class="nav-links">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="/blog/">Writing</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -870,9 +1123,9 @@
 <section id="hero">
   <div class="hero-left">
     <div class="hero-avatar">
-      <img src="images/Linkedin.PNG" alt="Akhil Patil">
+      <img src="images/avatar.jpg" alt="Akhil Patil" width="72" height="72" fetchpriority="high">
     </div>
-    <div class="hero-eyebrow">Plymouth Rock Assurance &nbsp;·&nbsp; Woodbridge, NJ &nbsp;·&nbsp; 2025</div>
+    <div class="hero-eyebrow">Plymouth Rock Assurance &nbsp;·&nbsp; Woodbridge, NJ &nbsp;·&nbsp; 2026</div>
     <h1 class="hero-name">Akhil<br>Patil</h1>
     <div class="hero-rule"></div>
     <div class="hero-role">Sr. Marketing Analyst</div>
@@ -880,7 +1133,8 @@
     <div class="hero-co">→ Plymouth Rock Assurance</div>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener" class="btn-ghost">LinkedIn ↗</a>
+      <a href="/blog/" class="btn-ghost">Read the Essays</a>
+      <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me" class="hero-link">LinkedIn ↗</a>
     </div>
   </div>
 
@@ -983,8 +1237,70 @@
   </div>
 </section>
 
-<!-- ── Content rendered by JS ──────────────────────────────── -->
-<div id="root"></div>
+<!-- ── About / Skills / Projects (rendered by JS) ──────────── -->
+<div id="root-a"></div>
+
+<!-- ── Writing ─────────────────────────────────────────────── -->
+<!-- Static markup on purpose: this section must be crawlable and
+     readable without JavaScript. -->
+<hr class="divider">
+<div class="wrap" id="writing">
+  <div class="writing-head">
+    <div>
+      <div class="section-label">04 Writing</div>
+      <h2 class="section-title" style="margin-bottom:0">Field Notes</h2>
+    </div>
+    <a href="/blog/" class="writing-all">All 12 essays →</a>
+  </div>
+
+  <p class="writing-lede">
+    Long-form write-ups of the work — how the experiments were designed, what the data
+    refused to say, and where the method broke down. Written for people who have to make
+    the same decisions.
+  </p>
+
+  <div class="writing-grid">
+    <a class="wcard reveal" href="/blog/geo-holdout-incrementality-test-paid-social/">
+      <div class="wcard-meta">
+        <span class="pcard-cat cat-i">Incrementality Testing</span>
+        <span class="wcard-read">6 min</span>
+      </div>
+      <h3 class="wcard-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h3>
+      <p class="wcard-desc">Attribution tells you which ads got clicked. It doesn't tell you which ads changed behaviour. Designing a geo holdout to measure the causal contribution of a social channel — and why the answer surprised everyone.</p>
+      <div class="wcard-foot"><time datetime="2026-04-20">April 20, 2026</time><span class="wcard-cta">Read essay →</span></div>
+    </a>
+
+    <a class="wcard reveal delay-1" href="/blog/market-opportunity-index-media-budget-allocation/">
+      <div class="wcard-meta">
+        <span class="pcard-cat cat-p">Media Strategy</span>
+        <span class="wcard-read">4 min</span>
+      </div>
+      <h3 class="wcard-title">Where Should We Spend Next? Building a Market-Opportunity Index</h3>
+      <p class="wcard-desc">Hundreds of markets, one budget, and no way to compare them. Blending demand headroom, conversion efficiency, and loyalty into a single normalized score per market.</p>
+      <div class="wcard-foot"><time datetime="2026-05-15">May 15, 2026</time><span class="wcard-cta">Read essay →</span></div>
+    </a>
+
+    <a class="wcard reveal delay-2" href="/blog/churn-prediction-lda-topic-modeling/">
+      <div class="wcard-meta">
+        <span class="pcard-cat cat-m">Applied ML</span>
+        <span class="wcard-read">4 min</span>
+      </div>
+      <h3 class="wcard-title">Predicting Churn, Then Reading the Reasons in the Call Notes</h3>
+      <p class="wcard-desc">A risk score tells you who to call. LDA topic modelling on call-centre notes tells you what to say. Building both halves — and the difference between a good model and a useful one.</p>
+      <div class="wcard-foot"><time datetime="2023-05-20">May 20, 2023</time><span class="wcard-cta">Read essay →</span></div>
+    </a>
+  </div>
+
+  <div class="topic-strip">
+    <a href="/blog/topics/incrementality-testing/"><em>03</em> Incrementality Testing</a>
+    <a href="/blog/topics/media-strategy/"><em>02</em> Media Strategy</a>
+    <a href="/blog/topics/data-machinery/"><em>04</em> Data Machinery</a>
+    <a href="/blog/topics/applied-ml/"><em>03</em> Applied ML</a>
+  </div>
+</div>
+
+<!-- ── Experience / Education / Contact (rendered by JS) ───── -->
+<div id="root-b"></div>
 
 <!-- ── Project Detail Panel ────────────────────────────────── -->
 <div id="proj-panel" aria-modal="true" role="dialog" aria-hidden="true">
@@ -1002,8 +1318,17 @@
 
 <!-- ── Footer ──────────────────────────────────────────────── -->
 <footer>
-  <div class="footer-name">Akhil Patil</div>
-  <div class="footer-copy">© 2025 · Sr. Marketing Analyst · New Jersey</div>
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="#projects">Projects</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
 </footer>
 
 <script>
@@ -1218,7 +1543,7 @@ const DATA = {
 const catClass = { i: "cat-i", p: "cat-p", m: "cat-m", c: "cat-c" };
 
 function render() {
-  document.getElementById("root").innerHTML = `
+  document.getElementById("root-a").innerHTML = `
 
     <!-- ABOUT -->
     <hr class="divider">
@@ -1288,11 +1613,14 @@ function render() {
         `).join("")}
       </div>
     </div>
+  `;
+
+  document.getElementById("root-b").innerHTML = `
 
     <!-- EXPERIENCE -->
     <hr class="divider">
     <div class="wrap" id="experience">
-      <div class="section-label">04 Experience</div>
+      <div class="section-label">05 Experience</div>
       <div class="section-title">Work History</div>
       <div class="timeline">
         ${DATA.experience.map(e => `
@@ -1313,7 +1641,7 @@ function render() {
     <!-- EDUCATION -->
     <hr class="divider">
     <div class="wrap" id="education">
-      <div class="section-label">05 Education</div>
+      <div class="section-label">06 Education</div>
       <div class="section-title">Academic Background</div>
       <div class="edu-grid">
         ${DATA.education.map((e,i) => `
@@ -1330,7 +1658,7 @@ function render() {
     <!-- CONTACT -->
     <hr class="divider">
     <div class="wrap" id="contact">
-      <div class="section-label">06 Contact</div>
+      <div class="section-label">07 Contact</div>
       <div class="contact-grid">
         <div class="reveal">
           <h2>Let's<br>Connect</h2>
@@ -1413,8 +1741,37 @@ window.addEventListener("scroll", () => {
   navEl.classList.toggle("scrolled", window.scrollY > 36);
 }, { passive: true });
 
+// ── Mobile menu ──
+const navToggle = navEl.querySelector(".nav-toggle");
+navToggle.addEventListener("click", () => {
+  const open = navEl.classList.toggle("menu-open");
+  navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+});
+navEl.querySelectorAll(".nav-links a").forEach(a => {
+  a.addEventListener("click", () => {
+    navEl.classList.remove("menu-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
 // ── Init ──
 render();
+
+// Deep links such as /#projects arriving from another page resolve before
+// render() has created the target. Re-apply the hash once the markup exists,
+// and again after webfonts land, since they reflow everything above it.
+function jumpToHash() {
+  if (!location.hash) return;
+  try {
+    const target = document.querySelector(location.hash);
+    if (target) target.scrollIntoView({ behavior: "auto", block: "start" });
+  } catch (e) { /* not a valid selector — ignore */ }
+}
+if (location.hash) {
+  requestAnimationFrame(jumpToHash);
+  window.addEventListener("load", jumpToHash);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(jumpToHash);
+}
 
 // ─────────────────────────────────────────────────────────────────
 // PROJECT DETAIL DATA
@@ -1670,6 +2027,48 @@ const PROJECT_DETAILS = {
 };
 
 // ─────────────────────────────────────────────────────────────────
+// PROJECT → ESSAY  (links a case study to its long-form write-up)
+// ─────────────────────────────────────────────────────────────────
+const ESSAYS = {
+  "Meta Paid Social Incrementality Test": {
+    slug: "geo-holdout-incrementality-test-paid-social",
+    title: "Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads"
+  },
+  "Paid Search Incrementality Test": {
+    slug: "paid-search-incrementality-organic-cannibalization",
+    title: "How Much of Paid Search Is Just Buying Clicks You'd Get for Free?"
+  },
+  "DSP Incrementality Test": {
+    slug: "programmatic-dsp-incrementality-control-groups",
+    title: "Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads"
+  },
+  "Zip Code Targeting Intelligence": {
+    slug: "market-opportunity-index-media-budget-allocation",
+    title: "Where Should We Spend Next? Building a Market-Opportunity Index"
+  },
+  "DSP Vendor Evaluation: StackAdapt vs. Basis": {
+    slug: "media-targeting-toolkit-zip-code-ranking",
+    title: "Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit"
+  },
+  "Lead Consumption Analytics Platform": {
+    slug: "unified-lead-dataset-entity-resolution",
+    title: "One Customer, Many Footprints: Building a Unified Lead Dataset"
+  },
+  "Early Warning Detection System": {
+    slug: "early-warning-system-marketing-kpis-spc",
+    title: "An Early-Warning System for Marketing KPIs (Without Crying Wolf)"
+  },
+  "Household Persona Clustering": {
+    slug: "customer-personas-kmeans-clustering-pca",
+    title: "From Seven Million Households to Five Personas"
+  },
+  "90-Day Retention Model": {
+    slug: "churn-prediction-lda-topic-modeling",
+    title: "Predicting Churn, Then Reading the Reasons in the Call Notes"
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────
 // PROJECT PANEL — OPEN / CLOSE
 // ─────────────────────────────────────────────────────────────────
 const catGrads = {
@@ -1703,6 +2102,16 @@ function openProject(idx) {
     `<div class="res-finding">${f}</div>`
   ).join("");
 
+  const essay = ESSAYS[p.title];
+  const essayHtml = essay ? `
+    <a class="panel-essay" href="/blog/${essay.slug}/">
+      <div>
+        <div class="pe-label">Long-form write-up</div>
+        <div class="pe-title">${essay.title}</div>
+      </div>
+      <div class="pe-arrow">Read essay →</div>
+    </a>` : "";
+
   document.getElementById("panel-content").innerHTML = `
     <div class="panel-meta-row">
       <span class="panel-year">${p.year}</span>
@@ -1712,6 +2121,7 @@ function openProject(idx) {
     <div class="panel-methods">
       ${p.methods.map(m => `<span class="mtag">${m}</span>`).join("")}
     </div>
+    ${essayHtml}
 
     <div class="psec">
       <div class="psec-label">Background</div>

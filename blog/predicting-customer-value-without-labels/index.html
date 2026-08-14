@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predicting Customer Value Without Labels · Akhil Patil</title>
+  <meta name="description" content="Modeling customer value for seven million people when under two percent have a usable label — feature engineering, survival analysis, honest limitations.">
+  <meta name="keywords" content="customer lifetime value, sparse labels, selection bias, survival analysis, feature engineering, genetic algorithms, regression, honest modeling">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/">
+  <meta property="og:title" content="Predicting Customer Value When You Barely Have Any Labels">
+  <meta property="og:description" content="Modeling customer value for seven million people when under two percent have a usable label — feature engineering, survival analysis, honest limitations.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/predicting-customer-value-without-labels.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Predicting Customer Value When You Barely Have Any Labels">
+  <meta property="article:published_time" content="2023-11-05">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Applied ML">
+  <meta property="article:tag" content="machine-learning">
+  <meta property="article:tag" content="regression">
+  <meta property="article:tag" content="survival-analysis">
+  <meta property="article:tag" content="feature-engineering">
+  <meta property="article:tag" content="genetic-algorithms">
+  <meta property="article:tag" content="honest-modeling">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Predicting Customer Value When You Barely Have Any Labels">
+  <meta name="twitter:description" content="Modeling customer value for seven million people when under two percent have a usable label — feature engineering, survival analysis, honest limitations.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/predicting-customer-value-without-labels.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/"},"url":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/","headline":"Predicting Customer Value When You Barely Have Any Labels","alternativeHeadline":"Predicting Customer Value Without Labels","description":"Modeling customer value for seven million people when under two percent have a usable label — feature engineering, survival analysis, honest limitations.","articleSection":"Applied ML","keywords":"customer lifetime value, sparse labels, selection bias, survival analysis, feature engineering, genetic algorithms, regression, honest modeling","wordCount":1008,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2023-11-05","dateModified":"2023-11-05","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/predicting-customer-value-without-labels.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Applied ML","item":"https://akhilpatil7.github.io/blog/topics/applied-ml/"},{"@type":"ListItem","position":4,"name":"Predicting Customer Value When You Barely Have Any Labels","item":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/applied-ml/">Applied ML</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Predicting Customer Value When You Barely Have Any Labels</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/applied-ml/" class="chip cat-m">Applied ML</a>
+        <time datetime="2023-11-05" itemprop="datePublished">November 5, 2023</time>
+        <span>4 min read</span>
+        <span>1,008 words</span>
+      </div>
+      <h1 itemprop="headline">Predicting Customer Value When You Barely Have Any Labels</h1>
+      <p class="post-lede" itemprop="description">Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anyway. This is the story of predicting a value metric for seven million people when fewer than two percent of them had a usable label.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fpredicting-customer-value-without-labels%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fpredicting-customer-value-without-labels%2F&amp;text=Predicting%20Customer%20Value%20When%20You%20Barely%20Have%20Any%20Labels" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-problem-that-breaks-the-textbook">The problem that breaks the textbook</a></li>
+        <li><a href="#trying-the-obvious-things-and-watching-them-fail">Trying the obvious things (and watching them fail)</a></li>
+        <li><a href="#the-custom-model-predict-the-group-not-the-person">The custom model: predict the group, not the person</a></li>
+        <li><a href="#validating-honestly">Validating honestly</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-problem-that-breaks-the-textbook">The problem that breaks the textbook</h2>
+<p>The task sounded routine: predict a <strong>customer-value metric</strong> — a proxy for how much long-term value an individual represents — for a large prospect population, so marketing could prioritize the high-value people.</p>
+<p>The catch was the labels. The value metric can only be computed for people who became customers and built up policy history. My target population was roughly <strong>seven million individuals</strong> in a third-party demographic file — almost none of whom were existing customers. When I matched the demographic file against internal policy data to find people with a computable value label, I was left with a usable-label set <strong>on the order of one percent of the population.</strong> And that one percent wasn't a random sample; it was the self-selected slice of people who had already chosen to buy. Training on it and extrapolating to the other 99% is exactly the kind of thing that produces a confident, wrong model.</p>
+<p>This is the situation the textbook doesn't cover. So the project became less about fitting a model and more about <em>being honest about what could and couldn't be predicted</em> — and still shipping something useful.</p>
+<h2 id="trying-the-obvious-things-and-watching-them-fail">Trying the obvious things (and watching them fail)</h2>
+<p>I didn't skip to a clever solution; I earned it by exhausting the standard ones and documenting why each fell short.</p>
+<p><strong>Standard regression.</strong> I engineered features from the demographic attributes and trained linear models, random forests, and support vector regressors on the labelled slice. The predictive power was essentially <strong>nil — R² barely above zero.</strong> The demographic attributes simply didn't carry enough signal about individual customer value, and the tiny, biased label set gave the models nothing to hold onto. A less careful analyst ships the random forest anyway and calls the near-zero R² a "baseline." I treated it as evidence.</p>
+<p><strong>Survival analysis.</strong> Because customer value is partly about <em>tenure</em>, and tenure is right-censored (many customers are still active, so you don't yet know how long they'll stay), I reframed it properly as a survival problem using Cox proportional-hazards and parametric survival models. This was more principled, and gave a modest concordance — but converting survival curves into a usable per-person value prediction still carried large error. Better reasoning, still not a trustworthy individual-level number.</p>
+<p>The consistent verdict across every approach: <strong>you cannot reliably predict this metric for an individual from this data.</strong> That's not a failure to report quietly; it's the central finding, and pretending otherwise would have been the real failure.</p>
+<h2 id="the-custom-model-predict-the-group-not-the-person">The custom model: predict the group, not the person</h2>
+<p>If individuals couldn't be predicted, <em>segments</em> could. People who look alike on the value-driving attributes tend to have similar value on average — even when any single person is unpredictable. So I built a <strong>custom, segment-average model</strong> grounded in that logic.</p>
+<p>The construction was the interesting engineering:</p>
+<ol><li><strong>Reconstruct the value-driving factors.</strong> Insurance value is driven by a known set of rating factors (credit band, coverage level, prior tenure, incident history, and so on). Those aren't directly present in a demographic file, so I engineered <em>proxies</em> for them by grouping, scaling, and combining ~65 demographic attributes into factor scores.</li></ol>
+<ol><li><strong>Calibrate the proxies to reality with a genetic algorithm.</strong> A proxy is only useful if it lines up with the real factor. To tune the cutoffs that mapped my engineered scores onto the actual rating levels, I used a <strong>genetic algorithm</strong> (an evolutionary optimizer) to search for the percentile boundaries that best reproduced the real factor distributions — a global search over a rugged space that grid search handled poorly.</li></ol>
+<ol><li><strong>Assign value by segment average.</strong> I partitioned the population into segments defined by these reconstructed factors — over a thousand of them — and assigned each person the <em>average observed value of the actual customers who fell into their segment.</em> For segments with no matched customers, I imputed from the nearest neighbouring segments by overall score.</li></ol>
+<p>The philosophy: don't claim to know an individual's value; place them in a well-defined peer group and assign the group's empirically observed average. Humble at the individual level, defensible at the level the business actually acts on.</p>
+<h2 id="validating-honestly">Validating honestly</h2>
+<p>The validation is where I think the maturity of the project shows. I tested the model at two levels and reported <em>both</em>:</p>
+<ul><li><strong>At the individual level, it fails</strong> — a paired test rejects equality; individual predictions are over-dispersed and often off. I said so plainly.</li><li><strong>At the segment-mean level, it holds</strong> — the predicted segment averages are statistically indistinguishable from the actual segment averages (differences not significant).</li></ul>
+<p>So the model does <em>exactly</em> what it claims and nothing more: it reproduces group averages, not individual values. For the use case — prioritizing <em>segments</em> of a prospect population for marketing — that's the right resolution. Stating both results, including the failing one, is what makes the tool trustworthy. A model whose limitations you've mapped precisely is far more useful than one whose limitations you're hiding.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>The business got a usable, population-wide value estimate that fed audience targeting — plus something more valuable than any single number: <strong>a clear, evidence-backed statement of the ceiling.</strong> "Here's the best segment-level estimate we can defend, here's exactly why individual-level prediction isn't possible with this data, and here's what data we'd need to do better." That honesty is what lets stakeholders make good decisions instead of over-trusting a black box.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>The real fix is upstream: the individual-level problem is unsolvable mostly because of the low match rate and biased labels, so I'd invest in better identity matching to grow the labelled set, and I'd be candid that even then, third-party demographics may simply lack the signal for individual value. I'd also frame the segment model from the start as what it is — a calibrated look-up table with a genetic-algorithm-tuned mapping — rather than reaching for individual-level regressors first. Knowing when <em>not</em> to use a fancy model is its own skill.</p>
+<hr>
+<p class="post-note"><em>This project shares data lineage with my <a href="/blog/customer-personas-kmeans-clustering-pca/">customer-persona segmentation</a>; the personas were, in a sense, a coarser answer to the same value question.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">machine-learning</span><span class="mtag">regression</span><span class="mtag">survival-analysis</span><span class="mtag">feature-engineering</span><span class="mtag">genetic-algorithms</span><span class="mtag">honest-modeling</span>
+        </div>
+      </div>
+
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/customer-personas-kmeans-clustering-pca/"><span class="pg-dir">← Older</span><span class="pg-title">From Seven Million Households to Five Personas</span></a>
+        <a class="pg-next" href="/blog/early-warning-system-marketing-kpis-spc/"><span class="pg-dir">Newer →</span><span class="pg-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/customer-personas-kmeans-clustering-pca/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-07-15">JUL 15 · 2023</time>
+        </div>
+        <h3 class="rel-title">From Seven Million Households to Five Personas</h3>
+        <p class="rel-desc">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happ…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/churn-prediction-lda-topic-modeling/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-05-20">MAY 20 · 2023</time>
+        </div>
+        <h3 class="rel-title">Predicting Churn, Then Reading the Reasons in the Call Notes</h3>
+        <p class="rel-desc">Predicting which new customers will cancel is useful. Knowing *why* each one is at risk — mined from unstructured call-center notes — is what makes th…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/auto-home-bundle-cross-sell-analytics/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-24">MAR 24 · 2026</time>
+        </div>
+        <h3 class="rel-title">Finding the Cross-Sell Hiding in Your Own Book</h3>
+        <p class="rel-desc">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

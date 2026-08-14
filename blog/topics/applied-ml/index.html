@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applied Machine Learning for Marketing · Akhil Patil</title>
+  <meta name="description" content="Applied machine learning for customer analytics — K-means and PCA segmentation, churn prediction with LDA topic modeling, and modeling value without labels.">
+  <meta name="keywords" content="applied machine learning, customer segmentation, k-means clustering, PCA, churn prediction, LDA topic modeling, survival analysis, customer lifetime value">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/topics/applied-ml/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/topics/applied-ml/">
+  <meta property="og:title" content="Applied Machine Learning">
+  <meta property="og:description" content="Applied machine learning for customer analytics — K-means and PCA segmentation, churn prediction with LDA topic modeling, and modeling value without labels.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/topic-applied-ml.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Applied Machine Learning">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Applied Machine Learning">
+  <meta name="twitter:description" content="Applied machine learning for customer analytics — K-means and PCA segmentation, churn prediction with LDA topic modeling, and modeling value without labels.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/topic-applied-ml.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"CollectionPage","@id":"https://akhilpatil7.github.io/blog/topics/applied-ml/#page","url":"https://akhilpatil7.github.io/blog/topics/applied-ml/","name":"Applied Machine Learning","description":"Applied machine learning for customer analytics — K-means and PCA segmentation, churn prediction with LDA topic modeling, and modeling value without labels.","about":[{"@type":"Thing","name":"applied machine learning"},{"@type":"Thing","name":"customer segmentation"},{"@type":"Thing","name":"k-means clustering"},{"@type":"Thing","name":"PCA"},{"@type":"Thing","name":"churn prediction"},{"@type":"Thing","name":"LDA topic modeling"},{"@type":"Thing","name":"survival analysis"},{"@type":"Thing","name":"customer lifetime value"}],"isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntity":{"@type":"ItemList","numberOfItems":3,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/","name":"Predicting Customer Value When You Barely Have Any Labels"},{"@type":"ListItem","position":2,"url":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/","name":"From Seven Million Households to Five Personas"},{"@type":"ListItem","position":3,"url":"https://akhilpatil7.github.io/blog/churn-prediction-lda-topic-modeling/","name":"Predicting Churn, Then Reading the Reasons in the Call Notes"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Applied ML","item":"https://akhilpatil7.github.io/blog/topics/applied-ml/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <header class="blog-hero">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Applied ML</span>
+  </nav>
+    <div class="section-label">Topic · Applied ML</div>
+    <h1>Applied Machine Learning</h1>
+    <div class="hero-rule"></div>
+    <p class="lede">A model that scores well and changes nothing is a failed project. These essays are about applied machine learning where the constraint is rarely the algorithm — it is sparse labels, unstructured text, selection bias, and the gap between a prediction and an action someone can actually take. Topics include K-means segmentation rescued by principal component analysis, churn prediction paired with LDA topic modeling of call-center notes, and the honest engineering required when under two percent of your population has a usable label.</p>
+    <div class="blog-meta-row">
+      <span><b>3</b> essays</span>
+      <span>Updated <b>November 5, 2023</b></span>
+      <span><a href="/blog/">All topics →</a></span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <section class="wrap" id="content" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Essays in this topic</div>
+    <div class="post-list">
+      <a class="post-row reveal" href="/blog/predicting-customer-value-without-labels/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-11-05">NOV 5 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Predicting Customer Value When You Barely Have Any Labels</h2>
+        <p class="pr-excerpt">Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anyway. This is the story of predicting a value metric for seven million people when fewer than two percent of them had a usable label.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">regression</span><span class="mtag">survival-analysis</span><span class="mtag">feature-engineering</span><span class="mtag">genetic-algorithms</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/customer-personas-kmeans-clustering-pca/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-07-15">JUL 15 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">From Seven Million Households to Five Personas</h2>
+        <p class="pr-excerpt">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happened when the clustering didn't work — and how principal component analysis rescued it.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">clustering</span><span class="mtag">kmeans</span><span class="mtag">pca</span><span class="mtag">unsupervised-learning</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/churn-prediction-lda-topic-modeling/" data-cat="applied-ml">
+      <div class="pr-side">
+        <span class="chip cat-m">Applied ML</span>
+        <time class="pr-date" datetime="2023-05-20">MAY 20 · 2023</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Predicting Churn, Then Reading the Reasons in the Call Notes</h2>
+        <p class="pr-excerpt">Predicting which new customers will cancel is useful. Knowing *why* each one is at risk — mined from unstructured call-center notes — is what makes the prediction actionable. This project did both, and taught me a lot about the difference between a good model and a useful one.</p>
+        <div class="pr-tags"><span class="mtag">machine-learning</span><span class="mtag">churn-prediction</span><span class="mtag">nlp</span><span class="mtag">topic-modeling</span><span class="mtag">lda</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Other topics</div>
+    <div class="topics-grid">
+      <a class="topic-card reveal delay-1" href="/blog/topics/incrementality-testing/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Incrementality Testing &amp; Causal Measurement</h3>
+        <p class="tc-desc">Attribution tells you what got clicked…</p>
+      </a>
+      <a class="topic-card reveal delay-2" href="/blog/topics/media-strategy/">
+        <div class="tc-count">02 essays</div>
+        <h3 class="tc-title">Media Strategy &amp; Geo Targeting</h3>
+        <p class="tc-desc">Deciding where to spend is a harder analytical problem than deciding how much…</p>
+      </a>
+      <a class="topic-card reveal delay-3" href="/blog/topics/data-machinery/">
+        <div class="tc-count">04 essays</div>
+        <h3 class="tc-title">Data Machinery &amp; Operational Analytics</h3>
+        <p class="tc-desc">Most analytics failures are not modelling failures…</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

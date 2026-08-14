@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Groups for DSP Incrementality Tests · Akhil Patil</title>
+  <meta name="description" content="Two methods for constructing valid control groups in zip-code-level programmatic incrementality tests: Mahalanobis distance matching and K-means geo clustering.">
+  <meta name="keywords" content="programmatic incrementality, control group construction, Mahalanobis matching, geo clustering, DSP measurement, synthetic control, zip code geo experiment, causal inference">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/">
+  <meta property="og:title" content="Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads">
+  <meta property="og:description" content="Two methods for constructing valid control groups in zip-code-level programmatic incrementality tests: Mahalanobis distance matching and K-means geo clustering.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/programmatic-dsp-incrementality-control-groups.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads">
+  <meta property="article:published_time" content="2026-06-20">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Incrementality Testing">
+  <meta property="article:tag" content="incrementality">
+  <meta property="article:tag" content="programmatic">
+  <meta property="article:tag" content="mahalanobis-matching">
+  <meta property="article:tag" content="clustering">
+  <meta property="article:tag" content="synthetic-control">
+  <meta property="article:tag" content="geo-experiments">
+  <meta property="article:tag" content="causal-inference">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads">
+  <meta name="twitter:description" content="Two methods for constructing valid control groups in zip-code-level programmatic incrementality tests: Mahalanobis distance matching and K-means geo clustering.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/programmatic-dsp-incrementality-control-groups.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/"},"url":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/","headline":"Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads","alternativeHeadline":"Control Groups for DSP Incrementality Tests","description":"Two methods for constructing valid control groups in zip-code-level programmatic incrementality tests: Mahalanobis distance matching and K-means geo clustering.","articleSection":"Incrementality Testing","keywords":"programmatic incrementality, control group construction, Mahalanobis matching, geo clustering, DSP measurement, synthetic control, zip code geo experiment, causal inference","wordCount":1337,"timeRequired":"PT6M","inLanguage":"en-US","datePublished":"2026-06-20","dateModified":"2026-06-20","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/programmatic-dsp-incrementality-control-groups.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Incrementality Testing","item":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/"},{"@type":"ListItem","position":4,"name":"Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads","item":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/incrementality-testing/">Incrementality Testing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/incrementality-testing/" class="chip cat-i">Incrementality Testing</a>
+        <time datetime="2026-06-20" itemprop="datePublished">June 20, 2026</time>
+        <span>6 min read</span>
+        <span>1,337 words</span>
+      </div>
+      <h1 itemprop="headline">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h1>
+      <p class="post-lede" itemprop="description">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of your treatment? I ran two tests where the data situations were completely different — and each demanded a completely different way of building that twin.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fprogrammatic-dsp-incrementality-control-groups%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fprogrammatic-dsp-incrementality-control-groups%2F&amp;text=Two%20Roads%20to%20a%20Valid%20Control%20Group%3A%20Zip-Level%20Incrementality%20for%20Programmatic%20Ads" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-hard-part-isnt-the-test-its-the-twin">The hard part isn't the test. It's the twin.</a></li>
+        <li><a href="#road-1-a-statistical-twin-via-mahalanobis-matching">Road 1: A "statistical twin" via Mahalanobis matching</a></li>
+        <li><a href="#road-2-a-synthetic-twin-via-clustering-optimisation">Road 2: A "synthetic twin" via clustering + optimisation</a></li>
+        <li><a href="#same-measurement-two-very-different-stories">Same measurement, two very different stories</a></li>
+        <li><a href="#the-takeaway">The takeaway</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-hard-part-isnt-the-test-its-the-twin">The hard part isn't the test. It's the twin.</h2>
+<p>I've written before about geo holdout tests — pause a channel in one area, keep a comparable area running, and use the divergence to measure the channel's true causal effect. The measurement math (difference-in-differences) is the easy part. The hard part, every single time, is constructing a <strong>control group that is genuinely a twin of the treatment group.</strong> If the control isn't a true counterfactual, every number that follows is decoration.</p>
+<p>I ran two programmatic incrementality tests back to back — one for a channel in one state, one for a different channel in another. They shared a goal but almost nothing else: the data I had to work with was completely different in each case. So I used two different methods to build the control. This post is about <em>why the data situation should dictate the method</em> — and how each one works.</p>
+<p>Both tests were run at the <strong>zip-code level</strong>, which is both a blessing and a curse: it gives you hundreds of small units to work with, but each one is noisy, so you can't just match single zips — you have to build <em>clusters</em> of zips into stable, comparable geographies.</p>
+<hr>
+<h2 id="road-1-a-statistical-twin-via-mahalanobis-matching">Road 1: A "statistical twin" via Mahalanobis matching</h2>
+<p><strong>The situation:</strong> For one channel, I had almost no channel-specific history to lean on. Without a long track record to model a bespoke counterfactual, the most defensible move is to find a <em>matched twin</em> — a control cluster that looks statistically identical to the treatment cluster on the attributes that drive quoting behaviour.</p>
+<p>Here's the pipeline I built:</p>
+<p><strong>1. Grow candidate treatment zones.</strong> Working inside a single county, I built a zip-adjacency graph (zips within a short distance of each other are "neighbours") and used a breadth-first search to grow contiguous patches of zips outward from the northern, southern, eastern, and western extremes — each patch constrained to a target population of roughly half a million, within a tight tolerance. Contiguity matters: a treatment geography scattered across a map is impossible to run cleanly and easy to contaminate.</p>
+<p><strong>2. Build a valid donor pool.</strong> For each candidate treatment patch, I excluded every zip within a minimum-distance buffer, so the control could never be geographically close enough to bleed advertising exposure into the treatment area. Spillover is one of the quietest ways a geo test lies to you.</p>
+<p><strong>3. Match on statistical distance, not gut feel.</strong> For every treatment/control candidate pair, I computed the <strong>Mahalanobis distance</strong> across a set of census and performance features — per-capita income, education, labour-force participation, quotes per capita, quote-completion rate, and close rate.</p>
+<p>Why Mahalanobis instead of just "pick the closest-looking area"? Because the features are correlated and on wildly different scales. Income is in tens of thousands; a close rate is a fraction of one. A naïve distance would let income dominate and would double-count anything that moves with income (like education). Mahalanobis distance uses the inverse covariance matrix of the features to automatically <strong>rescale each feature by its variance and discount correlated pairs</strong> — so it measures how far apart two areas <em>really</em> are in the joint distribution, not in raw units. It's the difference between "these two zips have similar-looking numbers" and "these two zips are statistically the same kind of place." I added a small compactness penalty so the optimiser didn't reward a control patch that matched on paper but sprawled across the map.</p>
+<p><strong>4. Validate before trusting.</strong> A close statistical match on averages can still hide a divergent <em>trend</em>. So every top candidate pair went through a pre-period validation gate: the treatment and control had to move together week over week (a high correlation on weekly changes), have similar trend slopes, and be individually stable (low coefficient of variation). Only pairs that passed both the static match <em>and</em> the dynamic trend check survived.</p>
+<p>The winner was the treatment/control pair with the smallest Mahalanobis distance <em>that also</em> tracked tightly in the pre-period — a genuine statistical twin, validated on both its profile and its behaviour over time.</p>
+<hr>
+<h2 id="road-2-a-synthetic-twin-via-clustering-optimisation">Road 2: A "synthetic twin" via clustering + optimisation</h2>
+<p><strong>The situation:</strong> For the other channel, I had the opposite problem in a good way — a rich targeting history across a large, already-curated list of high-value zips. Here, rather than hunting for one matched twin, it made more sense to organise the whole market into natural groups and then <em>build</em> a synthetic control from them.</p>
+<p><strong>1. Segment the market with clustering.</strong> I engineered features for each zip and ran <strong>K-means clustering</strong>, using the silhouette score to guide how many clusters the data actually supported rather than picking a number arbitrarily. This grouped the zips into a handful of internally-similar, stable geographies.</p>
+<p><strong>2. Choose the treatment cluster deliberately.</strong> I selected the treatment cluster on a combination of stability, expected test duration, and the volume it would put in play — I wanted a cluster big and steady enough to give a decisive read without holding out so much spend that the business felt it.</p>
+<p><strong>3. Build the synthetic control by optimisation.</strong> For the control, I didn't use another single cluster. I solved a constrained optimisation (weights that are non-negative and sum to one) to find the <strong>blend of the remaining clusters</strong> whose combined pre-period trajectory best fit the treatment cluster's. The result was a synthetic twin — a specific weighted mix of several clusters — that shadowed the treatment cluster before the test began.</p>
+<p><strong>4. Validate, and stress-test with placebos.</strong> I checked the pre-period fit quality, and — as with every geo test I run — validated the machinery by <strong>injecting a known artificial lift and confirming the model recovered it.</strong> I also ran placebo tests (pretending untreated clusters were "treated" to see how often the method finds an effect where none exists), which is how you build confidence that a positive result is signal and not an artefact of the method.</p>
+<hr>
+<h2 id="same-measurement-two-very-different-stories">Same measurement, two very different stories</h2>
+<p>With valid twins in hand, both tests were read the same way — difference-in-differences across the full funnel (quote starts → completed quotes → sales), plus incremental cost-per metrics dividing spend by the volume each channel actually caused.</p>
+<p>The findings were a study in contrasts, and taught a lesson that goes beyond either channel:</p>
+<ul><li><strong>One channel was incremental all the way down the funnel</strong>, strongest right at the sales line — a genuine full-funnel performer.</li><li><strong>The other drove real volume at the top of the funnel but faded to almost nothing at sales</strong> — it started quotes that didn't finish as purchases.</li></ul>
+<p>The tempting conclusion — "kill the second channel, scale the first" — is exactly the trap I flagged <em>against</em>. The efficient-looking channel had only been tested at a fraction of the other's spend, and cost-efficiency almost always erodes as you scale (you buy the cheapest, most responsive audiences first). Comparing a low-spend channel to a high-spend one and declaring a winner is comparing two things measured on different rulers. My recommendation was disciplined, not dramatic: <strong>scale the promising channel in a controlled way and re-measure at comparable spend before reallocating</strong> — and keep the other channel running while restructuring it toward conversion, rather than cutting the very baseline needed to judge it fairly.</p>
+<h2 id="the-takeaway">The takeaway</h2>
+<p>There is no single "correct" way to build a control group. The right method is the one your <em>data situation</em> can actually support:</p>
+<ul><li><strong>Little channel history, need a defensible baseline fast → match a statistical twin</strong> (Mahalanobis on the drivers, validated on trend).</li><li><strong>Rich history across many units → segment and synthesise</strong> (cluster, then optimise a weighted blend).</li></ul>
+<p>What doesn't change is the discipline around it: constrain geography so there's no spillover, validate the twin on both profile <em>and</em> behaviour, prove the method can recover a known effect before you trust it on an unknown one, and refuse to draw a comparison the experiment wasn't designed to support. The method flexes to the data. The rigour never does.</p>
+<hr>
+<p class="post-note"><em>Companion posts: the <a href="/blog/geo-holdout-incrementality-test-paid-social/">social-channel geo holdout</a> and the <a href="/blog/paid-search-incrementality-organic-cannibalization/">paid-search cannibalisation test</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">incrementality</span><span class="mtag">programmatic</span><span class="mtag">mahalanobis-matching</span><span class="mtag">clustering</span><span class="mtag">synthetic-control</span><span class="mtag">geo-experiments</span><span class="mtag">causal-inference</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">DSP Incrementality Test</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/media-targeting-toolkit-zip-code-ranking/"><span class="pg-dir">← Older</span><span class="pg-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</span></a>
+        <a class="pg-next" href="/blog/"><span class="pg-dir">All essays →</span><span class="pg-title">Field Notes</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/geo-holdout-incrementality-test-paid-social/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-04-20">APR 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h3>
+        <p class="rel-desc">Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo hold…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/paid-search-incrementality-organic-cannibalization/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-04-27">APR 27 · 2026</time>
+        </div>
+        <h3 class="rel-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</h3>
+        <p class="rel-desc">Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid sea…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/media-targeting-toolkit-zip-code-ranking/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-22">MAY 22 · 2026</time>
+        </div>
+        <h3 class="rel-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h3>
+        <p class="rel-desc">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the firs…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

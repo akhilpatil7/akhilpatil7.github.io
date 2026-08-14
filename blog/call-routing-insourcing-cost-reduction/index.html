@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insourcing Call Routing to Cut Vendor Cost · Akhil Patil</title>
+  <meta name="description" content="Migrating inbound call routing in-house to cut a seven-figure vendor fee — and the data-quality root-cause analysis that explained the missing call volume.">
+  <meta name="keywords" content="call routing, vendor cost reduction, telephony analytics, root cause analysis, data quality, call center dashboards, migration analytics">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/">
+  <meta property="og:title" content="Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout">
+  <meta property="og:description" content="Migrating inbound call routing in-house to cut a seven-figure vendor fee — and the data-quality root-cause analysis that explained the missing call volume.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/call-routing-insourcing-cost-reduction.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout">
+  <meta property="article:published_time" content="2026-02-20">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Data Machinery">
+  <meta property="article:tag" content="analytics">
+  <meta property="article:tag" content="cost-reduction">
+  <meta property="article:tag" content="telephony">
+  <meta property="article:tag" content="root-cause-analysis">
+  <meta property="article:tag" content="dashboards">
+  <meta property="article:tag" content="data-quality">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout">
+  <meta name="twitter:description" content="Migrating inbound call routing in-house to cut a seven-figure vendor fee — and the data-quality root-cause analysis that explained the missing call volume.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/call-routing-insourcing-cost-reduction.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/"},"url":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/","headline":"Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout","alternativeHeadline":"Insourcing Call Routing to Cut Vendor Cost","description":"Migrating inbound call routing in-house to cut a seven-figure vendor fee — and the data-quality root-cause analysis that explained the missing call volume.","articleSection":"Data Machinery","keywords":"call routing, vendor cost reduction, telephony analytics, root cause analysis, data quality, call center dashboards, migration analytics","wordCount":792,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-02-20","dateModified":"2026-02-20","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/call-routing-insourcing-cost-reduction.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Data Machinery","item":"https://akhilpatil7.github.io/blog/topics/data-machinery/"},{"@type":"ListItem","position":4,"name":"Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout","item":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/data-machinery/">Data Machinery</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/data-machinery/" class="chip cat-c">Data Machinery</a>
+        <time datetime="2026-02-20" itemprop="datePublished">February 20, 2026</time>
+        <span>4 min read</span>
+        <span>792 words</span>
+      </div>
+      <h1 itemprop="headline">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</h1>
+      <p class="post-lede" itemprop="description">A vendor was quietly earning a seven-figure annual fee to route inbound calls to the right agents. The company decided to bring it in-house. I supported the migration analytics — and when the internal call volumes came back looking alarmingly low, I found out why before anyone panicked.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fcall-routing-insourcing-cost-reduction%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fcall-routing-insourcing-cost-reduction%2F&amp;text=Cutting%20a%20Seven-Figure%20Vendor%20Bill%20%E2%80%94%20and%20Debugging%20the%20Fallout" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-setup-paying-a-middleman-to-answer-the-phone">The setup: paying a middleman to answer the phone</a></li>
+        <li><a href="#migration-analytics-mapping-the-old-world-to-the-new">Migration analytics: mapping the old world to the new</a></li>
+        <li><a href="#the-scare-our-volumes-dropped">The scare: "our volumes dropped"</a></li>
+        <li><a href="#building-the-instrument-properly">Building the instrument properly</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-setup-paying-a-middleman-to-answer-the-phone">The setup: paying a middleman to answer the phone</h2>
+<p>For a business that sells over the phone, inbound-call routing is critical plumbing. When a prospect calls a number from an ad, something has to decide <em>which</em> agent — with which skills, for which campaign — should pick up. A third-party vendor was providing that routing layer, and charging a <strong>seven-figure annual fee</strong> for the privilege.</p>
+<p>The company decided it could do this itself. Modern telephony supports internal routing through call-distribution nodes (in the jargon, VDNs) mapped to skills and campaigns — so instead of one vendor number funnelling everything, the business could publish its own campaign numbers and route calls internally. Cut out the middleman, keep the capability, save the fee. I supported the analytics behind the migration.</p>
+<h2 id="migration-analytics-mapping-the-old-world-to-the-new">Migration analytics: mapping the old world to the new</h2>
+<p>The messy reality of a cutover like this is the mapping. Every one of the vendor's reserved phone numbers had to be traced to its internal replacement number, then to the routing node, then to the campaign it served — so that when traffic moved, we could prove it landed where it should. I built and maintained that mapping and the reporting around it, cross-checking, campaign by campaign, that call volume was migrating from the vendor's numbers to the internal ones as each was decoupled.</p>
+<p>That cross-check is what makes a migration safe. It's easy to flip a switch; it's hard to <em>prove</em> nothing fell through the cracks. The number-by-number reconciliation was the proof.</p>
+<h2 id="the-scare-our-volumes-dropped">The scare: "our volumes dropped"</h2>
+<p>Then the alarming part. After the switch, the internally captured call volume looked materially lower than before. On its face, that's a five-alarm fire — did we just break our own phone system and start losing calls (and sales) the day we fired the vendor?</p>
+<p>This is the moment where an analyst either adds value or adds panic. I dug into the root cause instead of accepting the headline, and found that the drop was <strong>a measurement artifact, not a real loss of calls:</strong></p>
+<ol><li><strong>Internal capture started late.</strong> Our internal system only began recording certain call metrics from a specific go-live date. Any comparison that reached back before that date was comparing "fully captured" to "not yet captured" — a guaranteed apparent decline that had nothing to do with actual call volume.</li><li><strong>We were only capturing selective routing nodes.</strong> The internal data was recording a subset of the inbound routing nodes, not all of them. So even after go-live, the internal numbers <em>undercounted</em> by construction — the calls were arriving and being handled; they just weren't all being logged in the new pipeline yet.</li></ol>
+<p>In other words, the calls were fine. The <em>instrumentation</em> was incomplete. That distinction was the entire story — and getting it wrong would have meant either reversing a good cost decision or chasing a problem that didn't exist.</p>
+<h2 id="building-the-instrument-properly">Building the instrument properly</h2>
+<p>The fix was to make the measurement trustworthy. I built a <strong>Call Metrics Dashboard</strong> that joined the internal call-node data to the campaign definitions and tracked call-center campaign performance and volumes on the new internal routing — with the known capture-start date and the covered-node caveats built directly into the logic, so the numbers couldn't lie by omission. Once the instrument counted what was actually happening, the "drop" resolved and the true picture — that the insourcing had preserved call handling while eliminating the vendor fee — became visible and defensible.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>Two kinds of value came out of this. The obvious one: the migration eliminated a <strong>seven-figure recurring vendor cost</strong> while keeping the routing capability in-house. The subtler, and arguably more important, one: when the data got scary, the response was <em>diagnosis</em>, not reaction. A worse-handled version of this project ends with leadership doubting the whole cost-saving move because "the volumes tanked." Instead, the finding was precise — the calls were never lost, the meter just wasn't fully wired up yet — and the fix was to complete the instrumentation.</p>
+<p>That's a lesson I carry into every project: <strong>a surprising number is a question, not an answer.</strong> Before you act on a scary metric, make sure the metric is actually measuring what you think it is. Half the "crises" in analytics are really data-capture gaps wearing a costume.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>I'd insist on the measurement pipeline being complete and validated <em>before</em> the cutover, not built out in parallel with it — running the internal capture alongside the vendor for an overlap period so there's a clean apples-to-apples baseline from day one. The migration was the right call; the only real problem was that the meter went in slightly after the switch, and that's exactly the kind of gap that turns a win into a fire drill.</p>
+<hr>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">analytics</span><span class="mtag">cost-reduction</span><span class="mtag">telephony</span><span class="mtag">root-cause-analysis</span><span class="mtag">dashboards</span><span class="mtag">data-quality</span>
+        </div>
+      </div>
+
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/early-warning-system-marketing-kpis-spc/"><span class="pg-dir">← Older</span><span class="pg-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</span></a>
+        <a class="pg-next" href="/blog/unified-lead-dataset-entity-resolution/"><span class="pg-dir">Newer →</span><span class="pg-title">One Customer, Many Footprints: Building a Unified Lead Dataset</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/early-warning-system-marketing-kpis-spc/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-01-30">JAN 30 · 2026</time>
+        </div>
+        <h3 class="rel-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</h3>
+        <p class="rel-desc">The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/unified-lead-dataset-entity-resolution/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        </div>
+        <h3 class="rel-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h3>
+        <p class="rel-desc">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in t…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/auto-home-bundle-cross-sell-analytics/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-24">MAR 24 · 2026</time>
+        </div>
+        <h3 class="rel-title">Finding the Cross-Sell Hiding in Your Own Book</h3>
+        <p class="rel-desc">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

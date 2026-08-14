@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Market Opportunity Index · Akhil Patil</title>
+  <meta name="description" content="Building a normalized market opportunity index that blends demand headroom, conversion efficiency, and customer loyalty into one comparable score per market.">
+  <meta name="keywords" content="market opportunity index, media budget allocation, geo analytics, market penetration, index design, Tableau, SQL, marketing decision support">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/">
+  <meta property="og:title" content="Where Should We Spend Next? Building a Market-Opportunity Index">
+  <meta property="og:description" content="Building a normalized market opportunity index that blends demand headroom, conversion efficiency, and customer loyalty into one comparable score per market.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/market-opportunity-index-media-budget-allocation.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Where Should We Spend Next? Building a Market-Opportunity Index">
+  <meta property="article:published_time" content="2026-05-15">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Media Strategy">
+  <meta property="article:tag" content="marketing-analytics">
+  <meta property="article:tag" content="geo-analytics">
+  <meta property="article:tag" content="index-design">
+  <meta property="article:tag" content="tableau">
+  <meta property="article:tag" content="sql">
+  <meta property="article:tag" content="decision-support">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Where Should We Spend Next? Building a Market-Opportunity Index">
+  <meta name="twitter:description" content="Building a normalized market opportunity index that blends demand headroom, conversion efficiency, and customer loyalty into one comparable score per market.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/market-opportunity-index-media-budget-allocation.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/"},"url":"https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/","headline":"Where Should We Spend Next? Building a Market-Opportunity Index","alternativeHeadline":"Building a Market Opportunity Index","description":"Building a normalized market opportunity index that blends demand headroom, conversion efficiency, and customer loyalty into one comparable score per market.","articleSection":"Media Strategy","keywords":"market opportunity index, media budget allocation, geo analytics, market penetration, index design, Tableau, SQL, marketing decision support","wordCount":910,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-05-15","dateModified":"2026-05-15","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/market-opportunity-index-media-budget-allocation.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Media Strategy","item":"https://akhilpatil7.github.io/blog/topics/media-strategy/"},{"@type":"ListItem","position":4,"name":"Where Should We Spend Next? Building a Market-Opportunity Index","item":"https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/media-strategy/">Media Strategy</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Where Should We Spend Next? Building a Market-Opportunity Index</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/media-strategy/" class="chip cat-p">Media Strategy</a>
+        <time datetime="2026-05-15" itemprop="datePublished">May 15, 2026</time>
+        <span>4 min read</span>
+        <span>910 words</span>
+      </div>
+      <h1 itemprop="headline">Where Should We Spend Next? Building a Market-Opportunity Index</h1>
+      <p class="post-lede" itemprop="description">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one number per market — that blends demand headroom, conversion efficiency, and customer loyalty into a live map of where the next advertising dollar works hardest.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fmarket-opportunity-index-media-budget-allocation%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fmarket-opportunity-index-media-budget-allocation%2F&amp;text=Where%20Should%20We%20Spend%20Next%3F%20Building%20a%20Market-Opportunity%20Index" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-problem-too-many-markets-not-enough-signal">The problem: too many markets, not enough signal</a></li>
+        <li><a href="#the-design-principle-normalize-everything-to-the-footprint-average">The design principle: normalize everything to the footprint average</a></li>
+        <li><a href="#what-goes-into-the-index">What goes into the index</a></li>
+        <li><a href="#rolling-it-into-one-score-with-weights-the-business-controls">Rolling it into one score — with weights the business controls</a></li>
+        <li><a href="#under-the-hood">Under the hood</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-sharpen-next">What I'd sharpen next</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-problem-too-many-markets-not-enough-signal">The problem: too many markets, not enough signal</h2>
+<p>A consumer insurance business advertises across hundreds of geographic markets — zip codes, counties, media markets, whole states. Each one has a different population, a different competitive picture, a different mix of how many customers are already there and how well they stick. The media team's recurring question is deceptively simple: <strong>given a finite budget, which markets deserve more, and which are already tapped out?</strong></p>
+<p>The honest answer, before this project, was "we look at last quarter's cost-per-sale and argue about it." That misses the point in two directions. A market can have a great cost-per-sale simply because it's small and saturated (no <em>headroom</em> left), or a mediocre one because it's large and under-penetrated (huge headroom you're barely touching). Raw performance numbers don't separate "efficient" from "opportunity."</p>
+<p>I set out to compress that whole judgement into <strong>one comparable number per market</strong> — an index — refreshed daily and sliceable by geography and channel.</p>
+<h2 id="the-design-principle-normalize-everything-to-the-footprint-average">The design principle: normalize everything to the footprint average</h2>
+<p>The core idea that makes the index usable is normalization. Every component is expressed <strong>relative to the company's own overall average, which is pegged at 1.00.</strong> A market that scores 1.25 on a component is 25% above the company average; 0.80 is 20% below.</p>
+<p>Why this matters: it makes wildly different metrics — a close rate (a few percent), a penetration rate (a fraction of households), a retention rate (most of a policy book) — directly comparable and combinable. You stop asking "is a 7% close rate good?" and start asking "is this market above or below where we typically operate?" That's the question a media planner can actually act on.</p>
+<h2 id="what-goes-into-the-index">What goes into the index</h2>
+<p>I built the index from three families of signal, each answering a different strategic question:</p>
+<p><strong>1. Headroom — is there room to grow here?</strong> Using census data on households that own vehicles as the addressable market, I measured <strong>market penetration</strong> (policies in force ÷ addressable households) and its inverse, <strong>opportunity</strong> (the un-penetrated share). A market can only reward more spend if there are still customers left to win.</p>
+<p><strong>2. Efficiency — do we convert well here?</strong> A <strong>close-rate index</strong> (sales ÷ quotes, relative to the footprint average) captures how well demand converts once we generate it. High headroom with poor conversion is a trap; high headroom <em>and</em> strong conversion is where you lean in.</p>
+<p><strong>3. Loyalty — do customers stay?</strong> Retention indices at both 90-day and one-year horizons (retained ÷ issued, relative to average) capture whether the customers a market produces actually stick — because acquiring customers who churn is expensive growth. I also layered in a <strong>cross-sell/bundling opportunity</strong> signal (where auto customers are eligible but not yet bundled with home), since a market's value isn't just new auto policies.</p>
+<h2 id="rolling-it-into-one-score-with-weights-the-business-controls">Rolling it into one score — with weights the business controls</h2>
+<p>The headline <strong>Enterprise Market Index</strong> is a <strong>weighted blend</strong> of these component indices. Crucially, I didn't hard-code the weights. I exposed them as <strong>parameters the media team can tune</strong> — dialling up close-rate efficiency when the goal is profitability, or headroom when the goal is growth. To keep the tool honest, I built a validation check that flags the user if their weights don't sum to 100%, so the index can never be silently mis-specified.</p>
+<p>The whole thing is <strong>interactive by design</strong>:</p>
+<ul><li>A geography switch re-computes the index at zip, county, or media-market grain.</li><li>A channel switch re-scopes it to the enterprise, direct, or partner channels.</li><li>A traffic-light layer colours the top third of markets green, the middle amber, and the bottom third red — <em>"caution on incremental spend here."</em></li></ul>
+<h2 id="under-the-hood">Under the hood</h2>
+<p>The data pipeline is a daily-refreshed SQL build that assembles two rollups (county and media-market), each a full outer join of a <strong>demographics layer</strong> (addressable households, home eligibility, all census-weighted) and a <strong>performance layer</strong> (quotes, sales, declines, policies in force, and issued/retained counts at 90-day and one-year horizons) broken out by channel. I built in explicit data-quality checks that surface any geography present in one reference table but missing from another — because an index silently dropping markets is worse than an index that tells you it's incomplete. The presentation and the index math live in a Tableau layer using level-of-detail expressions to compute each "relative-to-average" ratio correctly regardless of the current filter.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>The deliverable replaced "which markets <em>feel</em> hot?" with a <strong>defensible, transparent, self-serve ranking</strong> the media team could interrogate themselves. Instead of a monthly analyst request, they had a live map: sort by the index, read the colour, check which component is driving the score, and allocate accordingly. And because the weights are theirs to set, the tool adapts to whatever the quarter's strategy is — growth, efficiency, or retention — without an analyst rebuilding anything.</p>
+<h2 id="what-id-sharpen-next">What I'd sharpen next</h2>
+<p>Two things. First, low-volume markets are inherently volatile — a handful of quotes can swing a rate — so I'd add explicit volume-based confidence banding (or Bayesian shrinkage toward the footprint average) so planners don't overreact to noisy small markets. Second, the index describes <em>current</em> attractiveness; pairing it with the incrementality coefficients from my geo holdout tests would turn it from "where are we efficient today" into "where would the next dollar be <em>causally</em> most productive" — which is the question underneath the question.</p>
+<hr>
+<p class="post-note"><em>An index tells you where opportunity sits. To learn how I measured whether spend actually <strong>causes</strong> results, see the <a href="/blog/geo-holdout-incrementality-test-paid-social/">geo holdout incrementality series</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">marketing-analytics</span><span class="mtag">geo-analytics</span><span class="mtag">index-design</span><span class="mtag">tableau</span><span class="mtag">sql</span><span class="mtag">decision-support</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Zip Code Targeting Intelligence</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/paid-search-incrementality-organic-cannibalization/"><span class="pg-dir">← Older</span><span class="pg-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</span></a>
+        <a class="pg-next" href="/blog/media-targeting-toolkit-zip-code-ranking/"><span class="pg-dir">Newer →</span><span class="pg-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/media-targeting-toolkit-zip-code-ranking/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-22">MAY 22 · 2026</time>
+        </div>
+        <h3 class="rel-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h3>
+        <p class="rel-desc">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the firs…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/geo-holdout-incrementality-test-paid-social/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-04-20">APR 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h3>
+        <p class="rel-desc">Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo hold…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/unified-lead-dataset-entity-resolution/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        </div>
+        <h3 class="rel-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h3>
+        <p class="rel-desc">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in t…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

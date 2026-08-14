@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paid Search Incrementality &amp; Cannibalization · Akhil Patil</title>
+  <meta name="description" content="A paid search holdout test using difference-in-differences to quantify organic cannibalization — how much branded search traffic you would have won for free.">
+  <meta name="keywords" content="paid search incrementality, organic cannibalization, branded search, holdout test, difference-in-differences, causal impact, SEM measurement, marketing analytics">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/">
+  <meta property="og:title" content="How Much of Paid Search Is Just Buying Clicks You'd Get for Free?">
+  <meta property="og:description" content="A paid search holdout test using difference-in-differences to quantify organic cannibalization — how much branded search traffic you would have won for free.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/paid-search-incrementality-organic-cannibalization.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How Much of Paid Search Is Just Buying Clicks You'd Get for Free?">
+  <meta property="article:published_time" content="2026-04-27">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Incrementality Testing">
+  <meta property="article:tag" content="incrementality">
+  <meta property="article:tag" content="paid-search">
+  <meta property="article:tag" content="cannibalization">
+  <meta property="article:tag" content="difference-in-differences">
+  <meta property="article:tag" content="causal-impact">
+  <meta property="article:tag" content="marketing-analytics">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Much of Paid Search Is Just Buying Clicks You'd Get for Free?">
+  <meta name="twitter:description" content="A paid search holdout test using difference-in-differences to quantify organic cannibalization — how much branded search traffic you would have won for free.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/paid-search-incrementality-organic-cannibalization.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/"},"url":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/","headline":"How Much of Paid Search Is Just Buying Clicks You'd Get for Free?","alternativeHeadline":"Paid Search Incrementality & Cannibalization","description":"A paid search holdout test using difference-in-differences to quantify organic cannibalization — how much branded search traffic you would have won for free.","articleSection":"Incrementality Testing","keywords":"paid search incrementality, organic cannibalization, branded search, holdout test, difference-in-differences, causal impact, SEM measurement, marketing analytics","wordCount":980,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-04-27","dateModified":"2026-04-27","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/paid-search-incrementality-organic-cannibalization.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Incrementality Testing","item":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/"},{"@type":"ListItem","position":4,"name":"How Much of Paid Search Is Just Buying Clicks You'd Get for Free?","item":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/incrementality-testing/">Incrementality Testing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/incrementality-testing/" class="chip cat-i">Incrementality Testing</a>
+        <time datetime="2026-04-27" itemprop="datePublished">April 27, 2026</time>
+        <span>4 min read</span>
+        <span>980 words</span>
+      </div>
+      <h1 itemprop="headline">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</h1>
+      <p class="post-lede" itemprop="description">Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid search, how much of that traffic just comes back through organic for free? The answer reshaped how the budget was allocated.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fpaid-search-incrementality-organic-cannibalization%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fpaid-search-incrementality-organic-cannibalization%2F&amp;text=How%20Much%20of%20Paid%20Search%20Is%20Just%20Buying%20Clicks%20You'd%20Get%20for%20Free%3F" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-most-trusted-channel-deserves-the-most-scrutiny">The most trusted channel deserves the most scrutiny</a></li>
+        <li><a href="#the-design-pause-paid-search-in-a-mirror-image-market">The design: pause paid search in a mirror-image market</a></li>
+        <li><a href="#measuring-it-three-ways-on-purpose">Measuring it three ways, on purpose</a></li>
+        <li><a href="#what-the-test-revealed">What the test revealed</a></li>
+        <li><a href="#from-measurement-to-money">From measurement to money</a></li>
+        <li><a href="#the-lesson">The lesson</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-most-trusted-channel-deserves-the-most-scrutiny">The most trusted channel deserves the most scrutiny</h2>
+<p>Paid search always looks like a hero on the dashboard. Someone types your brand into a search engine, clicks your ad, gets a quote — and the ad takes full credit. Of course it does; it was the last thing they touched.</p>
+<p>But that story has a hole in it. If someone is already searching for your brand by name, how much did the <em>ad</em> really do? If you'd shown no ad at all, a lot of those people would have scrolled one inch further and clicked your organic (free) listing instead. You'd have gotten the quote anyway — without paying for the click.</p>
+<p>This is <strong>cannibalisation</strong>, and for a company spending a large share of its total marketing budget on paid search, it's a multi-million-dollar question hiding behind a green number. I designed and led a geo holdout test to measure it directly.</p>
+<h2 id="the-design-pause-paid-search-in-a-mirror-image-market">The design: pause paid search in a mirror-image market</h2>
+<p>The core method is the same geo holdout logic I use across channels: keep paid search running everywhere except a <strong>treatment county</strong> where we pause it, and compare against a <strong>control county</strong> that had moved in lockstep with it beforehand. Difference-in-differences (DiD) does the rest — it compares the <em>change</em> in the treatment market to the <em>change</em> in the control market, so seasonality and market-wide swings cancel out and only the channel's causal effect remains.</p>
+<p>But I built in a twist that made this test far more useful than a single lift number. I split the treatment into <strong>two separate experiments running in parallel:</strong></p>
+<ul><li>In one market, I paused <strong>all</strong> paid search.</li><li>In another, I paused <strong>only branded</strong> search (ads triggered by our own name), leaving generic/non-brand search running.</li></ul>
+<p>Why? Because "is paid search worth it?" and "is <em>branded</em> paid search worth it?" are completely different questions. Branded search is where cannibalisation should be worst — those are the people already looking for you. Running the two arms side by side let me isolate exactly that.</p>
+<p>Control and treatment counties were selected on matched demographic and performance profiles so the comparison was apples-to-apples, and one market was maintained as the untouched control throughout.</p>
+<h2 id="measuring-it-three-ways-on-purpose">Measuring it three ways, on purpose</h2>
+<p>For the readout I didn't rely on a single method. I triangulated:</p>
+<ol><li><strong>Manual difference-in-differences</strong> on the pre/post × treatment/control cells — transparent, auditable, easy to explain to a non-technical stakeholder.</li><li><strong>A Bayesian structural time-series model</strong> (Google's CausalImpact approach), which builds a counterfactual prediction of what the treatment market <em>would have done</em> and gives proper confidence intervals and significance around the gap.</li><li><strong>A power analysis</strong> to confirm the test was long enough to detect an effect of the size we cared about before I trusted any of it.</li></ol>
+<p>When a hand-built DiD and a Bayesian counterfactual model agree, you can stand behind the result in a room full of skeptics. That mattered here, because the result was pointed.</p>
+<h2 id="what-the-test-revealed">What the test revealed</h2>
+<p><strong>Paid search was genuinely incremental — meaningfully so on quotes, and even more so on sales.</strong> Turning it off caused a real, measurable loss that organic did <em>not</em> fully replace. So the channel earns its place. Good.</p>
+<p>But two findings changed the conversation:</p>
+<p><strong>Organic partially backfilled the lost volume — and much more so for branded.</strong> When paid search went dark, a chunk of the "lost" quote volume reappeared through organic search, for free. In the all-search market that recapture was modest. In the branded-only market it was roughly <em>half</em> — confirming the suspicion that a large share of branded paid-search spend was buying clicks the company would have won organically anyway. That's a direct, evidence-based case for reallocating budget from branded toward non-brand search, where the incremental value is real.</p>
+<p><strong>Attribution was wrong in both directions.</strong> The company's last-touch model was significantly <em>overstating</em> paid search's contribution to quotes (it was grabbing high-intent users who'd have converted regardless) while <em>understating</em> its contribution to sales (it was missing the assisted, lower-funnel conversions). The channel was fundamentally more of a <em>sales</em> engine than a <em>quote</em> engine — the opposite of how it was being optimised. Any bid strategy tuned to the last-touch quote number was optimising against a misleading signal.</p>
+<h2 id="from-measurement-to-money">From measurement to money</h2>
+<p>An incrementality read is only useful if it changes a decision. This one produced four:</p>
+<ul><li><strong>Hold overall paid-search budget at its current share</strong> — my marginal-efficiency model showed spend was sitting right at the diminishing-returns inflection point, where the next dollar starts costing more than the channel average.</li><li><strong>Shift budget from branded to non-brand search</strong>, with a clear hypothesis and a follow-up measurement window to confirm the efficiency gain.</li><li><strong>Stop optimising to last-touch cost-per-quote</strong>, and feed the true incremental coefficients into the marketing-mix model so its saturation curves stopped being built on a biased input.</li><li><strong>Replicate in additional states</strong> before applying the coefficients nationally — because one market in one competitive environment is a directional read, not a universal law.</li></ul>
+<p>I also grounded the numbers in the live competitive context using auction-insight data: the cost environment had shifted as competitors entered and exited the auction, so I flagged that the coefficients were calibrated to <em>current</em> conditions and would need refreshing if the competitive picture changed. Context like that is the difference between a number and a <em>trustworthy</em> number.</p>
+<h2 id="the-lesson">The lesson</h2>
+<p>The instinct in marketing analytics is to defend the channels that look good. The more valuable instinct is to <em>interrogate</em> them — especially the trusted ones — because that's where the hidden waste lives. Branded paid search looked untouchable on the dashboard. A well-designed experiment showed half of it was, in one market, effectively redundant. That's not an argument to cut the channel; it's an argument to spend the same money smarter.</p>
+<p>Causal measurement doesn't just tell you what works. It tells you what you were fooling yourself about.</p>
+<hr>
+<p class="post-note"><em>Companion posts: the <a href="/blog/geo-holdout-incrementality-test-paid-social/">social-channel geo holdout</a> and <a href="/blog/programmatic-dsp-incrementality-control-groups/">selecting valid control groups for programmatic tests</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">incrementality</span><span class="mtag">paid-search</span><span class="mtag">cannibalization</span><span class="mtag">difference-in-differences</span><span class="mtag">causal-impact</span><span class="mtag">marketing-analytics</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Paid Search Incrementality Test</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/geo-holdout-incrementality-test-paid-social/"><span class="pg-dir">← Older</span><span class="pg-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</span></a>
+        <a class="pg-next" href="/blog/market-opportunity-index-media-budget-allocation/"><span class="pg-dir">Newer →</span><span class="pg-title">Where Should We Spend Next? Building a Market-Opportunity Index</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/geo-holdout-incrementality-test-paid-social/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-04-20">APR 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h3>
+        <p class="rel-desc">Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo hold…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/programmatic-dsp-incrementality-control-groups/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-06-20">JUN 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h3>
+        <p class="rel-desc">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of you…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/media-targeting-toolkit-zip-code-ranking/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-22">MAY 22 · 2026</time>
+        </div>
+        <h3 class="rel-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h3>
+        <p class="rel-desc">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the firs…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

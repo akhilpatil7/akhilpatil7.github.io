@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-Means &amp; PCA Customer Segmentation · Akhil Patil</title>
+  <meta name="description" content="How principal component analysis rescued a failing K-means segmentation and turned seven million demographic records into five usable marketing personas.">
+  <meta name="keywords" content="k-means clustering, PCA, principal component analysis, customer segmentation, marketing personas, unsupervised learning, audience segmentation, silhouette score">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/">
+  <meta property="og:title" content="From Seven Million Households to Five Personas">
+  <meta property="og:description" content="How principal component analysis rescued a failing K-means segmentation and turned seven million demographic records into five usable marketing personas.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/customer-personas-kmeans-clustering-pca.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="From Seven Million Households to Five Personas">
+  <meta property="article:published_time" content="2023-07-15">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Applied ML">
+  <meta property="article:tag" content="machine-learning">
+  <meta property="article:tag" content="clustering">
+  <meta property="article:tag" content="kmeans">
+  <meta property="article:tag" content="pca">
+  <meta property="article:tag" content="unsupervised-learning">
+  <meta property="article:tag" content="customer-segmentation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="From Seven Million Households to Five Personas">
+  <meta name="twitter:description" content="How principal component analysis rescued a failing K-means segmentation and turned seven million demographic records into five usable marketing personas.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/customer-personas-kmeans-clustering-pca.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/"},"url":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/","headline":"From Seven Million Households to Five Personas","alternativeHeadline":"K-Means & PCA Customer Segmentation","description":"How principal component analysis rescued a failing K-means segmentation and turned seven million demographic records into five usable marketing personas.","articleSection":"Applied ML","keywords":"k-means clustering, PCA, principal component analysis, customer segmentation, marketing personas, unsupervised learning, audience segmentation, silhouette score","wordCount":804,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2023-07-15","dateModified":"2023-07-15","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/customer-personas-kmeans-clustering-pca.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Applied ML","item":"https://akhilpatil7.github.io/blog/topics/applied-ml/"},{"@type":"ListItem","position":4,"name":"From Seven Million Households to Five Personas","item":"https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/applied-ml/">Applied ML</a><span aria-hidden="true">/</span>
+      <span aria-current="page">From Seven Million Households to Five Personas</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/applied-ml/" class="chip cat-m">Applied ML</a>
+        <time datetime="2023-07-15" itemprop="datePublished">July 15, 2023</time>
+        <span>4 min read</span>
+        <span>804 words</span>
+      </div>
+      <h1 itemprop="headline">From Seven Million Households to Five Personas</h1>
+      <p class="post-lede" itemprop="description">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happened when the clustering didn't work — and how principal component analysis rescued it.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fcustomer-personas-kmeans-clustering-pca%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fcustomer-personas-kmeans-clustering-pca%2F&amp;text=From%20Seven%20Million%20Households%20to%20Five%20Personas" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-task-make-millions-of-strangers-legible">The task: make millions of strangers legible</a></li>
+        <li><a href="#the-honest-first-attempt-and-why-it-failed">The honest first attempt — and why it failed</a></li>
+        <li><a href="#the-fix-reduce-dimensions-before-you-cluster">The fix: reduce dimensions before you cluster</a></li>
+        <li><a href="#from-clusters-to-characters">From clusters to characters</a></li>
+        <li><a href="#closing-the-loop-which-personas-are-worth-the-most">Closing the loop: which personas are worth the most?</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-task-make-millions-of-strangers-legible">The task: make millions of strangers legible</h2>
+<p>Marketing to a universe of several million prospect households is impossible if you treat every household as unique and equally impossible if you treat them all the same. The useful middle ground is <strong>personas</strong> — a small number of coherent, recognizable customer types you can actually design messaging and offers around.</p>
+<p>I was given a third-party demographic dataset covering roughly <strong>seven million individuals</strong> in a single state, with dozens of attributes each: age, income, wealth and spending indices, homeownership likelihood, education, household composition, and more. The goal was to distill that sprawl into a handful of data-driven personas — and then connect those personas to customer value, so marketing could lean into the segments worth the most.</p>
+<h2 id="the-honest-first-attempt-and-why-it-failed">The honest first attempt — and why it failed</h2>
+<p>The natural approach is unsupervised clustering: standardize the features and run K-means to find natural groupings. I did exactly that. It didn't work well.</p>
+<p>The clusters came out <strong>mixed and overlapping — low separability.</strong> When I profiled them, they weren't crisply different from each other; the algorithm was drawing boundaries through a fog rather than around genuine, distinct groups. This is a common and under-discussed failure mode: K-means will <em>always</em> return clusters, but returning clusters and finding real structure are not the same thing. Dozens of mostly-ordinal, partly-correlated demographic features create a high-dimensional space where distances get diluted and everything looks equidistant from everything else — the "curse of dimensionality" in practice.</p>
+<p>The mature move here isn't to force a bad clustering into a slide deck. It's to ask <em>why</em> the structure isn't separating, and fix that first.</p>
+<h2 id="the-fix-reduce-dimensions-before-you-cluster">The fix: reduce dimensions before you cluster</h2>
+<p>The problem was the geometry of the feature space, so I changed the space. Before clustering, I ran the standardized features through <strong>Principal Component Analysis (PCA)</strong> and clustered on the top few components instead of the raw features.</p>
+<p>Why this helps is worth understanding rather than reciting. Many of the demographic attributes are correlated — income, wealth, spending, and homeownership all move together to some degree. PCA finds the underlying axes of <em>actual</em> variation (the directions along which households genuinely differ) and discards the redundant, noisy dimensions. Clustering on those condensed axes means K-means is measuring distance along the directions that carry real signal, instead of getting lost across dozens of overlapping, partly-redundant features.</p>
+<p>The result was night and day: clustering on the principal components produced <strong>visibly separable groups</strong> — I could plot them in the reduced space and <em>see</em> distinct clouds where before there had been mush. The number of clusters was chosen deliberately, using an elbow analysis of within-cluster variance, landing on <strong>five</strong> well-separated personas.</p>
+<h2 id="from-clusters-to-characters">From clusters to characters</h2>
+<p>Numbered clusters don't brief a marketing team. So I profiled each one — comparing feature distributions across clusters to understand what actually made each distinct — and translated them into named, recognizable personas spanning the customer lifecycle: from younger, earlier-stage households ("Fledglings") through affluent and established segments up to older, settled ones ("Golden Age"). A persona is only useful when a marketer reads the name and immediately pictures the person; that translation step, from statistics to character, is where a clustering exercise becomes a marketing tool.</p>
+<h2 id="closing-the-loop-which-personas-are-worth-the-most">Closing the loop: which personas are worth the most?</h2>
+<p>A segmentation that ignores value is just tidy demographics. So I linked the personas to a <strong>customer lifetime-value proxy</strong>, computing the average value of each persona. That surfaced a clear ordering — some personas were meaningfully more valuable than others — and let the business select the higher-value segments (which also aligned with the current customer mix) to push into an audience-activation test for targeted acquisition. The segmentation stopped being descriptive and became a <em>targeting</em> instrument.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>The project delivered a compact, interpretable, value-ranked view of a seven-million-person market that marketing could actually act on. But the part I'm proudest of is the middle: recognizing that the first, "correct" clustering was quietly failing, understanding <em>why</em> (dimensionality and correlation), and reaching for PCA as the fix rather than shipping mush with confident labels. Unsupervised learning gives you no answer key — no accuracy score tells you the clusters are bad — so the discipline of <em>interrogating whether the structure is real</em> is the entire job.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>I'd quantify the separability rather than eyeball it — reporting silhouette scores across candidate cluster counts, and stating how much variance the retained principal components actually captured, so the "five personas" choice is defensible with numbers and not just an elbow plot. I'd also test a model that handles mixed categorical/continuous data natively (like Gaussian mixtures or k-prototypes) as a challenger, since one-hot-encoded demographics stretch K-means' Euclidean assumptions.</p>
+<hr>
+<p class="post-note"><em>I later tackled the much harder problem of predicting that value metric directly — see <a href="/blog/predicting-customer-value-without-labels/">predicting customer value with almost no labels</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">machine-learning</span><span class="mtag">clustering</span><span class="mtag">kmeans</span><span class="mtag">pca</span><span class="mtag">unsupervised-learning</span><span class="mtag">customer-segmentation</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Household Persona Clustering</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/churn-prediction-lda-topic-modeling/"><span class="pg-dir">← Older</span><span class="pg-title">Predicting Churn, Then Reading the Reasons in the Call Notes</span></a>
+        <a class="pg-next" href="/blog/predicting-customer-value-without-labels/"><span class="pg-dir">Newer →</span><span class="pg-title">Predicting Customer Value When You Barely Have Any Labels</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/predicting-customer-value-without-labels/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-11-05">NOV 5 · 2023</time>
+        </div>
+        <h3 class="rel-title">Predicting Customer Value When You Barely Have Any Labels</h3>
+        <p class="rel-desc">Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anywa…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/churn-prediction-lda-topic-modeling/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-05-20">MAY 20 · 2023</time>
+        </div>
+        <h3 class="rel-title">Predicting Churn, Then Reading the Reasons in the Call Notes</h3>
+        <p class="rel-desc">Predicting which new customers will cancel is useful. Knowing *why* each one is at risk — mined from unstructured call-center notes — is what makes th…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/media-targeting-toolkit-zip-code-ranking/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-22">MAY 22 · 2026</time>
+        </div>
+        <h3 class="rel-title">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h3>
+        <p class="rel-desc">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the firs…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

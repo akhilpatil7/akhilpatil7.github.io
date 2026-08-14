@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto &amp; Home Bundle Cross-Sell Analytics · Akhil Patil</title>
+  <meta name="description" content="Building an automated, customer-level view of insurance bundling — who is bundled, who is eligible, and where untapped auto and home cross-sell growth sits.">
+  <meta name="keywords" content="cross-sell analytics, insurance bundling, auto home bundle, data integration, Power Query, customer analytics, household matching">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/">
+  <meta property="og:title" content="Finding the Cross-Sell Hiding in Your Own Book">
+  <meta property="og:description" content="Building an automated, customer-level view of insurance bundling — who is bundled, who is eligible, and where untapped auto and home cross-sell growth sits.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/auto-home-bundle-cross-sell-analytics.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Finding the Cross-Sell Hiding in Your Own Book">
+  <meta property="article:published_time" content="2026-03-24">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Data Machinery">
+  <meta property="article:tag" content="analytics">
+  <meta property="article:tag" content="cross-sell">
+  <meta property="article:tag" content="data-integration">
+  <meta property="article:tag" content="power-query">
+  <meta property="article:tag" content="customer-analytics">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Finding the Cross-Sell Hiding in Your Own Book">
+  <meta name="twitter:description" content="Building an automated, customer-level view of insurance bundling — who is bundled, who is eligible, and where untapped auto and home cross-sell growth sits.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/auto-home-bundle-cross-sell-analytics.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/"},"url":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/","headline":"Finding the Cross-Sell Hiding in Your Own Book","alternativeHeadline":"Auto & Home Bundle Cross-Sell Analytics","description":"Building an automated, customer-level view of insurance bundling — who is bundled, who is eligible, and where untapped auto and home cross-sell growth sits.","articleSection":"Data Machinery","keywords":"cross-sell analytics, insurance bundling, auto home bundle, data integration, Power Query, customer analytics, household matching","wordCount":746,"timeRequired":"PT3M","inLanguage":"en-US","datePublished":"2026-03-24","dateModified":"2026-03-24","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/auto-home-bundle-cross-sell-analytics.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Data Machinery","item":"https://akhilpatil7.github.io/blog/topics/data-machinery/"},{"@type":"ListItem","position":4,"name":"Finding the Cross-Sell Hiding in Your Own Book","item":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/data-machinery/">Data Machinery</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Finding the Cross-Sell Hiding in Your Own Book</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/data-machinery/" class="chip cat-c">Data Machinery</a>
+        <time datetime="2026-03-24" itemprop="datePublished">March 24, 2026</time>
+        <span>3 min read</span>
+        <span>746 words</span>
+      </div>
+      <h1 itemprop="headline">Finding the Cross-Sell Hiding in Your Own Book</h1>
+      <p class="post-lede" itemprop="description">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and where the untapped growth sits. I built the dataset that made that visible — and automated it so it stayed that way.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fauto-home-bundle-cross-sell-analytics%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fauto-home-bundle-cross-sell-analytics%2F&amp;text=Finding%20the%20Cross-Sell%20Hiding%20in%20Your%20Own%20Book" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#everyone-believes-in-bundling-almost-nobody-can-measure-it">Everyone believes in bundling. Almost nobody can measure it.</a></li>
+        <li><a href="#joining-two-products-into-one-household-view">Joining two products into one household view</a></li>
+        <li><a href="#what-the-data-revealed">What the data revealed</a></li>
+        <li><a href="#automating-it-so-it-didnt-rot">Automating it so it didn't rot</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="everyone-believes-in-bundling-almost-nobody-can-measure-it">Everyone believes in bundling. Almost nobody can measure it.</h2>
+<p>"Bundle your auto and home and save" is one of the oldest ideas in insurance, and for good reason — bundled customers are more profitable and far stickier. So you'd think a carrier would have a crisp, current view of its own bundling: who has both policies, who <em>could</em>, and which channels are converting the opportunity.</p>
+<p>In practice, that view is hard to produce, because auto and home live in different product systems with different customer keys. Knowing that "Jane Smith" has an auto policy and that "J. Smith" at a slightly different address string has a home policy — and that they're the <em>same household</em> — is a data-integration problem before it's an analytics one. Without solving it, "how are we doing on bundling?" gets answered with a shrug and a guess.</p>
+<p>I built the foundational dataset that answered it properly, and the analytics on top of it.</p>
+<h2 id="joining-two-products-into-one-household-view">Joining two products into one household view</h2>
+<p>The core task was linking auto sales to home policies at the <strong>household/party level</strong>. I joined the two product populations on shared party identifiers <em>and</em> an address match, then defined a bundle with a deliberate, defensible rule: an auto buyer who also had a home policy in force <strong>within a 45-day window</strong> of the auto purchase. The time window matters — it distinguishes genuine bundling behaviour from an unrelated home policy the household happened to hold years earlier.</p>
+<p>Onto that joined spine I layered the signals that turn a match into an insight:</p>
+<ul><li><strong>Eligibility flags</strong> — which auto customers are actually eligible for a home, condo, or renters product (derived from location and credit criteria), so "opportunity" meant <em>reachable</em> opportunity, not fantasy.</li><li><strong>A credit-quality exhibit</strong> comparing customers' auto-side and home-side insurance credit profiles — because the two products score credit differently, and that gap explains a lot about who bundles.</li><li><strong>A customer-value proxy</strong> on the bundled book, so we could see not just <em>how much</em> bundling was happening but <em>what quality</em> of customer it produced.</li></ul>
+<h2 id="what-the-data-revealed">What the data revealed</h2>
+<p>Three findings changed how the business saw its own bundling:</p>
+<p><strong>Bundling was concentrated in one channel.</strong> The overwhelming majority of bundling happened through the human sales center rather than the online channel — the online path was barely converting the opportunity at all. That's a precise, actionable gap: the online experience wasn't surfacing the cross-sell, and the numbers proved it rather than merely suggesting it.</p>
+<p><strong>The product mix was skewed.</strong> Most "bundles" were auto-plus-renters rather than auto-plus-home. That reframed the ceiling: renters bundling is easier but lower-value, so the real growth story was in converting home-eligible auto customers, of whom a meaningful share were sitting unbundled.</p>
+<p><strong>Quality had a wrinkle.</strong> The bundled book's value proxy sat slightly <em>below</em> the book average — traceable to the renters skew. Without the customer-value layer, "bundling is up" would have read as unambiguously good; with it, the story got more honest and more useful.</p>
+<h2 id="automating-it-so-it-didnt-rot">Automating it so it didn't rot</h2>
+<p>A one-time analysis of bundling is stale the month after you present it. So I built the refresh as an <strong>automated Power Query pipeline</strong> — the joins, the eligibility logic, and the rollups re-run on fresh data without an analyst rebuilding the workbook. Foundational datasets earn their keep by staying alive; a cross-sell view that's six months out of date is worse than none, because people trust it anyway.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>The output mapped <strong>growth potential by channel and product</strong> — a concrete picture of how many eligible, unbundled auto customers existed and where the conversion was and wasn't happening. That turned "we should bundle more" into "here is the specific, sized, channel-by-channel opportunity, and here's the online gap that's leaving most of it on the table." It's the kind of work that only becomes possible once you've done the unglamorous integration underneath — and it's a reminder that some of the best growth opportunities aren't new customers at all, they're the ones already in your book that you simply couldn't see.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>I'd replace the deterministic address/party match with probabilistic household linkage to catch the fuzzy matches the strict join misses, and I'd extend the value proxy into a proper propensity-to-bundle model — ranking unbundled auto customers by their likelihood to convert — so the sales and marketing teams could work the list in priority order rather than by eligibility alone.</p>
+<hr>
+<p class="post-note"><em>The household-linkage approach here shares its DNA with my <a href="/blog/unified-lead-dataset-entity-resolution/">unified lead dataset</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">analytics</span><span class="mtag">cross-sell</span><span class="mtag">data-integration</span><span class="mtag">power-query</span><span class="mtag">customer-analytics</span>
+        </div>
+      </div>
+
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/unified-lead-dataset-entity-resolution/"><span class="pg-dir">← Older</span><span class="pg-title">One Customer, Many Footprints: Building a Unified Lead Dataset</span></a>
+        <a class="pg-next" href="/blog/geo-holdout-incrementality-test-paid-social/"><span class="pg-dir">Newer →</span><span class="pg-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/unified-lead-dataset-entity-resolution/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        </div>
+        <h3 class="rel-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h3>
+        <p class="rel-desc">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in t…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/customer-personas-kmeans-clustering-pca/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-07-15">JUL 15 · 2023</time>
+        </div>
+        <h3 class="rel-title">From Seven Million Households to Five Personas</h3>
+        <p class="rel-desc">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happ…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/predicting-customer-value-without-labels/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-11-05">NOV 5 · 2023</time>
+        </div>
+        <h3 class="rel-title">Predicting Customer Value When You Barely Have Any Labels</h3>
+        <p class="rel-desc">Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anywa…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

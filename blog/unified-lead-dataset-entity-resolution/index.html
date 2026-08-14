@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entity Resolution for a Unified Lead Dataset · Akhil Patil</title>
+  <meta name="description" content="How to stitch fragmented online, call-center, and lead-broker records into one prospect-level dataset — then size the opportunity leaking out of the funnel.">
+  <meta name="keywords" content="entity resolution, identity resolution, unified customer dataset, funnel analysis, opportunity sizing, data engineering, SQL, lead analytics">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/">
+  <meta property="og:title" content="One Customer, Many Footprints: Building a Unified Lead Dataset">
+  <meta property="og:description" content="How to stitch fragmented online, call-center, and lead-broker records into one prospect-level dataset — then size the opportunity leaking out of the funnel.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/unified-lead-dataset-entity-resolution.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="One Customer, Many Footprints: Building a Unified Lead Dataset">
+  <meta property="article:published_time" content="2026-03-10">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Data Machinery">
+  <meta property="article:tag" content="data-engineering">
+  <meta property="article:tag" content="entity-resolution">
+  <meta property="article:tag" content="analytics">
+  <meta property="article:tag" content="funnel-analysis">
+  <meta property="article:tag" content="opportunity-sizing">
+  <meta property="article:tag" content="sql">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="One Customer, Many Footprints: Building a Unified Lead Dataset">
+  <meta name="twitter:description" content="How to stitch fragmented online, call-center, and lead-broker records into one prospect-level dataset — then size the opportunity leaking out of the funnel.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/unified-lead-dataset-entity-resolution.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/"},"url":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/","headline":"One Customer, Many Footprints: Building a Unified Lead Dataset","alternativeHeadline":"Entity Resolution for a Unified Lead Dataset","description":"How to stitch fragmented online, call-center, and lead-broker records into one prospect-level dataset — then size the opportunity leaking out of the funnel.","articleSection":"Data Machinery","keywords":"entity resolution, identity resolution, unified customer dataset, funnel analysis, opportunity sizing, data engineering, SQL, lead analytics","wordCount":851,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-03-10","dateModified":"2026-03-10","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/unified-lead-dataset-entity-resolution.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Data Machinery","item":"https://akhilpatil7.github.io/blog/topics/data-machinery/"},{"@type":"ListItem","position":4,"name":"One Customer, Many Footprints: Building a Unified Lead Dataset","item":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/data-machinery/">Data Machinery</a><span aria-hidden="true">/</span>
+      <span aria-current="page">One Customer, Many Footprints: Building a Unified Lead Dataset</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/data-machinery/" class="chip cat-c">Data Machinery</a>
+        <time datetime="2026-03-10" itemprop="datePublished">March 10, 2026</time>
+        <span>4 min read</span>
+        <span>851 words</span>
+      </div>
+      <h1 itemprop="headline">One Customer, Many Footprints: Building a Unified Lead Dataset</h1>
+      <p class="post-lede" itemprop="description">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in three systems. I built the foundational dataset that stitched those footprints into one customer, then used it to quantify exactly how much opportunity was leaking out of the funnel.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Funified-lead-dataset-entity-resolution%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Funified-lead-dataset-entity-resolution%2F&amp;text=One%20Customer%2C%20Many%20Footprints%3A%20Building%20a%20Unified%20Lead%20Dataset" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-invisible-problem-the-same-person-counted-three-times">The invisible problem: the same person, counted three times</a></li>
+        <li><a href="#step-one-resolve-the-entity">Step one: resolve the entity</a></li>
+        <li><a href="#step-two-give-every-lead-a-status">Step two: give every lead a status</a></li>
+        <li><a href="#step-three-put-a-number-on-the-leak">Step three: put a number on the leak</a></li>
+        <li><a href="#why-this-was-foundational-not-just-analytical">Why this was foundational, not just analytical</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-invisible-problem-the-same-person-counted-three-times">The invisible problem: the same person, counted three times</h2>
+<p>In a direct-to-consumer insurance business, a single shopper leaves footprints in several disconnected systems. They start a quote online. A few days later the sales center calls them back. Maybe they originally arrived through a third-party lead broker. Each of those systems records them independently — different IDs, different schemas, no shared key. To the data, one indecisive human looks like three unrelated events.</p>
+<p>That fragmentation quietly breaks everything downstream. You can't measure a true funnel, you double-count, and — most expensively — you can't see the people who fell out of the process and are sitting there as untapped opportunity. Nobody could answer the basic question: <em>of everyone who entered our funnel, who did we sell, who did we suppress, who is the call center still working, and who did we simply leave on the table?</em></p>
+<p>I led the foundational work to build the dataset that could answer it.</p>
+<h2 id="step-one-resolve-the-entity">Step one: resolve the entity</h2>
+<p>The heart of the project is <strong>entity resolution</strong> — collapsing many rows across many systems into one record per real person. There's no shared customer key across the online platform, the call-center system, and the lead-broker feed, so I built one from <strong>personally identifying attributes</strong>: name, date of birth, and normalized address (with fallbacks when the primary address was missing). Records that matched on this composite identity were rolled up under a single prospect-level key.</p>
+<p>This is the unglamorous, high-leverage part of data work. Get the match logic too loose and you merge two different people; too strict and you fail to link the same person and the fragmentation persists. Tuning that boundary — and handling the messy realities of missing fields, nicknames, and moved addresses — is where the dataset earns its trust.</p>
+<p>On top of the identity spine, I unioned and field-mapped the three sources into one schema, carrying forward the full timeline: first quote, rating events, sale, call-center dispositions, and broker metadata.</p>
+<h2 id="step-two-give-every-lead-a-status">Step two: give every lead a status</h2>
+<p>A unified record is only useful if it answers "what happened to this person?" So I built a <strong>categorization layer</strong> that assigned every prospect to exactly one bucket through a priority waterfall:</p>
+<ol><li><strong>Sold</strong> — matched to a policy or a positive sale disposition (further split by which channel and carrier closed it).</li><li><strong>Suppression</strong> — legitimately out of play (already a customer, ineligible, declined, or on a do-not-contact list).</li><li><strong>Call center actively working</strong> — an open task or a "still in progress" disposition (waiting on documents, scheduled call-back, still shopping).</li><li><strong>Opportunity / retargeting</strong> — everyone left: people who entered the funnel, weren't sold, weren't suppressed, and weren't being worked. <em>These are the leads worth money that nobody was chasing.</em></li></ol>
+<p>The waterfall order matters — a lead can look like several things at once, and resolving that ambiguity consistently is what makes the categories trustworthy.</p>
+<h2 id="step-three-put-a-number-on-the-leak">Step three: put a number on the leak</h2>
+<p>With every lead classified, I could finally quantify the funnel's leaks. I mapped the <strong>knockout points</strong> — the specific places prospects drop out (abandoning before seeing a premium, being declined by underwriting rules at each rating stage, abandoning after a re-rate, not being called back by the contact center) — and sized the opportunity at each one.</p>
+<p>Then I built a <strong>priority matrix</strong>, scoring each leak on <em>opportunity size</em> against <em>effort to address</em>, so the business could triage. Instead of a vague "we lose a lot of leads," the output was a ranked, quantified list: <em>here are the biggest pools of recoverable prospects, here's roughly how many are in each, and here's which ones are cheap to go after.</em> That reframed the conversation from anecdote to a prioritized action list — and directly seeded a downstream lead-monetization effort for the prospects who couldn't be sold a policy but still had value.</p>
+<h2 id="why-this-was-foundational-not-just-analytical">Why this was foundational, not just analytical</h2>
+<p>The word I keep coming back to is <em>foundational</em>. This dataset wasn't the end — it was the ground floor. Once it existed, a dozen other analyses became possible almost for free: true funnel conversion, channel attribution, contact-center performance, and the opportunity sizing above. A later iteration extended it to track lead-broker leakage and prioritization, and to test hypotheses about which lead characteristics predicted conversion.</p>
+<p>That's the quiet lesson of data work: the highest-leverage thing you can build is often not a model or a dashboard, but the <strong>clean, unified dataset that makes every future model and dashboard trustworthy.</strong> Entity resolution isn't flashy, but it's the difference between analytics built on one customer and analytics built on three ghosts of the same one.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>I'd formalize the identity-matching with a probabilistic record-linkage approach (scoring match confidence rather than applying deterministic rules), which handles the fuzzy edges — typos, nicknames, stale addresses — more gracefully and gives every merge a confidence score you can audit. And I'd move the whole pipeline from periodic rebuilds toward an incremental, monitored refresh so the "foundational dataset" stays fresh without a manual lift.</p>
+<hr>
+<p class="post-note"><em>This dataset underpinned much of my direct-channel analytics work, including the cross-sell foundation in the <a href="/blog/auto-home-bundle-cross-sell-analytics/">Auto–Home bundle project</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">data-engineering</span><span class="mtag">entity-resolution</span><span class="mtag">analytics</span><span class="mtag">funnel-analysis</span><span class="mtag">opportunity-sizing</span><span class="mtag">sql</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Lead Consumption Analytics Platform</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/call-routing-insourcing-cost-reduction/"><span class="pg-dir">← Older</span><span class="pg-title">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</span></a>
+        <a class="pg-next" href="/blog/auto-home-bundle-cross-sell-analytics/"><span class="pg-dir">Newer →</span><span class="pg-title">Finding the Cross-Sell Hiding in Your Own Book</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/auto-home-bundle-cross-sell-analytics/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-24">MAR 24 · 2026</time>
+        </div>
+        <h3 class="rel-title">Finding the Cross-Sell Hiding in Your Own Book</h3>
+        <p class="rel-desc">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/early-warning-system-marketing-kpis-spc/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-01-30">JAN 30 · 2026</time>
+        </div>
+        <h3 class="rel-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</h3>
+        <p class="rel-desc">The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/market-opportunity-index-media-budget-allocation/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-15">MAY 15 · 2026</time>
+        </div>
+        <h3 class="rel-title">Where Should We Spend Next? Building a Market-Opportunity Index</h3>
+        <p class="rel-desc">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one n…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

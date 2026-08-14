@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads",
+    "href": "/blog/geo-holdout-incrementality-test-paid-social/",
+    "date": "2026-04-20",
+    "cat": "Incrementality Testing",
+    "cls": "cat-i",
+    "mins": 6,
+    "excerpt": "Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo holdout experiment to measure the true, causal contribution of a social advertising channel — and why the answer surprised everyone."
+  },
+  {
+    "title": "How Much of Paid Search Is Just Buying Clicks You'd Get for Free?",
+    "href": "/blog/paid-search-incrementality-organic-cannibalization/",
+    "date": "2026-04-27",
+    "cat": "Incrementality Testing",
+    "cls": "cat-i",
+    "mins": 4,
+    "excerpt": "Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid search, how much of that traffic just comes back through organic for free? The answer reshaped how the budget was allocated."
+  },
+  {
+    "title": "Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads",
+    "href": "/blog/programmatic-dsp-incrementality-control-groups/",
+    "date": "2026-06-20",
+    "cat": "Incrementality Testing",
+    "cls": "cat-i",
+    "mins": 6,
+    "excerpt": "When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of your treatment? I ran two tests where the data situations were completely different — and each demanded a completely different way of building that twin."
+  }
+]

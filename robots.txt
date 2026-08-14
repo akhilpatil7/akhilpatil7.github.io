@@ -1,0 +1,11 @@
+# https://akhilpatil7.github.io
+User-agent: *
+Allow: /
+
+# Build inputs, not pages — keep the markdown sources out of the index
+# so they can't compete with the rendered essays.
+Disallow: /content/
+Disallow: /tools/
+Disallow: /data/
+
+Sitemap: https://akhilpatil7.github.io/sitemap.xml

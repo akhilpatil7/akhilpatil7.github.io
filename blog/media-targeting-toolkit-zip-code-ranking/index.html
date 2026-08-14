@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zip-Code Targeting &amp; Media Vendor Testing · Akhil Patil</title>
+  <meta name="description" content="A weighted zip-code ranking index for programmatic geo-targeting, plus device-level significance testing to settle which media vendor actually deserves budget.">
+  <meta name="keywords" content="geo targeting, zip code ranking, weighted index, programmatic targeting, vendor evaluation, hypothesis testing, feature weighting, media planning analytics">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/">
+  <meta property="og:title" content="Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit">
+  <meta property="og:description" content="A weighted zip-code ranking index for programmatic geo-targeting, plus device-level significance testing to settle which media vendor actually deserves budget.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/media-targeting-toolkit-zip-code-ranking.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit">
+  <meta property="article:published_time" content="2026-05-22">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Media Strategy">
+  <meta property="article:tag" content="marketing-analytics">
+  <meta property="article:tag" content="geo-targeting">
+  <meta property="article:tag" content="hypothesis-testing">
+  <meta property="article:tag" content="feature-weighting">
+  <meta property="article:tag" content="vendor-evaluation">
+  <meta property="article:tag" content="statistics">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit">
+  <meta name="twitter:description" content="A weighted zip-code ranking index for programmatic geo-targeting, plus device-level significance testing to settle which media vendor actually deserves budget.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/media-targeting-toolkit-zip-code-ranking.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/"},"url":"https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/","headline":"Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit","alternativeHeadline":"Zip-Code Targeting & Media Vendor Testing","description":"A weighted zip-code ranking index for programmatic geo-targeting, plus device-level significance testing to settle which media vendor actually deserves budget.","articleSection":"Media Strategy","keywords":"geo targeting, zip code ranking, weighted index, programmatic targeting, vendor evaluation, hypothesis testing, feature weighting, media planning analytics","wordCount":846,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-05-22","dateModified":"2026-05-22","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/media-targeting-toolkit-zip-code-ranking.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Media Strategy","item":"https://akhilpatil7.github.io/blog/topics/media-strategy/"},{"@type":"ListItem","position":4,"name":"Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit","item":"https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/media-strategy/">Media Strategy</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/media-strategy/" class="chip cat-p">Media Strategy</a>
+        <time datetime="2026-05-22" itemprop="datePublished">May 22, 2026</time>
+        <span>4 min read</span>
+        <span>846 words</span>
+      </div>
+      <h1 itemprop="headline">Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</h1>
+      <p class="post-lede" itemprop="description">Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the first — a weighted zip-ranking index — and used device-level significance testing to settle the second.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fmedia-targeting-toolkit-zip-code-ranking%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fmedia-targeting-toolkit-zip-code-ranking%2F&amp;text=Deciding%20Where%20%E2%80%94%20and%20With%20Whom%20%E2%80%94%20to%20Spend%3A%20A%20Media%20Targeting%20Toolkit" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#part-1-a-weighted-index-for-ranking-micro-markets">Part 1 — A weighted index for ranking micro-markets</a></li>
+        <li><a href="#part-2-settling-a-vendor-question-with-a-significance-test">Part 2 — Settling a vendor question with a significance test</a></li>
+        <li><a href="#part-3-choosing-between-vendors-fairly">Part 3 — Choosing between vendors, fairly</a></li>
+        <li><a href="#the-throughline">The throughline</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<p>Programmatic advertising gives you an enormous amount of control and, with it, an enormous amount of rope. You can target down to the zip code and buy through competing vendors on competing devices. The flip side is that most of that granularity is decided by habit. I built two pieces of analytical machinery to replace habit with evidence: a <strong>zip-ranking framework</strong> for <em>where</em> to spend, and a <strong>device-level significance test</strong> for <em>how</em> to spend it.</p>
+<h2 id="part-1-a-weighted-index-for-ranking-micro-markets">Part 1 — A weighted index for ranking micro-markets</h2>
+<p>The targeting question at the zip level is: out of thousands of zip codes, which handful actually deserve budget? "High population" is naïve (big and unprofitable is still unprofitable). "High close rate" alone is naïve too (a great rate on a tiny, thin zip is noise). The right answer blends several signals with deliberate weights.</p>
+<p>I built a transparent <strong>performance index</strong> per zip that combined internal performance and quality signals into a single rank:</p>
+<ul><li><strong>Close rate</strong> — the dominant driver, carrying the largest weight, because ultimately we're buying conversions.</li><li><strong>Quote demand per capita</strong> — is there active shopping intent here?</li><li><strong>Customer-value proxies</strong> — scaled measures of the lifetime-value quality of the quotes and sales a zip produces, so we favour zips that yield <em>good</em> customers, not just many.</li><li><strong>Target-market share</strong> — the share of a zip's activity that falls in our preferred customer segments.</li><li><strong>A decline-rate penalty</strong> — the one <em>negative</em> term, docking zips that generate a lot of ineligible or declined traffic (expensive dead ends).</li></ul>
+<p>Two design choices made it robust:</p>
+<ol><li><strong>Min-max scaling</strong> of the value and population signals, so features on different native scales could be combined without one silently dominating.</li><li><strong>A population floor</strong> — zips below a minimum population are zeroed out entirely, because a spectacular-looking rate on a handful of quotes is a mirage.</li></ol>
+<p><strong>From ranking to selection.</strong> I sorted zips by the index, took a running cumulative sum of population, and selected the top-ranked zips that together captured a target share (~70%) of the population — a principled cutoff that grabs the best markets while retaining enough reach to matter. The remainder became the natural control/exclusion pool. That single mechanism did double duty: it picked targeting lists <em>and</em> fed the treatment/control splits for the geo experiments I ran later.</p>
+<p>The result was a <strong>reusable, auditable framework</strong> — point it at a new state, and it produces a ranked, defensible targeting list with the weights and cutoffs all visible and adjustable, rather than a black box or a gut call.</p>
+<h2 id="part-2-settling-a-vendor-question-with-a-significance-test">Part 2 — Settling a vendor question with a significance test</h2>
+<p>The second question was operational: within a programmatic vendor's delivery, <strong>which device types are actually worth buying?</strong> The dashboards showed device-level differences, but differences on a dashboard are not the same as <em>real</em> differences — small samples produce fake gaps all the time.</p>
+<p>So I treated it as a proper statistics problem. For each channel–device combination (display / native / video × desktop / phone / tablet), I computed the funnel-efficiency metrics — click-through, quote-conversion, and cost-per-quote — and then ran <strong>two-proportion Z-tests on the conversion rates between device pairs</strong>, reporting Z-scores, p-values, and significance flags at the 5% level.</p>
+<p>That turned "tablet looks weak" into "tablet's conversion deficit is <strong>statistically significant</strong> (p &lt; 0.05), and its cost-per-quote is several times worse than desktop's." Desktop was the efficient workhorse, phone a solid second, and tablet a genuine drag — not just noise. On the strength of that test, tablet was pulled from prospecting campaigns and retained only for cheaper retargeting. A concrete spend decision, backed by a hypothesis test rather than a glance at a bar chart.</p>
+<p>I packaged the whole thing as an <strong>automated performance-read tool</strong>: it parses each creative's structured naming convention into dimensions (product, tactic, targeting, placement), buckets creatives into performance tiers by percentile, and produces the funnel and significance read on a fresh data pull — so the analysis is repeatable every reporting period instead of rebuilt by hand.</p>
+<h2 id="part-3-choosing-between-vendors-fairly">Part 3 — Choosing between vendors, fairly</h2>
+<p>The same discipline settled a head-to-head between two programmatic vendors. Rather than compare their blended numbers (which conflate targeting, spend level, and audience), I split the market into two comparable geographies using the zip-ranking framework above, ran each vendor in its own geo, and compared like-for-like on volume and efficiency. The challenger vendor came out ahead as a volume driver, and the recommendation to shift toward it rested on a controlled comparison rather than a sales pitch.</p>
+<h2 id="the-throughline">The throughline</h2>
+<p>Both halves of this toolkit express the same belief: <strong>granular decisions deserve explicit, testable logic.</strong> A weighted index makes the "where to target" decision transparent and adjustable instead of intuitive. A two-proportion Z-test makes the "which device" decision rigorous instead of impressionistic. And splitting a market into matched geographies makes a "which vendor" decision a controlled comparison instead of an argument. None of it is exotic — it's the discipline of writing the decision rule down, weighting it on purpose, and testing whether the differences you're acting on are real.</p>
+<hr>
+<p class="post-note"><em>This zip-ranking framework also fed the treatment/control selection in my <a href="/blog/programmatic-dsp-incrementality-control-groups/">programmatic incrementality tests</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">marketing-analytics</span><span class="mtag">geo-targeting</span><span class="mtag">hypothesis-testing</span><span class="mtag">feature-weighting</span><span class="mtag">vendor-evaluation</span><span class="mtag">statistics</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">DSP Vendor Evaluation: StackAdapt vs. Basis</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/market-opportunity-index-media-budget-allocation/"><span class="pg-dir">← Older</span><span class="pg-title">Where Should We Spend Next? Building a Market-Opportunity Index</span></a>
+        <a class="pg-next" href="/blog/programmatic-dsp-incrementality-control-groups/"><span class="pg-dir">Newer →</span><span class="pg-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/market-opportunity-index-media-budget-allocation/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-15">MAY 15 · 2026</time>
+        </div>
+        <h3 class="rel-title">Where Should We Spend Next? Building a Market-Opportunity Index</h3>
+        <p class="rel-desc">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one n…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/programmatic-dsp-incrementality-control-groups/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-06-20">JUN 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h3>
+        <p class="rel-desc">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of you…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/customer-personas-kmeans-clustering-pca/">
+        <div class="rel-meta">
+          <span class="chip cat-m">Applied ML</span>
+          <time class="rel-date" datetime="2023-07-15">JUL 15 · 2023</time>
+        </div>
+        <h3 class="rel-title">From Seven Million Households to Five Personas</h3>
+        <p class="rel-desc">Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happ…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

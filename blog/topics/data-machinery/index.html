@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Data Engineering &amp; KPI Alerting · Akhil Patil</title>
+  <meta name="description" content="The foundations of marketing analytics — entity resolution across fragmented systems, funnel opportunity sizing, and KPI alerting people actually trust.">
+  <meta name="keywords" content="entity resolution, marketing data engineering, funnel analysis, opportunity sizing, statistical process control, KPI alerting, anomaly detection">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/topics/data-machinery/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/topics/data-machinery/">
+  <meta property="og:title" content="Data Machinery &amp; Operational Analytics">
+  <meta property="og:description" content="The foundations of marketing analytics — entity resolution across fragmented systems, funnel opportunity sizing, and KPI alerting people actually trust.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/topic-data-machinery.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Data Machinery &amp; Operational Analytics">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Data Machinery &amp; Operational Analytics">
+  <meta name="twitter:description" content="The foundations of marketing analytics — entity resolution across fragmented systems, funnel opportunity sizing, and KPI alerting people actually trust.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/topic-data-machinery.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"CollectionPage","@id":"https://akhilpatil7.github.io/blog/topics/data-machinery/#page","url":"https://akhilpatil7.github.io/blog/topics/data-machinery/","name":"Data Machinery & Operational Analytics","description":"The foundations of marketing analytics — entity resolution across fragmented systems, funnel opportunity sizing, and KPI alerting people actually trust.","about":[{"@type":"Thing","name":"entity resolution"},{"@type":"Thing","name":"marketing data engineering"},{"@type":"Thing","name":"funnel analysis"},{"@type":"Thing","name":"opportunity sizing"},{"@type":"Thing","name":"statistical process control"},{"@type":"Thing","name":"KPI alerting"},{"@type":"Thing","name":"anomaly detection"}],"isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntity":{"@type":"ItemList","numberOfItems":4,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/","name":"Finding the Cross-Sell Hiding in Your Own Book"},{"@type":"ListItem","position":2,"url":"https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/","name":"One Customer, Many Footprints: Building a Unified Lead Dataset"},{"@type":"ListItem","position":3,"url":"https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/","name":"Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout"},{"@type":"ListItem","position":4,"url":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/","name":"An Early-Warning System for Marketing KPIs (Without Crying Wolf)"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Data Machinery","item":"https://akhilpatil7.github.io/blog/topics/data-machinery/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <header class="blog-hero">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Data Machinery</span>
+  </nav>
+    <div class="section-label">Topic · Data Machinery</div>
+    <h1>Data Machinery &amp; Operational Analytics</h1>
+    <div class="hero-rule"></div>
+    <p class="lede">Most analytics failures are not modelling failures. They are foundation failures: the same customer counted three times across three systems, a funnel nobody can measure end to end, an alert nobody trusts because it cried wolf. These essays are about the unglamorous machinery underneath the insight — entity resolution across systems with no shared key, prospect-level datasets that make a real funnel measurable, automated cross-sell views, and statistical process control that fires when something is genuinely wrong.</p>
+    <div class="blog-meta-row">
+      <span><b>4</b> essays</span>
+      <span>Updated <b>March 24, 2026</b></span>
+      <span><a href="/blog/">All topics →</a></span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <section class="wrap" id="content" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Essays in this topic</div>
+    <div class="post-list">
+      <a class="post-row reveal" href="/blog/auto-home-bundle-cross-sell-analytics/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-03-24">MAR 24 · 2026</time>
+        <span class="pr-read">3 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Finding the Cross-Sell Hiding in Your Own Book</h2>
+        <p class="pr-excerpt">Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and where the untapped growth sits. I built the dataset that made that visible — and automated it so it stayed that way.</p>
+        <div class="pr-tags"><span class="mtag">analytics</span><span class="mtag">cross-sell</span><span class="mtag">data-integration</span><span class="mtag">power-query</span><span class="mtag">customer-analytics</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/unified-lead-dataset-entity-resolution/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h2>
+        <p class="pr-excerpt">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in three systems. I built the foundational dataset that stitched those footprints into one customer, then used it to quantify exactly how much opportunity was leaking out of the funnel.</p>
+        <div class="pr-tags"><span class="mtag">data-engineering</span><span class="mtag">entity-resolution</span><span class="mtag">analytics</span><span class="mtag">funnel-analysis</span><span class="mtag">opportunity-sizing</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/call-routing-insourcing-cost-reduction/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-02-20">FEB 20 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</h2>
+        <p class="pr-excerpt">A vendor was quietly earning a seven-figure annual fee to route inbound calls to the right agents. The company decided to bring it in-house. I supported the migration analytics — and when the internal call volumes came back looking alarmingly low, I found out why before anyone panicked.</p>
+        <div class="pr-tags"><span class="mtag">analytics</span><span class="mtag">cost-reduction</span><span class="mtag">telephony</span><span class="mtag">root-cause-analysis</span><span class="mtag">dashboards</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/early-warning-system-marketing-kpis-spc/" data-cat="data-machinery">
+      <div class="pr-side">
+        <span class="chip cat-c">Data Machinery</span>
+        <time class="pr-date" datetime="2026-01-30">JAN 30 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</h2>
+        <p class="pr-excerpt">The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here's how I built control limits for daily marketing KPIs that respected how the data actually behaves.</p>
+        <div class="pr-tags"><span class="mtag">statistics</span><span class="mtag">statistical-process-control</span><span class="mtag">control-limits</span><span class="mtag">anomaly-detection</span><span class="mtag">dashboards</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Other topics</div>
+    <div class="topics-grid">
+      <a class="topic-card reveal delay-1" href="/blog/topics/incrementality-testing/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Incrementality Testing &amp; Causal Measurement</h3>
+        <p class="tc-desc">Attribution tells you what got clicked…</p>
+      </a>
+      <a class="topic-card reveal delay-2" href="/blog/topics/media-strategy/">
+        <div class="tc-count">02 essays</div>
+        <h3 class="tc-title">Media Strategy &amp; Geo Targeting</h3>
+        <p class="tc-desc">Deciding where to spend is a harder analytical problem than deciding how much…</p>
+      </a>
+      <a class="topic-card reveal delay-3" href="/blog/topics/applied-ml/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Applied Machine Learning</h3>
+        <p class="tc-desc">A model that scores well and changes nothing is a failed project…</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

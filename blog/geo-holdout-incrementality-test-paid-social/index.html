@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geo Holdout Testing for Paid Social · Akhil Patil</title>
+  <meta name="description" content="How to design a geo holdout incrementality test with synthetic control and difference-in-differences to measure the true causal lift of a paid social channel.">
+  <meta name="keywords" content="geo holdout test, incrementality testing, synthetic control, difference-in-differences, paid social incrementality, causal inference marketing, power analysis, marketing measurement">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/">
+  <meta property="og:title" content="Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads">
+  <meta property="og:description" content="How to design a geo holdout incrementality test with synthetic control and difference-in-differences to measure the true causal lift of a paid social channel.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/geo-holdout-incrementality-test-paid-social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads">
+  <meta property="article:published_time" content="2026-04-20">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Incrementality Testing">
+  <meta property="article:tag" content="incrementality">
+  <meta property="article:tag" content="causal-inference">
+  <meta property="article:tag" content="synthetic-control">
+  <meta property="article:tag" content="difference-in-differences">
+  <meta property="article:tag" content="marketing-analytics">
+  <meta property="article:tag" content="experimentation">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads">
+  <meta name="twitter:description" content="How to design a geo holdout incrementality test with synthetic control and difference-in-differences to measure the true causal lift of a paid social channel.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/geo-holdout-incrementality-test-paid-social.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/"},"url":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/","headline":"Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads","alternativeHeadline":"Geo Holdout Testing for Paid Social","description":"How to design a geo holdout incrementality test with synthetic control and difference-in-differences to measure the true causal lift of a paid social channel.","articleSection":"Incrementality Testing","keywords":"geo holdout test, incrementality testing, synthetic control, difference-in-differences, paid social incrementality, causal inference marketing, power analysis, marketing measurement","wordCount":1371,"timeRequired":"PT6M","inLanguage":"en-US","datePublished":"2026-04-20","dateModified":"2026-04-20","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/geo-holdout-incrementality-test-paid-social.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Incrementality Testing","item":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/"},{"@type":"ListItem","position":4,"name":"Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads","item":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/incrementality-testing/">Incrementality Testing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/incrementality-testing/" class="chip cat-i">Incrementality Testing</a>
+        <time datetime="2026-04-20" itemprop="datePublished">April 20, 2026</time>
+        <span>6 min read</span>
+        <span>1,371 words</span>
+      </div>
+      <h1 itemprop="headline">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h1>
+      <p class="post-lede" itemprop="description">Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo holdout experiment to measure the true, causal contribution of a social advertising channel — and why the answer surprised everyone.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fgeo-holdout-incrementality-test-paid-social%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fgeo-holdout-incrementality-test-paid-social%2F&amp;text=Proving%20What%20Marketing%20Actually%20Works%3A%20A%20Geo%20Holdout%20Test%20for%20Social%20Ads" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-question-nobody-could-actually-answer">The question nobody could actually answer</a></li>
+        <li><a href="#why-you-cant-just-turn-it-off-and-see">Why you can't just "turn it off and see"</a></li>
+        <li><a href="#building-a-synthetic-twin">Building a "synthetic twin"</a></li>
+        <li><a href="#making-sure-the-test-could-actually-detect-something">Making sure the test could actually detect something</a></li>
+        <li><a href="#measuring-the-result-difference-in-differences">Measuring the result: difference-in-differences</a></li>
+        <li><a href="#what-we-found-and-why-it-was-more-interesting-than-a-single-number">What we found — and why it was more interesting than a single number</a></li>
+        <li><a href="#why-this-mattered">Why this mattered</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-question-nobody-could-actually-answer">The question nobody could actually answer</h2>
+<p>Every marketing team I've worked with lives with the same uncomfortable secret: the numbers on the dashboard are not the numbers that matter.</p>
+<p>Platform attribution — the "this channel drove X quotes" figure that comes straight out of the ad platform — is built on a simple rule: <em>someone saw or clicked our ad, and later did something we care about, so the ad gets the credit.</em> That's correlation dressed up as causation. It quietly takes credit for people who would have converted anyway, and quietly ignores people the ads genuinely nudged but who converted through a different door.</p>
+<p>For a direct-to-consumer auto insurer deciding how many dollars to put behind a social advertising channel, that gap isn't academic. Over- or under-invest by even a few percentage points of a large budget and you're lighting money on fire — or starving a channel that's actually working.</p>
+<p>I led the design of an experiment to answer the real question: <strong>if we turned this channel off, what would we actually lose?</strong></p>
+<h2 id="why-you-cant-just-turn-it-off-and-see">Why you can't just "turn it off and see"</h2>
+<p>The naive version — pause the channel everywhere for a month and watch the numbers — is worthless, because the world doesn't hold still. Seasonality, competitor activity, pricing changes, and plain randomness all move quote and sale volumes week to week. If sales drop after you pause a channel, you have no idea how much of that drop was the channel and how much was just... February.</p>
+<p>The fix is to run a <strong>geo holdout</strong>: keep the channel running everywhere except one geographic area (the <em>treatment</em> region), where you pause it. Then you compare the treatment region not against its own past, but against a <strong>control</strong> region that behaved just like it before the test. Whatever diverges between the two, after the pause, is the channel's causal fingerprint — because seasonality and market-wide movements hit both regions equally.</p>
+<p>The whole game, then, comes down to one thing: <strong>finding a control that is genuinely a twin of the treatment.</strong> Get that wrong and every downstream number is fiction.</p>
+<h2 id="building-a-synthetic-twin">Building a "synthetic twin"</h2>
+<p>No single real region is ever a perfect match for another. So instead of hunting for one lookalike, I built a <strong>synthetic control</strong> — a weighted blend of several untouched regions, combined so that the blend traces the treatment region's pre-test history as closely as possible.</p>
+<p>I built this at the county level. For each candidate treatment county, an optimiser searched over all the other (untreated) counties and solved for the set of weights that minimised the gap between the synthetic blend and the real county across the pre-period — matching not just on the outcome trend, but on the demographic and behavioural drivers underneath it:</p>
+<ul><li>education and employment profile,</li><li>median household income,</li><li>how many quotes the area generated per capita, and</li><li>the channel's own share of quote activity in that area.</li></ul>
+<p>The result is a bespoke "twin" — say, <em>roughly 40% of one county, a third of another, and the remainder spread across a couple more</em> — that moves in lockstep with the treatment county historically, and therefore tells us what the treatment county <em>would have done</em> had we never paused anything.</p>
+<p>To choose <em>which</em> county to actually test, I didn't pick by gut. I ran every candidate through the same pipeline and compared them on three things: how tightly the synthetic twin fit the pre-period (prediction error), how stable the donor pool was, and — critically — how long the resulting test would need to run. Some candidates looked great statistically but would have needed three-plus months to reach significance. I wanted a clean twin <em>and</em> a decisive read.</p>
+<h2 id="making-sure-the-test-could-actually-detect-something">Making sure the test could actually detect something</h2>
+<p>A control group only solves half the problem. The other half is <strong>power</strong>: if the channel really is driving, say, a 10–15% lift, is the test even capable of <em>seeing</em> a lift that size against the natural week-to-week noise — and if so, for how long does it need to run?</p>
+<p>I ran a proper power analysis. Using the pre-period residuals (how much the real county wobbles around its synthetic twin even when nothing is happening) as the noise floor, I modelled statistical power as a function of test duration for a range of possible true lifts. The logic is intuitive: signal accumulates with the square root of time, so a bigger true effect crosses the detectability threshold sooner, and a smaller one needs patience.</p>
+<p>That analysis produced concrete guidance the business could plan around: <em>to detect a lift of this size at this confidence level, run for roughly this many weeks.</em> I also validated the whole apparatus by <strong>injecting a known, artificial lift into the data and confirming the model recovered it</strong> — if you simulate a 10% lift and your method reports ~10%, you can trust it to measure the real thing. And I carved out the first few weeks as an "immature data zone," because early post-launch data is dominated by ramp-up noise and will mislead you if you read it too soon.</p>
+<h2 id="measuring-the-result-difference-in-differences">Measuring the result: difference-in-differences</h2>
+<p>Once the test ran, measurement used <strong>difference-in-differences (DiD)</strong>. In plain terms:</p>
+<ol><li>Measure how the treatment region changed from before to during the test.</li><li>Measure how the synthetic control changed over the same window.</li><li>The <em>difference between those two changes</em> is the incremental effect.</li></ol>
+<p>Because both regions absorb the same seasonal and market-wide forces, subtracting one change from the other cancels those forces out and isolates what the channel itself did. I tracked this across the whole funnel — quote starts, completed quotes, and sales — because a channel can look very different depending on where you measure.</p>
+<p>I also stood up a <strong>monitoring dashboard</strong> with guardrails while the test was live, so we could catch a broken control or a contaminated treatment early rather than discovering it in the post-mortem.</p>
+<h2 id="what-we-found-and-why-it-was-more-interesting-than-a-single-number">What we found — and why it was more interesting than a single number</h2>
+<p>Three findings mattered more than the headline lift:</p>
+<p><strong>1. The channel was genuinely incremental — but not where attribution said it was.</strong> The platform's own attribution told a top-of-funnel story: lots of credit for quote starts, very little for sales. The incrementality read told almost the opposite story — the channel's real value showed up <em>lower</em> in the funnel, on sales, precisely where click-based attribution is blindest. The two measurement systems disagreed by multiples, in <em>both</em> directions depending on the metric.</p>
+<p><strong>2. "Incremental" and "efficient" are different questions.</strong> A channel can be truly causal and still be a poor place for the <em>next</em> dollar. So I modelled marginal efficiency across a range of spend levels and compared each to the blended, all-channel benchmark. That located the point where the channel crosses from "pulling the average down" into diminishing returns — turning a vague "should we spend more?" into a defensible "hold here; scaling further isn't supported by the data."</p>
+<p><strong>3. I was honest about what the test could and couldn't prove.</strong> The most valuable part of the write-up was the limitations section. The channel wasn't perfectly excluded from the treatment region, which meant the true effect was likely <em>larger</em> than measured — so the numbers were conservative. And incremental sales volume was thin enough that the sales figure had to be treated as directional, not gospel. I recommended replicating in a second state before anyone applied these coefficients nationally. Overstating confidence would have been the easiest way to destroy trust in the whole method.</p>
+<h2 id="why-this-mattered">Why this mattered</h2>
+<p>The deliverable wasn't a lift percentage. It was a <strong>decision framework</strong>: a defensible spend level for the channel, a correction to how attribution was feeding the company's marketing-mix model, and a repeatable testing pipeline — control construction, power analysis, DiD readout, monitoring — that could be pointed at the next channel and the next state.</p>
+<p>That last part is the real payoff. The first geo holdout is a project. The <em>tenth</em> is a capability. By the end, "how do we know this actually works?" had a real answer, and a repeatable way to get it.</p>
+<hr>
+<p class="post-note"><em>Part of a series on causal measurement in marketing. Companion posts cover the <a href="/blog/paid-search-incrementality-organic-cannibalization/">paid-search holdout with organic cannibalisation</a> and the <a href="/blog/programmatic-dsp-incrementality-control-groups/">two-philosophy approach to programmatic control selection</a>.</em></p>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">incrementality</span><span class="mtag">causal-inference</span><span class="mtag">synthetic-control</span><span class="mtag">difference-in-differences</span><span class="mtag">marketing-analytics</span><span class="mtag">experimentation</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Meta Paid Social Incrementality Test</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/auto-home-bundle-cross-sell-analytics/"><span class="pg-dir">← Older</span><span class="pg-title">Finding the Cross-Sell Hiding in Your Own Book</span></a>
+        <a class="pg-next" href="/blog/paid-search-incrementality-organic-cannibalization/"><span class="pg-dir">Newer →</span><span class="pg-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/paid-search-incrementality-organic-cannibalization/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-04-27">APR 27 · 2026</time>
+        </div>
+        <h3 class="rel-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</h3>
+        <p class="rel-desc">Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid sea…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/programmatic-dsp-incrementality-control-groups/">
+        <div class="rel-meta">
+          <span class="chip cat-i">Incrementality Testing</span>
+          <time class="rel-date" datetime="2026-06-20">JUN 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h3>
+        <p class="rel-desc">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of you…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/market-opportunity-index-media-budget-allocation/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-15">MAY 15 · 2026</time>
+        </div>
+        <h3 class="rel-title">Where Should We Spend Next? Building a Market-Opportunity Index</h3>
+        <p class="rel-desc">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one n…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

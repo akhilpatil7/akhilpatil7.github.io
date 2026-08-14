@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incrementality Testing &amp; Causal Measurement · Akhil Patil</title>
+  <meta name="description" content="Field notes on incrementality testing for marketing — geo holdout design, synthetic control groups, difference-in-differences readouts, and power analysis.">
+  <meta name="keywords" content="incrementality testing, geo holdout test, synthetic control, difference-in-differences, causal inference marketing, media incrementality, geo experiments">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/topics/incrementality-testing/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/topics/incrementality-testing/">
+  <meta property="og:title" content="Incrementality Testing &amp; Causal Measurement">
+  <meta property="og:description" content="Field notes on incrementality testing for marketing — geo holdout design, synthetic control groups, difference-in-differences readouts, and power analysis.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/topic-incrementality-testing.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Incrementality Testing &amp; Causal Measurement">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Incrementality Testing &amp; Causal Measurement">
+  <meta name="twitter:description" content="Field notes on incrementality testing for marketing — geo holdout design, synthetic control groups, difference-in-differences readouts, and power analysis.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/topic-incrementality-testing.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"CollectionPage","@id":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/#page","url":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/","name":"Incrementality Testing & Causal Measurement","description":"Field notes on incrementality testing for marketing — geo holdout design, synthetic control groups, difference-in-differences readouts, and power analysis.","about":[{"@type":"Thing","name":"incrementality testing"},{"@type":"Thing","name":"geo holdout test"},{"@type":"Thing","name":"synthetic control"},{"@type":"Thing","name":"difference-in-differences"},{"@type":"Thing","name":"causal inference marketing"},{"@type":"Thing","name":"media incrementality"},{"@type":"Thing","name":"geo experiments"}],"isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntity":{"@type":"ItemList","numberOfItems":3,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/","name":"Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads"},{"@type":"ListItem","position":2,"url":"https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/","name":"How Much of Paid Search Is Just Buying Clicks You'd Get for Free?"},{"@type":"ListItem","position":3,"url":"https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/","name":"Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Incrementality Testing","item":"https://akhilpatil7.github.io/blog/topics/incrementality-testing/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<main>
+  <header class="blog-hero">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <span aria-current="page">Incrementality Testing</span>
+  </nav>
+    <div class="section-label">Topic · Incrementality Testing</div>
+    <h1>Incrementality Testing &amp; Causal Measurement</h1>
+    <div class="hero-rule"></div>
+    <p class="lede">Attribution tells you what got clicked. Incrementality tells you what actually changed behaviour. These essays cover the full experimental stack I use to answer the only media question that matters — <em>if we turned this channel off, what would we actually lose?</em> — including geo holdout design, synthetic control construction, Mahalanobis matching, power analysis and minimum detectable effect sizing, difference-in-differences measurement, and the discipline of being honest about what a test can and cannot prove.</p>
+    <div class="blog-meta-row">
+      <span><b>3</b> essays</span>
+      <span>Updated <b>June 20, 2026</b></span>
+      <span><a href="/blog/">All topics →</a></span>
+    </div>
+  </header>
+
+  <hr class="divider">
+
+  <section class="wrap" id="content" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Essays in this topic</div>
+    <div class="post-list">
+      <a class="post-row reveal" href="/blog/programmatic-dsp-incrementality-control-groups/" data-cat="incrementality-testing">
+      <div class="pr-side">
+        <span class="chip cat-i">Incrementality Testing</span>
+        <time class="pr-date" datetime="2026-06-20">JUN 20 · 2026</time>
+        <span class="pr-read">6 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</h2>
+        <p class="pr-excerpt">When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of your treatment? I ran two tests where the data situations were completely different — and each demanded a completely different way of building that twin.</p>
+        <div class="pr-tags"><span class="mtag">incrementality</span><span class="mtag">programmatic</span><span class="mtag">mahalanobis-matching</span><span class="mtag">clustering</span><span class="mtag">synthetic-control</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/paid-search-incrementality-organic-cannibalization/" data-cat="incrementality-testing">
+      <div class="pr-side">
+        <span class="chip cat-i">Incrementality Testing</span>
+        <time class="pr-date" datetime="2026-04-27">APR 27 · 2026</time>
+        <span class="pr-read">4 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</h2>
+        <p class="pr-excerpt">Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid search, how much of that traffic just comes back through organic for free? The answer reshaped how the budget was allocated.</p>
+        <div class="pr-tags"><span class="mtag">incrementality</span><span class="mtag">paid-search</span><span class="mtag">cannibalization</span><span class="mtag">difference-in-differences</span><span class="mtag">causal-impact</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+      <a class="post-row reveal" href="/blog/geo-holdout-incrementality-test-paid-social/" data-cat="incrementality-testing">
+      <div class="pr-side">
+        <span class="chip cat-i">Incrementality Testing</span>
+        <time class="pr-date" datetime="2026-04-20">APR 20 · 2026</time>
+        <span class="pr-read">6 min read</span>
+      </div>
+      <div class="pr-main">
+        <h2 class="pr-title">Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</h2>
+        <p class="pr-excerpt">Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo holdout experiment to measure the true, causal contribution of a social advertising channel — and why the answer surprised everyone.</p>
+        <div class="pr-tags"><span class="mtag">incrementality</span><span class="mtag">causal-inference</span><span class="mtag">synthetic-control</span><span class="mtag">difference-in-differences</span><span class="mtag">marketing-analytics</span></div>
+        <div class="pr-cta">Read essay →</div>
+      </div>
+    </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <div class="section-label">Other topics</div>
+    <div class="topics-grid">
+      <a class="topic-card reveal delay-1" href="/blog/topics/media-strategy/">
+        <div class="tc-count">02 essays</div>
+        <h3 class="tc-title">Media Strategy &amp; Geo Targeting</h3>
+        <p class="tc-desc">Deciding where to spend is a harder analytical problem than deciding how much…</p>
+      </a>
+      <a class="topic-card reveal delay-2" href="/blog/topics/data-machinery/">
+        <div class="tc-count">04 essays</div>
+        <h3 class="tc-title">Data Machinery &amp; Operational Analytics</h3>
+        <p class="tc-desc">Most analytics failures are not modelling failures…</p>
+      </a>
+      <a class="topic-card reveal delay-3" href="/blog/topics/applied-ml/">
+        <div class="tc-count">03 essays</div>
+        <h3 class="tc-title">Applied Machine Learning</h3>
+        <p class="tc-desc">A model that scores well and changes nothing is a failed project…</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:clamp(56px,7vw,80px)">
+    <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+  </section>
+</main>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

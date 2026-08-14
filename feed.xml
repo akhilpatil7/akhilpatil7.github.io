@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title>Field Notes — Akhil Patil</title>
+  <link>https://akhilpatil7.github.io/blog/</link>
+  <description>Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.</description>
+  <language>en-us</language>
+  <lastBuildDate>Sat, 20 Jun 2026 12:00:00 GMT</lastBuildDate>
+  <atom:link href="https://akhilpatil7.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</title>
+    <link>https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/</guid>
+    <pubDate>Sat, 20 Jun 2026 12:00:00 GMT</pubDate>
+    <category>Incrementality Testing</category>
+    <description>When you test a programmatic channel at the zip-code level, the entire experiment lives or dies on one thing: is your control group a real twin of your treatment? I ran two tests where the data situations were completely different — and each demanded a completely different way of building that twin.</description>
+  </item>
+  <item>
+    <title>Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</title>
+    <link>https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/</guid>
+    <pubDate>Fri, 22 May 2026 12:00:00 GMT</pubDate>
+    <category>Media Strategy</category>
+    <description>Two questions sit under every programmatic budget: which micro-markets to target, and which vendor to trust. I built a reusable framework for the first — a weighted zip-ranking index — and used device-level significance testing to settle the second.</description>
+  </item>
+  <item>
+    <title>Where Should We Spend Next? Building a Market-Opportunity Index</title>
+    <link>https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/</guid>
+    <pubDate>Fri, 15 May 2026 12:00:00 GMT</pubDate>
+    <category>Media Strategy</category>
+    <description>A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one number per market — that blends demand headroom, conversion efficiency, and customer loyalty into a live map of where the next advertising dollar works hardest.</description>
+  </item>
+  <item>
+    <title>How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</title>
+    <link>https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/</guid>
+    <pubDate>Mon, 27 Apr 2026 12:00:00 GMT</pubDate>
+    <category>Incrementality Testing</category>
+    <description>Paid search is the channel everyone trusts and nobody questions. So I ran a holdout test that asked an uncomfortable question — when we pause paid search, how much of that traffic just comes back through organic for free? The answer reshaped how the budget was allocated.</description>
+  </item>
+  <item>
+    <title>Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</title>
+    <link>https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/</guid>
+    <pubDate>Mon, 20 Apr 2026 12:00:00 GMT</pubDate>
+    <category>Incrementality Testing</category>
+    <description>Attribution tools tell you which ads got clicked. They don't tell you which ads actually changed someone's behaviour. Here's how I designed a geo holdout experiment to measure the true, causal contribution of a social advertising channel — and why the answer surprised everyone.</description>
+  </item>
+  <item>
+    <title>Finding the Cross-Sell Hiding in Your Own Book</title>
+    <link>https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/</guid>
+    <pubDate>Tue, 24 Mar 2026 12:00:00 GMT</pubDate>
+    <category>Data Machinery</category>
+    <description>Every insurer knows bundling auto and home policies is valuable. Far fewer can actually see, at the customer level, who's bundled, who's eligible, and where the untapped growth sits. I built the dataset that made that visible — and automated it so it stayed that way.</description>
+  </item>
+  <item>
+    <title>One Customer, Many Footprints: Building a Unified Lead Dataset</title>
+    <link>https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/</guid>
+    <pubDate>Tue, 10 Mar 2026 12:00:00 GMT</pubDate>
+    <category>Data Machinery</category>
+    <description>A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in three systems. I built the foundational dataset that stitched those footprints into one customer, then used it to quantify exactly how much opportunity was leaking out of the funnel.</description>
+  </item>
+  <item>
+    <title>Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</title>
+    <link>https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/</guid>
+    <pubDate>Fri, 20 Feb 2026 12:00:00 GMT</pubDate>
+    <category>Data Machinery</category>
+    <description>A vendor was quietly earning a seven-figure annual fee to route inbound calls to the right agents. The company decided to bring it in-house. I supported the migration analytics — and when the internal call volumes came back looking alarmingly low, I found out why before anyone panicked.</description>
+  </item>
+  <item>
+    <title>An Early-Warning System for Marketing KPIs (Without Crying Wolf)</title>
+    <link>https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/</guid>
+    <pubDate>Fri, 30 Jan 2026 12:00:00 GMT</pubDate>
+    <category>Data Machinery</category>
+    <description>The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here's how I built control limits for daily marketing KPIs that respected how the data actually behaves.</description>
+  </item>
+  <item>
+    <title>Predicting Customer Value When You Barely Have Any Labels</title>
+    <link>https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/</guid>
+    <pubDate>Sun, 05 Nov 2023 12:00:00 GMT</pubDate>
+    <category>Applied ML</category>
+    <description>Sometimes the most honest, most senior thing a data scientist can do is admit the standard model doesn't work — and engineer a defensible answer anyway. This is the story of predicting a value metric for seven million people when fewer than two percent of them had a usable label.</description>
+  </item>
+  <item>
+    <title>From Seven Million Households to Five Personas</title>
+    <link>https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/</guid>
+    <pubDate>Sat, 15 Jul 2023 12:00:00 GMT</pubDate>
+    <category>Applied ML</category>
+    <description>Turning millions of raw demographic records into a handful of marketing personas sounds like a clustering exercise. The interesting part was what happened when the clustering didn't work — and how principal component analysis rescued it.</description>
+  </item>
+  <item>
+    <title>Predicting Churn, Then Reading the Reasons in the Call Notes</title>
+    <link>https://akhilpatil7.github.io/blog/churn-prediction-lda-topic-modeling/</link>
+    <guid isPermaLink="true">https://akhilpatil7.github.io/blog/churn-prediction-lda-topic-modeling/</guid>
+    <pubDate>Sat, 20 May 2023 12:00:00 GMT</pubDate>
+    <category>Applied ML</category>
+    <description>Predicting which new customers will cancel is useful. Knowing *why* each one is at risk — mined from unstructured call-center notes — is what makes the prediction actionable. This project did both, and taught me a lot about the difference between a good model and a useful one.</description>
+  </item>
+</channel>
+</rss>

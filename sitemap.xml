@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://akhilpatil7.github.io/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/topics/incrementality-testing/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/topics/media-strategy/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/topics/data-machinery/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/topics/applied-ml/</loc>
+    <lastmod>2023-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/programmatic-dsp-incrementality-control-groups/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/programmatic-dsp-incrementality-control-groups.png</image:loc><image:title>Two Roads to a Valid Control Group: Zip-Level Incrementality for Programmatic Ads</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/media-targeting-toolkit-zip-code-ranking/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/media-targeting-toolkit-zip-code-ranking.png</image:loc><image:title>Deciding Where — and With Whom — to Spend: A Media Targeting Toolkit</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/market-opportunity-index-media-budget-allocation/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/market-opportunity-index-media-budget-allocation.png</image:loc><image:title>Where Should We Spend Next? Building a Market-Opportunity Index</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/paid-search-incrementality-organic-cannibalization/</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/paid-search-incrementality-organic-cannibalization.png</image:loc><image:title>How Much of Paid Search Is Just Buying Clicks You'd Get for Free?</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/geo-holdout-incrementality-test-paid-social/</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/geo-holdout-incrementality-test-paid-social.png</image:loc><image:title>Proving What Marketing Actually Works: A Geo Holdout Test for Social Ads</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/auto-home-bundle-cross-sell-analytics/</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/auto-home-bundle-cross-sell-analytics.png</image:loc><image:title>Finding the Cross-Sell Hiding in Your Own Book</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/unified-lead-dataset-entity-resolution/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/unified-lead-dataset-entity-resolution.png</image:loc><image:title>One Customer, Many Footprints: Building a Unified Lead Dataset</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/call-routing-insourcing-cost-reduction/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/call-routing-insourcing-cost-reduction.png</image:loc><image:title>Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/early-warning-system-marketing-kpis-spc.png</image:loc><image:title>An Early-Warning System for Marketing KPIs (Without Crying Wolf)</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/predicting-customer-value-without-labels/</loc>
+    <lastmod>2023-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/predicting-customer-value-without-labels.png</image:loc><image:title>Predicting Customer Value When You Barely Have Any Labels</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/customer-personas-kmeans-clustering-pca/</loc>
+    <lastmod>2023-07-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/customer-personas-kmeans-clustering-pca.png</image:loc><image:title>From Seven Million Households to Five Personas</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://akhilpatil7.github.io/blog/churn-prediction-lda-topic-modeling/</loc>
+    <lastmod>2023-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://akhilpatil7.github.io/images/og/churn-prediction-lda-topic-modeling.png</image:loc><image:title>Predicting Churn, Then Reading the Reasons in the Call Notes</image:title></image:image>
+  </url>
+</urlset>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistical Process Control for KPI Alerts · Akhil Patil</title>
+  <meta name="description" content="Building an early-warning system for daily marketing KPIs using statistical process control limits that catch real anomalies without endless false alarms.">
+  <meta name="keywords" content="statistical process control, control limits, UCL LCL, anomaly detection, KPI alerting, early warning system, marketing dashboards, false positive rate">
+  <meta name="author" content="Akhil Patil">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/">
+  <link rel="alternate" type="application/rss+xml" title="Field Notes — Akhil Patil" href="https://akhilpatil7.github.io/feed.xml">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Akhil Patil">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/">
+  <meta property="og:title" content="An Early-Warning System for Marketing KPIs (Without Crying Wolf)">
+  <meta property="og:description" content="Building an early-warning system for daily marketing KPIs using statistical process control limits that catch real anomalies without endless false alarms.">
+  <meta property="og:image" content="https://akhilpatil7.github.io/images/og/early-warning-system-marketing-kpis-spc.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="An Early-Warning System for Marketing KPIs (Without Crying Wolf)">
+  <meta property="article:published_time" content="2026-01-30">
+  <meta property="article:author" content="https://www.linkedin.com/in/akhilpatil7/">
+  <meta property="article:section" content="Data Machinery">
+  <meta property="article:tag" content="statistics">
+  <meta property="article:tag" content="statistical-process-control">
+  <meta property="article:tag" content="control-limits">
+  <meta property="article:tag" content="anomaly-detection">
+  <meta property="article:tag" content="dashboards">
+  <meta property="article:tag" content="alerting">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="An Early-Warning System for Marketing KPIs (Without Crying Wolf)">
+  <meta name="twitter:description" content="Building an early-warning system for daily marketing KPIs using statistical process control limits that catch real anomalies without endless false alarms.">
+  <meta name="twitter:image" content="https://akhilpatil7.github.io/images/og/early-warning-system-marketing-kpis-spc.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230C7A58'/><text x='50' y='68' font-family='Georgia,serif' font-size='46' font-weight='300' fill='%23FFFFFF' text-anchor='middle' letter-spacing='-2'>AP</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,500;1,200&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://akhilpatil7.github.io/#akhil","name":"Akhil Patil","url":"https://akhilpatil7.github.io/","image":"https://akhilpatil7.github.io/images/Linkedin.PNG","jobTitle":"Senior Marketing Analyst","worksFor":{"@type":"Organization","name":"Plymouth Rock Assurance"},"email":"mailto:akhil.patil7@gmail.com","sameAs":["https://www.linkedin.com/in/akhilpatil7/","https://github.com/akhilpatil7"],"knowsAbout":["Incrementality testing","Marketing analytics","Causal inference","Synthetic control","Difference-in-differences","Geo experiments","Programmatic advertising","Media measurement","Machine learning","Customer segmentation","Churn prediction"]},{"@type":"Blog","@id":"https://akhilpatil7.github.io/blog/#blog","name":"Field Notes — Akhil Patil","description":"Long-form essays on incrementality testing, geo holdout experiments, media analytics, and applied machine learning — by Akhil Patil, Sr. Marketing Analyst.","url":"https://akhilpatil7.github.io/blog/","inLanguage":"en-US","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"}},{"@type":"BlogPosting","@id":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/#article","isPartOf":{"@id":"https://akhilpatil7.github.io/blog/#blog"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/"},"url":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/","headline":"An Early-Warning System for Marketing KPIs (Without Crying Wolf)","alternativeHeadline":"Statistical Process Control for KPI Alerts","description":"Building an early-warning system for daily marketing KPIs using statistical process control limits that catch real anomalies without endless false alarms.","articleSection":"Data Machinery","keywords":"statistical process control, control limits, UCL LCL, anomaly detection, KPI alerting, early warning system, marketing dashboards, false positive rate","wordCount":817,"timeRequired":"PT4M","inLanguage":"en-US","datePublished":"2026-01-30","dateModified":"2026-01-30","author":{"@id":"https://akhilpatil7.github.io/#akhil"},"publisher":{"@id":"https://akhilpatil7.github.io/#akhil"},"image":{"@type":"ImageObject","url":"https://akhilpatil7.github.io/images/og/early-warning-system-marketing-kpis-spc.png","width":1200,"height":630}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://akhilpatil7.github.io/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://akhilpatil7.github.io/blog/"},{"@type":"ListItem","position":3,"name":"Data Machinery","item":"https://akhilpatil7.github.io/blog/topics/data-machinery/"},{"@type":"ListItem","position":4,"name":"An Early-Warning System for Marketing KPIs (Without Crying Wolf)","item":"https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<div id="progress"></div>
+<nav id="nav">
+  <a class="nav-brand" href="/" aria-label="Akhil Patil — home">A<em>·</em>P</a>
+  <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/blog/" class="active" aria-current="page">Writing</a></li>
+    <li><a href="/#experience">Experience</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-head">
+    <div class="post-head-inner">
+      <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><span aria-hidden="true">/</span>
+      <a href="/blog/">Writing</a><span aria-hidden="true">/</span>
+      <a href="/blog/topics/data-machinery/">Data Machinery</a><span aria-hidden="true">/</span>
+      <span aria-current="page">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</span>
+  </nav>
+      <div class="post-kicker">
+        <a href="/blog/topics/data-machinery/" class="chip cat-c">Data Machinery</a>
+        <time datetime="2026-01-30" itemprop="datePublished">January 30, 2026</time>
+        <span>4 min read</span>
+        <span>817 words</span>
+      </div>
+      <h1 itemprop="headline">An Early-Warning System for Marketing KPIs (Without Crying Wolf)</h1>
+      <p class="post-lede" itemprop="description">The hardest part of an alerting system isn't detecting change — it's detecting the change that matters without drowning everyone in false alarms. Here's how I built control limits for daily marketing KPIs that respected how the data actually behaves.</p>
+      <div class="byline">
+        <img src="/images/avatar.jpg" alt="Akhil Patil" width="44" height="44" loading="lazy" decoding="async">
+        <div>
+          <div class="byline-name">Akhil Patil</div>
+          <div class="byline-role">Senior Marketing Analyst, Plymouth Rock Assurance</div>
+        </div>
+        <div class="byline-actions">
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fearly-warning-system-marketing-kpis-spc%2F" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0M.24 8.02h4.5V24H.24zM8.34 8.02h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.34c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.43 1.64-2.43 3.34V24h-4.5z"/></svg></a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fakhilpatil7.github.io%2Fblog%2Fearly-warning-system-marketing-kpis-spc%2F&amp;text=An%20Early-Warning%20System%20for%20Marketing%20KPIs%20(Without%20Crying%20Wolf)" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26L22.5 21.75h-6.63l-5.2-6.79-5.94 6.79H1.4l7.73-8.84L1.5 2.25h6.8l4.7 6.21zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg></a>
+          <button class="share-btn" type="button" data-copy-link="https://akhilpatil7.github.io/blog/early-warning-system-marketing-kpis-spc/" aria-label="Copy link to this essay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <aside class="toc" aria-label="On this page">
+      <div class="toc-label">On this page</div>
+      <ol>
+        <li><a href="#the-goal-notice-trouble-on-day-one-not-at-the-month-end-review">The goal: notice trouble on day one, not at the month-end review</a></li>
+        <li><a href="#borrowing-from-the-factory-floor-control-limits">Borrowing from the factory floor: control limits</a></li>
+        <li><a href="#matching-the-method-to-the-distribution">Matching the method to the distribution</a></li>
+        <li><a href="#keeping-it-honest-over-time">Keeping it honest over time</a></li>
+        <li><a href="#why-it-mattered">Why it mattered</a></li>
+        <li><a href="#what-id-do-differently">What I'd do differently</a></li>
+      </ol>
+    </aside>
+
+    <div class="post-body" id="content" itemprop="articleBody">
+<h2 id="the-goal-notice-trouble-on-day-one-not-at-the-month-end-review">The goal: notice trouble on day one, not at the month-end review</h2>
+<p>Marketing performance can deteriorate quietly. Cost-per-sale drifts up, a conversion rate sags, and by the time it surfaces in a monthly review, weeks of spend have already gone sideways. The business wanted an <strong>early-warning system</strong>: automated alerts that fire when a core KPI — cost-per-sale, close rate, quote-completion rate — moves outside its normal range for a given state, so someone can look <em>today</em> rather than at the next steering meeting.</p>
+<p>The naïve version of this is easy and useless: pick a fixed threshold, alert when it's crossed. It fails immediately, because "normal" isn't a fixed number — it varies by state, by metric, and it's noisy day to day. Set the threshold too tight and you cry wolf until everyone mutes the alerts; too loose and you miss the real problems. The entire craft is in defining "abnormal" correctly.</p>
+<h2 id="borrowing-from-the-factory-floor-control-limits">Borrowing from the factory floor: control limits</h2>
+<p>I framed the problem as <strong>statistical process control (SPC)</strong> — the same discipline manufacturing uses to tell a machine that's genuinely drifting from one that's just wobbling within its normal tolerance. The core object is a <strong>control limit</strong>: an upper and lower bound on a metric, beyond which a reading is flagged as a signal rather than noise.</p>
+<p>The subtlety — and where most naïve implementations go wrong — is <em>how</em> you set those limits. The textbook approach (mean ± a few standard deviations) assumes the data is roughly bell-shaped. But <strong>daily marketing KPIs are not normally distributed.</strong> Daily cost-per-sale is skewed, spiky, and bounded — a low-volume day can produce an extreme value that a normal-based limit would either over-flag or fail to bracket. Applying the textbook formula to that data would generate exactly the false-alarm storm that gets alerting systems switched off.</p>
+<h2 id="matching-the-method-to-the-distribution">Matching the method to the distribution</h2>
+<p>So I used <strong>two different methods depending on how the data actually behaved:</strong></p>
+<p><strong>Daily view — empirical percentile limits.</strong> For raw daily metrics, which are non-normal, I set the limits empirically from the observed distribution — using high and low percentiles rather than assuming a bell curve. Crucially, I <em>tuned</em> those percentiles against the number of breaches actually observed over the prior two quarters, so the alert rate was calibrated to a sensible volume. This is the key idea: I didn't pick limits from a formula and hope; I picked them to produce an alert cadence the team could actually act on, then checked them against history.</p>
+<p><strong>Rolling 7-day view — the Empirical Rule.</strong> A 7-day rolling average smooths out the daily spikiness and, by the logic of averaging, behaves much more like a normal distribution. So for that view, the classical approach <em>is</em> appropriate — I set limits at mean ± 2 standard deviations (the ~95% Empirical Rule band). Same philosophy (bracket the normal range), correct tool for a distribution that had become approximately normal.</p>
+<p>Using the <em>right</em> method for each view is the whole point. A single one-size-fits-all rule would have been wrong for at least one of them.</p>
+<h2 id="keeping-it-honest-over-time">Keeping it honest over time</h2>
+<p>Two operational touches made it durable:</p>
+<ul><li><strong>State-specific limits.</strong> Each state has its own cost structure and behaviour, so every state got its own bounds rather than a shared, wrong-for-everyone threshold. In some cases the logic was tightened to trigger on genuinely impossible readings (for instance, a zero where zero should never occur).</li><li><strong>A monthly refresh discipline.</strong> "Normal" drifts as the business changes, so I re-estimated the thresholds every quarter/month rather than letting stale limits slowly turn into noise. An early-warning system that isn't maintained becomes an early-warning system everyone ignores.</li></ul>
+<p>The alerts themselves were delivered automatically off a monitoring dashboard, so the whole thing ran without a human watching a screen — it watched the screen and tapped someone on the shoulder only when a metric genuinely stepped out of line.</p>
+<h2 id="why-it-mattered">Why it mattered</h2>
+<p>The deliverable turned KPI monitoring from a <em>reactive</em>, look-back-monthly ritual into a <em>proactive</em>, same-day signal — and did it without the false-alarm fatigue that kills most alerting systems. The reason it worked is unglamorous but fundamental: I let the shape of the data dictate the statistics, calibrated the sensitivity against real history, and committed to maintaining it. Detecting anomalies is easy; detecting the <em>right</em> anomalies, at a volume people will actually respond to, is the real problem — and that's a statistics problem, not a dashboard problem.</p>
+<h2 id="what-id-do-differently">What I'd do differently</h2>
+<p>Percentile-and-refresh limits are robust but static within a period. I'd move toward methods that model the time-series structure directly — seasonality and day-of-week effects — so the bands flex with predictable weekly patterns instead of treating every day as a draw from one distribution. Adding a "consecutive breaches" or trend rule (à la the classic SPC run rules) would also catch slow drifts that never trip a single-day limit but matter just as much as a sudden spike.</p>
+<hr>
+    </div>
+  </div>
+
+  <div class="post-foot">
+    <div class="post-foot-inner">
+      <div class="kw-block reveal">
+        <div class="kw-label">Topics covered</div>
+        <div class="kw-tags">
+          <span class="mtag">statistics</span><span class="mtag">statistical-process-control</span><span class="mtag">control-limits</span><span class="mtag">anomaly-detection</span><span class="mtag">dashboards</span><span class="mtag">alerting</span>
+        </div>
+      </div>
+      <a class="project-link reveal" href="/#projects">
+        <div class="pl-body">
+          <div class="pl-label">The project behind this essay</div>
+          <div class="pl-title">Early Warning Detection System</div>
+        </div>
+        <div class="pl-arrow">View case study →</div>
+      </a>
+
+      <nav class="pager" aria-label="More essays">
+        <a href="/blog/predicting-customer-value-without-labels/"><span class="pg-dir">← Older</span><span class="pg-title">Predicting Customer Value When You Barely Have Any Labels</span></a>
+        <a class="pg-next" href="/blog/call-routing-insourcing-cost-reduction/"><span class="pg-dir">Newer →</span><span class="pg-title">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</span></a>
+      </nav>
+
+      <h2 class="kw-label" style="margin:56px 0 20px">Related reading</h2>
+      <div class="related-grid">
+<a class="rel-card reveal" href="/blog/unified-lead-dataset-entity-resolution/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-03-10">MAR 10 · 2026</time>
+        </div>
+        <h3 class="rel-title">One Customer, Many Footprints: Building a Unified Lead Dataset</h3>
+        <p class="rel-desc">A prospect might touch a company online, get a call from the sales center, and arrive through a lead broker — and show up as three unrelated rows in t…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/call-routing-insourcing-cost-reduction/">
+        <div class="rel-meta">
+          <span class="chip cat-c">Data Machinery</span>
+          <time class="rel-date" datetime="2026-02-20">FEB 20 · 2026</time>
+        </div>
+        <h3 class="rel-title">Cutting a Seven-Figure Vendor Bill — and Debugging the Fallout</h3>
+        <p class="rel-desc">A vendor was quietly earning a seven-figure annual fee to route inbound calls to the right agents. The company decided to bring it in-house. I support…</p>
+      </a>
+<a class="rel-card reveal" href="/blog/market-opportunity-index-media-budget-allocation/">
+        <div class="rel-meta">
+          <span class="chip cat-p">Media Strategy</span>
+          <time class="rel-date" datetime="2026-05-15">MAY 15 · 2026</time>
+        </div>
+        <h3 class="rel-title">Where Should We Spend Next? Building a Market-Opportunity Index</h3>
+        <p class="rel-desc">A media team was allocating budget across hundreds of geographic markets on gut and last-quarter's numbers. I built a single, normalized index — one n…</p>
+      </a>
+      </div>
+
+      <section class="cta-band reveal">
+      <div>
+        <h2>Measuring something<br>similar?</h2>
+        <p>I design causal experiments and the data machinery around them. Always happy to compare notes on incrementality, geo testing, and media measurement.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</article>
+<footer class="site-foot">
+  <div class="foot-left">
+    <div class="footer-name">Akhil Patil</div>
+    <div class="footer-copy">© 2026 · Sr. Marketing Analyst · New Jersey</div>
+  </div>
+  <div class="foot-links">
+    <a href="/">Portfolio</a>
+    <a href="/blog/">Writing</a>
+    <a href="https://www.linkedin.com/in/akhilpatil7/" target="_blank" rel="noopener me">LinkedIn</a>
+    <a href="mailto:akhil.patil7@gmail.com">Email</a>
+    <a href="/feed.xml">RSS</a>
+  </div>
+</footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
